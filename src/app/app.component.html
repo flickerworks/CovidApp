@@ -1,0 +1,14 @@
+<div class="app_component" fxFlex="100" fxLayout="column">
+  <div class="header_section" fxLayout="row">
+    <div class="nav_bar_section" fxFlex="100" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+      <div class="nav_bar_name" [routerLink]="globalServices.isUserLoggedIn ? 'view-user' : '/'">Covid</div>
+      <div *ngIf="globalServices.isUserLoggedIn" class="nav-menu-bar" fxFlex="70" fxLayout="row" fxLayoutGap="30px">
+        <div class="nav-menu-item" [ngClass]="{'active' : currentRoute === menu.route}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngFor="let menu of globalServices.menuRoutes" [routerLink]="menu.route">{{menu.title}}</div>
+        <div class="nav-menu-item" (click)="logOut()">Logout</div>
+      </div>
+    </div>
+  </div>
+  <div class="body_section" fxLayout="column">
+    <router-outlet (activate)="trackRoute()"></router-outlet>
+  </div>
+</div>

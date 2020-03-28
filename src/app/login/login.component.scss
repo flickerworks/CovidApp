@@ -1,0 +1,58 @@
+.login {
+    margin: 5% 0%;
+    .login_section {
+        font-size: 15px;
+        color: #777777;
+        line-height: 1.65em;
+        background-color: #fff;
+        box-shadow: 0px 0 20px 0 rgba(0, 0, 0, 0.3);
+        border: 1px solid #ebebeb;
+        text-align: center;
+        padding: 25px 25px 25px 25px;
+
+        .container_form {
+            width: 100%;
+        }
+        .mat-divider {
+            position: relative;
+            width: 70%;
+            border-top: 1px solid #77777794;
+            margin-bottom: 20px;
+        }
+        .mat-input-element {
+            caret-color: #777777;
+            color: #777777;
+        }
+        ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+            color: #777777 !important;
+        }
+        .container_header {
+            padding: 0px 20px 20px 0px;
+            width: 100%;
+        }
+        .container_title {
+            color: #000;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .container_button {
+            margin-top: 20px;
+        }
+        .container_button button{
+            background-color: #fff;
+            border: 2px solid #af111c;
+            color: #000;
+            padding: 5px 20px;
+            font-size: 16px;
+        }
+        .container_button button:hover{
+            background-color: #af111c;
+            border: 2px solid #af111c;
+            color: #fff;
+        }
+        .container_button button.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+}

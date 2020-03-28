@@ -1,0 +1,89 @@
+<div class="add_user" fxFlex="100" fxLayout="row" fxLayoutAlign="center start">
+    <div class="add_user_section" fxLayoutAlign="center center" fxFlex="65" fxFlex.md="100" fxFlex.sm="100" fxLayout="column">
+        <div class="container_header" fxLayout="column" fxLayoutGap="15px">
+            <div class="container_title">User Registration</div>
+            <div class="container_description">Please fill the following information to register user.</div>
+        </div>
+        <mat-divider></mat-divider>
+        <div fxLayout="column" fxFlex="100" fxLayoutGap="20px" class="container_form">
+            <form [formGroup]="userRegisterForm" fxLayout="column" fxLayoutGap="20px">
+                <div fxLayout="row wrap" fxLayoutGap="20px">
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="firstName" matInput placeholder="First Name">
+                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.required">
+                        First Name is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.minlength || userRegisterForm.controls.firstName.errors?.maxlength">
+                        First Name should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="lastName" matInput placeholder="Last Name">
+                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.required">
+                        Last Name is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.minlength || userRegisterForm.controls.lastName.errors?.maxlength">
+                        Last Name should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="mobileNumber" matInput placeholder="Mobile Number">
+                        <mat-error *ngIf="userRegisterForm.controls.mobileNumber.errors?.required">
+                        Mobile Number is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.mobileNumber.errors?.pattern">
+                        Mobile Number should be number & 10 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="landLineNumber" matInput placeholder="Land Line Number">
+                        <!-- <mat-error *ngIf="userRegisterForm.controls.landLineNumber.errors?.required">
+                        Land Line Number is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.landLineNumber.errors?.pattern">
+                        Land Line Number should be number & 10 characters long</mat-error> -->
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="city" matInput placeholder="City">
+                        <mat-error *ngIf="userRegisterForm.controls.city.errors?.required">
+                        City is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.city.errors?.minlength || userRegisterForm.controls.city.errors?.maxlength">
+                        City should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="address" matInput placeholder="Address">
+                        <mat-error *ngIf="userRegisterForm.controls.address.errors?.required">
+                        Address is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.address.errors?.minlength || userRegisterForm.controls.address.errors?.maxlength">
+                        Address should be 1 to 100 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="email" matInput placeholder="Email">
+                        <mat-error *ngIf="userRegisterForm.controls.email.errors?.required">
+                        Email is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.email.errors?.pattern">
+                        Email address is not valid</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="userName" matInput placeholder="User Name">
+                        <mat-error *ngIf="userRegisterForm.controls.userName.errors?.required">
+                        User Name is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.userName.errors?.pattern">
+                        User Name should be 5 to 20 characters long and should not conatin and special characters</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <input formControlName="password" matInput placeholder="Password">
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.required">
+                        Password is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.pattern">
+                        Password length should be between 5 to 20 characters and should contain atleast 3 digits (number, characters, special characters allowed: @$.!%*_#?&)</mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="46.5" fxFlex.sm="46">
+                        <mat-select formControlName="userType" placeholder="User Type">
+                            <mat-option *ngFor="let options of userTypes" [value]="options">{{options}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegisterForm.controls.userType?.errors?.required">
+                        User type is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+        <div class="container_button">
+            <button mat-raised-button (click)="submitUserForm()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="submit">Register Request</button>
+        </div>
+    </div>
+</div>
+      
