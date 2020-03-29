@@ -32,6 +32,9 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { HeaderComponent } from './header/header.component';
 import { CreateUserPopupComponent } from './create-user-popup/create-user-popup.component';
+import { PersonalDetailsComponent } from './personal-details/personal-details.component';
+import { QuarantineManagerComponent } from './quarantine-manager/quarantine-manager.component';
+import { MonitorCardComponent } from './quarantine-manager/monitor-card/monitor-card.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { CreateUserPopupComponent } from './create-user-popup/create-user-popup.
     AddUserComponent,
     NoDataAvailableComponent,
     HeaderComponent,
-    CreateUserPopupComponent
+    CreateUserPopupComponent,
+    PersonalDetailsComponent,
+    QuarantineManagerComponent,
+    MonitorCardComponent
   ],
   imports: [
     BrowserModule,

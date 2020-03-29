@@ -1,0 +1,47 @@
+@import 'variables';
+
+.manager{
+    margin-top: $header-height-main;
+    padding-top: 3rem;
+    &__col-left{
+        width: 50%;        
+        border-right: .1rem solid $color-grey-light;
+        .restrict {
+            margin-top: 6rem;
+            margin-left: 3rem;
+            border-radius: .4rem;
+            display: inline-block;
+            padding: .5rem 1.3rem;
+            background-color: $color-grey-dark;
+            color: $color-white;
+            font-size: 1.4rem;
+            font-weight: normal;
+            cursor: pointer;
+            .icon{
+                font-size: 1.4rem;
+            }
+            span{
+                position: relative;
+                top: -.6rem;
+                padding-left: 1rem;
+            }
+        }
+    }
+
+
+    &__col-right{
+        padding-left: 2.75rem;
+
+        &__monitor-title{
+            font-size: 1.8rem;
+            font-weight: 700;
+            padding-bottom: 1rem;
+        }
+
+        .monitorList{
+            height: 70vh;
+            overflow: auto;
+            overflow-x: hidden;
+        }
+    }
+}

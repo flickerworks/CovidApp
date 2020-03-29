@@ -1,0 +1,57 @@
+@import 'variables';
+.details {
+    padding: 0 2rem;
+
+    &__header{
+        position: relative;
+        &-title{
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        &-editBtn{
+            position: absolute;
+            background-color: $color-white;
+            right: 1rem;
+            padding: 0.4rem 1.2rem 0.3rem 1rem;
+            border: .1rem solid $color-grey-dark;
+            cursor: pointer;
+            .editIcon{
+                font-size: 1.8rem;
+                position: relative;
+                top: 0.2rem;
+            }
+            span{
+                font-size: 1.4rem;
+                position: relative;
+                top: -.1rem;
+            }
+        }
+    }
+    &__photo{
+        width: 100%;
+        margin-top: 1.5rem;
+        &__circleIcon{
+            width: 30%;
+            .icon {
+                font-size: 8rem;
+                color: $color-grey-light;
+                
+            }
+        }
+        &__nameId{
+            width: 70%;
+            vertical-align: middle;
+
+            .id{
+                margin-top: .5rem;
+            }
+            
+        }
+    }
+    &__contact-details{
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        
+        
+    }
+}

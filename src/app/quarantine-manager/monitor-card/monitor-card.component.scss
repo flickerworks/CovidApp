@@ -1,0 +1,35 @@
+@import 'variables';
+
+.monitor{
+    margin-top: 2rem;
+    &__content{     
+        padding-left: 1rem;   
+        &-photo{
+            vertical-align: middle;
+            .icon{
+                color: $color-grey-light;
+                font-size: 4.5rem;
+            }
+        }
+
+        &-details{
+            .text-top{
+                font-size: 1.4rem;
+                font-weight: normal;
+                color: $color-grey-dark;
+            }
+            .text-bottom{
+                font-size: 1.4rem;
+                font-weight: normal;
+                color: $color-grey-dark;
+                margin-top: .5rem;
+                .mat-icon{
+                    position: relative;                    
+                    font-size: 1.5rem;
+                    top: .4rem;
+                }
+            }
+            
+        }
+    }
+}

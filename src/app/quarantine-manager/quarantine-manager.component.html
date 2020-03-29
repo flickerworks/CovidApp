@@ -1,0 +1,19 @@
+<header></header>
+<div class="manager __row">
+    <div class="__col manager__col-left">
+        <personal-details></personal-details>
+        <a class="restrict">
+            <mat-icon>not_interested</mat-icon>
+            <span>Restrict</span>
+        </a>
+    </div>
+    <div class="__col manager__col-right">
+        <h2 class="manager__col-right__monitor-title">Monitors in your zone</h2>
+
+        <div class="monitorList">
+            <div class="monitor-details" *ngFor="let monitor of monitorList">
+                <monitor-card [data]="monitor"></monitor-card>
+            </div>            
+        </div>
+    </div>
+</div>

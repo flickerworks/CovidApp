@@ -1,0 +1,33 @@
+@import 'variables';
+
+.__row{
+    display: table;
+    width: 100%;
+    .__col:last-child{
+        font-weight: normal;
+    }
+    .__col:not(:last-child){
+        padding-left: .75rem;
+        display: table-cell;        
+        font-weight: 700;
+    }
+    &:not(:last-child){
+        margin-bottom: 1rem;
+        font-weight: normal;
+    }
+    .w30{
+        width: 30%;
+    }
+    .w40{
+        width: 40%;
+    }
+    .w50{
+        width: 50%;
+    }
+    .w60{
+        width: 60%;
+    }
+    .w70{
+        width: 70%;
+    }
+}

@@ -4,6 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { QuarantineManagerComponent } from './quarantine-manager/quarantine-manager.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'view-user',
     component: ViewUserComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'quarantine-manager',
+    component: QuarantineManagerComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -24,6 +24,8 @@
     font-style: italic;
 } */
 
+@import 'grid';
+
 *,
 *::after,
 *::before {
@@ -48,4 +50,10 @@ body {
     display: inline-block!important;
 }
 
+.d-table{
+    display: table;
+}
 
+.d-cell{
+    display: table-cell;
+}
