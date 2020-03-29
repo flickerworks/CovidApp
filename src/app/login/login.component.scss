@@ -1,60 +1,68 @@
+@import "variables";
 .login {
-    margin: 5% 0%;
-    .login__left-banner{
-        background-color: grey;
-    }
-    .login_section {
-        font-size: 1.5rem;
-        color: #777777;
-        line-height: 1.65rem;
-        background-color: #fff;
-        box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.3);
-        border: 1px solid #ebebeb;
-        text-align: center;
-        padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    .login__left_section{
+        background-color: $color-grey-dark;
+        width: calc(40% - 10rem);
+        color: $color-white;
+        padding: 10rem 5rem;
 
-        .container_form {
-            width: 100%;
+        .left_section_header {
+            line-height: 3rem;
+
+            .left_section_header__title_1 {
+                font-size: 26px;
+            }
+            .left_section_header__title_2 {
+                font-size: 36px;
+                font-weight: bold;
+            }
         }
-
-        .mat-divider {
-            position: relative;
-            width: 70%;
-            border-top: 1px solid #77777794;
-            margin-bottom: 2rem;
+    }
+    .login__right_section{
+        width: calc(60% - 10rem);
+        padding: 10rem 5rem;
+        
+        .right_section__form {
+            padding: 5rem;
+            width: 60%;
+            margin: 0 auto;
+            clear: both;
+            color: $color-grey-dark;
+        }
+        .mat-radio-group {
+            text-align: left;
+            font-size: 12px;
+            margin-bottom: 30px !important;
+        }
+        ::ng-deep .mat-radio-outer-circle {
+            border-color: $color-grey-light;
+        }
+        ::ng-deep .mat-radio-inner-circle {
+            background-color: $color-radio-button-grey;
+        }
+        .mat-form-field {
+            font-size: 14px;
         }
         .mat-input-element {
-            caret-color: #777777;
-            color: #777777;
+            caret-color: $color-grey-dark !important;
+            color: $color-grey-dark !important;
         }
         ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-            color: #777777 !important;
+            color: $color-grey-dark !important;
         }
-        .container_header {
-            padding: 0 2rem 2rem 0;
-            width: 100%;
-        }
-        .container_title {
-            color: #000;
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        .container_button {
-            margin-top: 2rem;
-        }
-        .container_button button{
-            background-color: #fff;
-            border: .2rem solid #af111c;
-            color: #000;
+        button{
+            background-color: $button-color-grey;
+            border: .2rem solid $button-color-grey;
+            color: $color-white;
             padding: 0 2rem;
             font-size: 1.6rem;
+            border-radius: 0px;
+            font-weight: 100;
         }
-        .container_button button:hover{
-            background-color: #af111c;
-            border: .2rem solid #af111c;
-            color: #fff;
-        }
-        .container_button button.disabled {
+        button.disabled {
             opacity: 0.5;
             pointer-events: none;
         }

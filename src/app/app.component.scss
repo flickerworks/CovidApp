@@ -1,41 +1,15 @@
+@import "variables";
+
 .app_component {
-    background-color: #fff;
-    font-family: 'Work Sans', sans-serif;
+    background-color: $color-white;
+    height: 100%;
     
     div:focus {
       outline: -webkit-focus-ring-color auto 0px;
     }
-    .header_section, .body_section {
-      padding: 1.5% 5%;
-    }
-  
-    .header_section {
-      .nav_bar_section {
-        min-height: 41px;
-      }
-      .nav_bar_name {
-        color: #af111c;
-        font-weight: 700;
-        font-size: 26px;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-      .nav-menu-item {
-        color: #222;
-        font-weight: 700;
-        font-size: 16px;
-        border-bottom: 3px solid transparent;
-        cursor: pointer;
-        padding: 10px 0px;
-        &.active {
-          color: #af111c;
-          border-bottom: 3px solid #af111c;
-        }
-      }
-    }
-  
     .body_section {
-      background-color: #f4f5f6;
+      height: 100%;
+      background-color: $color-white;
     }
-  }
+}
   

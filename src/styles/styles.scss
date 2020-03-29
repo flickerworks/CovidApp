@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('fonts/Segoe_UI.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
 *,
 *::after,
 *::before {
@@ -15,6 +20,6 @@ html {
 
 body { 
     height: 100%; 
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'MyWebFont';
 }
 

@@ -1,32 +1,40 @@
-<div class="login" fxFlex="100" fxLayout="row" fxLayoutAlign="center start">
-  <div class="login_section" fxLayoutAlign="center center" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="60" fxLayout="column">
-    <div class="container_header" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
-      <div class="container_title">Login</div>
+<div class="login">
+  <div class="login__left_section">
+    <div class="left_section_header">
+      <div class="left_section_header__title_1">TRACK</div>
+      <div class="left_section_header__title_2">COVID-19</div>
     </div>
-    <mat-divider></mat-divider>
-    <div fxLayout="column" fxFlex="100" fxLayoutGap="20px" class="container_form">
-      <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="20px" autocomplete = "off">
-        <div fxLayout="column wrap" fxLayoutGap="20px">
-          <mat-form-field fxFlex="100">
-            <input formControlName="email" matInput placeholder="Email">
-            <mat-error *ngIf="loginForm.controls.email.errors?.required">
-              Email is required</mat-error>
-            <mat-error *ngIf="loginForm.controls.email.errors?.pattern">
-              Email address is not valid</mat-error>
-          </mat-form-field>
-          <mat-form-field fxFlex="100">
-            <input formControlName="password" type="password" matInput placeholder="Password">
-            <mat-error *ngIf="loginForm.controls.password.errors?.required">
-              Password is required</mat-error>
-            <mat-error *ngIf="loginForm.controls.password.errors?.pattern">
-              Password length should be between 5 to 20 characters and should contain atleast 3 digits (number, characters, special characters allowed: @$.!%*_#?&)</mat-error>
-          </mat-form-field>
-        </div>
-      </form>
-    </div>
-    <div class="container_button">
-      <button mat-raised-button (click)="onLogIn()" [ngClass]="{'disabled' : !loginForm.valid}" type="submit">Log In</button>
+    <div class="left_section_header">
+      <img src="">
     </div>
   </div>
+  <div class="login__right_section">
+    <form class="right_section__form" [formGroup]="loginForm" autocomplete = "off">
+      <div fxLayout="column wrap" fxLayoutGap="20px">
+        <mat-radio-group aria-label="Select an option" fxLayoutGap="30px">
+          <mat-radio-button value="admin" checked="true">Login as Admin</mat-radio-button>
+          <mat-radio-button value="quarantine_manager">Login as Quarantine Manager</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field>
+          <input formControlName="email" matInput placeholder="User Name">
+          <mat-error *ngIf="loginForm.controls.email.errors?.required">
+            Email is required</mat-error>
+          <mat-error *ngIf="loginForm.controls.email.errors?.pattern">
+            Email address is not valid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="password" type="password" matInput placeholder="Password">
+          <mat-error *ngIf="loginForm.controls.password.errors?.required">
+            Password is required</mat-error>
+          <mat-error *ngIf="loginForm.controls.password.errors?.pattern">
+            Password length should be between 5 to 20 characters and should contain atleast 3 digits (number, characters, special characters allowed: @$.!%*_#?&)</mat-error>
+        </mat-form-field>
+        <button mat-raised-button (click)="onLogIn()" [ngClass]="{'disabled' : !loginForm.valid}" type="submit">Login</button>
+      </div>
+    </form>
+    <div class="container_button">
+    </div>
+  </div>
+  <!-- </div> -->
 </div>
   
