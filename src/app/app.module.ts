@@ -29,6 +29,7 @@ import { AlertDialogComponent } from './shared/components/alert-dialog/alert-dia
 import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NoDataAvailableComponent } from './no-data-available/no-data-available.
     LoginComponent,
     ViewUserComponent,
     AddUserComponent,
-    NoDataAvailableComponent
+    NoDataAvailableComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
