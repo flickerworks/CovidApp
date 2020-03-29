@@ -18,6 +18,10 @@ export class CreateUserPopupComponent implements OnInit {
     this.globalService.showPopup.next(false);
   }
 
+  avoidClose(event){
+    event.stopPropagation();
+  }
+
   createQuarantineMan(){
 
   }
