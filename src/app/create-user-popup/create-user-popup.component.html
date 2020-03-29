@@ -3,10 +3,10 @@
         <a (click)="hidePopup($event)" class="popup__content__close"><mat-icon>close</mat-icon></a> 
         <p class="popup__content-title">What kind of a user you want to create?</p>
         <div class="popup__content__buttons">
-            <div class="popup__content__buttons-box" (click)="createQuarantineMan()">
+            <div class="popup__content__buttons-box" (click)="createQuarantineMan(event)">
                 <p>Create a Quarantine Manager</p>
             </div>
-            <div class="popup__content__buttons-box"  (click)="createMonitor()">
+            <div class="popup__content__buttons-box"  (click)="createMonitor(event)">
                 <p>Create a Monitor</p>
             </div>
         </div>

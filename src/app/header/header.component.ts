@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalServices } from '../shared/services/global.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -8,13 +9,17 @@ import { GlobalServices } from '../shared/services/global.services';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private globalService: GlobalServices) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  showPopup(){
+  /* showPopup(){
     this.globalService.showPopup.next(true);
-  } 
+  }  */
+
+  addUser(){
+    this.router.navigateByUrl('/add-user');
+  }
 
 }

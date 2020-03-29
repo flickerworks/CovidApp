@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GlobalServices } from '../shared/services/global.services';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'create-user-popup',
@@ -8,7 +9,9 @@ import { GlobalServices } from '../shared/services/global.services';
 })
 export class CreateUserPopupComponent implements OnInit {
   @Input() show:boolean=false;
-  constructor(private globalService: GlobalServices) { }
+  constructor(private globalService: GlobalServices, 
+    private router: Router,
+    private route:ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -22,12 +25,14 @@ export class CreateUserPopupComponent implements OnInit {
     event.stopPropagation();
   }
 
-  createQuarantineMan(){
-
+  createQuarantineMan(event){    
+    this.router.navigate(['/add-user','createQuarantineMan'], {relativeTo: this.route});
+    setTimeout(_ => this.globalService.showPopup.next(false),200);
   }
 
-  createMonitor(){
-    
+  createMonitor(event){
+    this.router.navigate(['/add-user', 'createMonitor'], {relativeTo: this.route});
+    setTimeout(_ => this.globalService.showPopup.next(false),200);
   }
 
 }

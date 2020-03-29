@@ -1,8 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face {
+/* @font-face {
     font-family: 'MyWebFont';
-    src: url('fonts/Segoe_UI.ttf')  format('truetype'); /* Safari, Android, iOS */
+    src: url('fonts/Segoe_UI.ttf')  format('truetype') format('truetype'); 
+    font-weight: 400;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: "MyWebFont";
+    src: url('fonts/Segoe_UI_Bold.ttf');
+    font-weight: bold;
+} 
+
+@font-face {
+    font-family: "MyWebFont";
+    src: url('fonts/Segoe_UI_Italic.ttf');
+    font-style: italic;
 }
+@font-face {
+    font-family: "MyWebFont";
+    src: url('fonts/Segoe_UI_Bold_Italic.ttf');
+    font-weight: bold;
+    font-style: italic;
+} */
 
 *,
 *::after,
@@ -20,10 +40,12 @@ html {
 
 body { 
     height: 100%; 
-    font-family: 'MyWebFont';
+    font-family: 'Segoe_UI', sans-serif;
 }
 
 
 .d__inline-block{
-    display: inline-block;
+    display: inline-block!important;
 }
+
+

@@ -18,14 +18,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.globalServices.checkUserLoggedIn();
-    this.openPopup();
+    // this.openPopup();
   }
 
-  openPopup(){
+  /* openPopup(){
     this.globalServices.showPopup.subscribe(res => {
       this.showPopup = res;
     })
-  }
+  } */
 
   trackRoute(): void {
     this.currentRoute = this.router.url.split('/')[1];

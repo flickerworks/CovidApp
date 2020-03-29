@@ -26,11 +26,17 @@
             position: relative;   
             top: -.2rem;
             &-top{
+                line-height: 0;
+                top: -2.4rem;
+                position: relative;
                 font-size: 1.6rem;                
                 text-align: center;                
                 text-shadow: 0 .15rem .3rem rgba($color: #000000, $alpha: .4);
             }
             &-bottom{
+                line-height: 0;
+                top: -.4rem;
+                position: relative;
                 font-size: 2.8rem;
                 text-align: left;
                 color: $color-white;
@@ -53,6 +59,9 @@
             .create-user{
                 text-decoration: none;
                 cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 
