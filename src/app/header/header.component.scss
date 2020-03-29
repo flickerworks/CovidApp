@@ -1,11 +1,78 @@
 @import "variables";
 
 .header{    
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    height:12rem;
+    height:$header-height-main;
     background-color: $color-grey-dark;
     border: .1rem solid $color-grey-light;
+    color: #FFF;
+    z-index: 99;
+    &__left{    
+        width: 25rem;        
+        height:$header-height-main;
+        &-logo{
+            padding-left: 3%;
+            img{
+                position: relative;
+                top: .3rem;
+                height: 5.5rem;
+            }
+        }
+
+        &__text{      
+            position: relative;   
+            top: -.2rem;
+            &-top{
+                font-size: 1.6rem;                
+                text-align: center;                
+                text-shadow: 0 .15rem .3rem rgba($color: #000000, $alpha: .4);
+            }
+            &-bottom{
+                font-size: 2.8rem;
+                text-align: left;
+                color: #FFF;
+                text-shadow: 0 .15rem .3rem rgba($color: #000000, $alpha: .4);
+            }
+        }
+        
+    }
+
+    &__right{
+        position: absolute;
+        right: 0;
+        padding-right: 2rem;
+        font-size: 1.6rem;
+        &-create{
+            position: relative;
+            top: -1.2rem;
+            margin-right: 4rem;
+
+            .create-user{
+                text-decoration: none;
+                cursor: pointer;
+            }
+        }
+
+        &-user{
+            .name{
+                position: relative;
+                top: -1.2rem;
+                margin-right: 1.5rem;
+            }
+
+            .photo{
+                position: relative;
+                top: .7rem;
+                width: 4.5rem;
+                height: 4.5rem;
+                .icon{
+                    font-size: 5rem;
+                }
+            }
+        }
+    }
+    
 }
