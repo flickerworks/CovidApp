@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { LoggedInUserModel, MenuRoute } from '../models/shared.model';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class GlobalServices {
-
+  showPopup = new Subject<boolean>();
   public isUserLoggedIn: boolean = false;
   public loggedInUserDetails: LoggedInUserModel;
   public menuRoutes: MenuRoute[] = [];

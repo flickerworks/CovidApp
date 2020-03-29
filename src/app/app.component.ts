@@ -10,7 +10,7 @@ import { GlobalServices } from './shared/services/global.services';
 })
 export class AppComponent implements OnInit {
   currentRoute: string;
-  
+  showPopup:boolean = false;
   constructor(
     private readonly router: Router,
     public globalServices: GlobalServices
@@ -18,6 +18,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.globalServices.checkUserLoggedIn();
+    this.openPopup();
+  }
+
+  openPopup(){
+    this.globalServices.showPopup.subscribe(res => {
+      this.showPopup = res;
+    })
   }
 
   trackRoute(): void {

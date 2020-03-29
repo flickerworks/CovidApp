@@ -7,8 +7,8 @@
     width: 100%;
     height:$header-height-main;
     background-color: $color-grey-dark;
-    border: .1rem solid $color-grey-light;
-    color: #FFF;
+    border: .1rem solid #707070;
+    color: $color-white;
     z-index: 99;
     &__left{    
         width: 25rem;        
@@ -33,7 +33,7 @@
             &-bottom{
                 font-size: 2.8rem;
                 text-align: left;
-                color: #FFF;
+                color: $color-white;
                 text-shadow: 0 .15rem .3rem rgba($color: #000000, $alpha: .4);
             }
         }

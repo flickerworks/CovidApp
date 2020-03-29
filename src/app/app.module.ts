@@ -31,6 +31,7 @@ import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { HeaderComponent } from './header/header.component';
+import { CreateUserPopupComponent } from './create-user-popup/create-user-popup.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HeaderComponent } from './header/header.component';
     ViewUserComponent,
     AddUserComponent,
     NoDataAvailableComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateUserPopupComponent
   ],
   imports: [
     BrowserModule,

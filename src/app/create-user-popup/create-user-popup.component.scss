@@ -1,0 +1,69 @@
+@import 'variables';
+@import 'mixins';
+.popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color: #000000, $alpha: .7);
+    z-index: 9999;
+    
+    &__content {
+        &__close{
+            font-size: 3rem;
+            color: $color-grey-dark;
+            position: absolute;
+            right: 1rem;
+            top: .2rem;
+            background-color: $color-off-white;
+            cursor: pointer;
+            transition: transform .4s;
+            &:hover{
+                transform: scale(.90);
+            }
+        }
+
+
+        @include center;
+
+        width: 50%;
+        height: 36rem;
+        background-color: $color-off-white;
+        box-shadow: 0 2rem 4rem rgba($color: #000000, $alpha: .2);
+        border-radius: .3rem;
+        &__buttons{
+            display: table;
+            margin: 0 auto;
+            -webkit-border-horizontal-spacing: 5rem;
+            
+            &-box{
+                display: table-cell;
+                width: 20rem;
+                height: 15rem;             
+                background-color: $color-grey-light;
+                vertical-align: middle;
+                user-select: none;
+                transition: transform .4s;
+                cursor: pointer;
+
+                p{
+                    text-align: center;
+                    font-size: 1.6rem;
+                    color: $color-white;
+                    font-weight: 700;
+
+                }
+                
+                &:hover{
+                    transform: translateY(.2rem) scale(1.03);
+                }
+            }
+        } 
+        &-title{
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 7rem 0 3rem 0;
+        }
+    }
+}
