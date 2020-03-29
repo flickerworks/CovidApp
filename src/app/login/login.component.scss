@@ -1,23 +1,27 @@
 .login {
     margin: 5% 0%;
+    .login__left-banner{
+        background-color: grey;
+    }
     .login_section {
-        font-size: 15px;
+        font-size: 1.5rem;
         color: #777777;
-        line-height: 1.65em;
+        line-height: 1.65rem;
         background-color: #fff;
-        box-shadow: 0px 0 20px 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.3);
         border: 1px solid #ebebeb;
         text-align: center;
-        padding: 25px 25px 25px 25px;
+        padding: 2.5rem;
 
         .container_form {
             width: 100%;
         }
+
         .mat-divider {
             position: relative;
             width: 70%;
             border-top: 1px solid #77777794;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
         }
         .mat-input-element {
             caret-color: #777777;
@@ -27,27 +31,27 @@
             color: #777777 !important;
         }
         .container_header {
-            padding: 0px 20px 20px 0px;
+            padding: 0 2rem 2rem 0;
             width: 100%;
         }
         .container_title {
             color: #000;
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 700;
         }
         .container_button {
-            margin-top: 20px;
+            margin-top: 2rem;
         }
         .container_button button{
             background-color: #fff;
-            border: 2px solid #af111c;
+            border: .2rem solid #af111c;
             color: #000;
-            padding: 5px 20px;
-            font-size: 16px;
+            padding: 0 2rem;
+            font-size: 1.6rem;
         }
         .container_button button:hover{
             background-color: #af111c;
-            border: 2px solid #af111c;
+            border: .2rem solid #af111c;
             color: #fff;
         }
         .container_button button.disabled {

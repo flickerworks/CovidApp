@@ -1,11 +1,11 @@
 <div class="login" fxFlex="100" fxLayout="row" fxLayoutAlign="center start">
-  <div class="login_section" fxLayoutAlign="center center" fxFlex="40" fxFlex.md="50" fxFlex.sm="60" fxLayout="column">
+  <div class="login_section" fxLayoutAlign="center center" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="60" fxLayout="column">
     <div class="container_header" fxFlex="100" fxLayout="row" fxLayoutAlign="center center">
       <div class="container_title">Login</div>
     </div>
     <mat-divider></mat-divider>
     <div fxLayout="column" fxFlex="100" fxLayoutGap="20px" class="container_form">
-      <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="20px">
+      <form [formGroup]="loginForm" fxLayout="column" fxLayoutGap="20px" autocomplete = "off">
         <div fxLayout="column wrap" fxLayoutGap="20px">
           <mat-form-field fxFlex="100">
             <input formControlName="email" matInput placeholder="Email">
