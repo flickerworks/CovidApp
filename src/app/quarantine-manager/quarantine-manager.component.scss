@@ -2,7 +2,7 @@
 
 .manager{
     margin-top: $header-height-main;
-    padding-top: 3rem;
+    padding-top: $padding-header-bottom;
     &__col-left{
         width: 50%;        
         border-right: .1rem solid $color-grey-light;

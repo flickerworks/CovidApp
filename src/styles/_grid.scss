@@ -3,17 +3,19 @@
 .__row{
     display: table;
     width: 100%;
-    .__col:last-child{
-        font-weight: normal;
-    }
-    .__col:not(:last-child){
-        padding-left: .75rem;
-        display: table-cell;        
-        font-weight: 700;
-    }
+    
     &:not(:last-child){
         margin-bottom: 1rem;
-        font-weight: normal;
+    }
+    .__col{        
+        display: table-cell; 
+    }
+    
+    .w10{
+        width: 10%;
+    }
+    .w20{
+        width: 20%;
     }
     .w30{
         width: 30%;

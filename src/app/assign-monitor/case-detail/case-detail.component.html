@@ -1,0 +1,46 @@
+<div class="monitor">
+    <div class="monitor__content __row">
+        <div class="monitor__content-photo __col">
+            <mat-icon class="icon">account_circle</mat-icon>
+        </div>
+        <div class="monitor__content-details __col w20 textLeft">
+            <h2 class="text-top noWrap">Lokesh Ravi - ID: 543535435</h2><br>
+            <h2 class="text-bottom">
+                <span class="noWrap"><mat-icon> local_phone</mat-icon>8798765678</span>
+            </h2>
+        </div>
+        <div class="monitor__content-details __col w20">
+            <h2 class="text-top"></h2><br>
+            <h2 class="text-bottom">
+                <span class="noWrap"><mat-icon> email</mat-icon>lokeshravi01@gmail.com</span>
+            </h2>
+        </div>
+        <div class="monitor__content-details __col w20">
+            <h2 class="text-top"></h2><br>
+            <h2 class="text-bottom">
+                <span class="noWrap"><mat-icon class="zone"> add_location</mat-icon>Zone, 567432</span>
+            </h2>
+        </div>
+        
+        <div class="monitor__casses __col w20">
+            <div class="circle">
+                <h2>10</h2>
+                <h2>Cases</h2>
+            </div>
+        </div>
+        <div class="monitor__assignBtn __col w20">
+            <span (click)="assign()"><h2>Assign</h2></span>
+        </div>
+    </div>
+    <popup class="popup" [show]="showPopup">
+        <h2 class="popup__message">Do you want to assign <strong>{{case}}</strong> case to <strong>"monitor"</strong>?</h2>
+        <div class="popup__buttons">
+            <div class="popup__buttons__no d__inline-block">
+                <a class="no" (click)="onAssign(false)">No</a>
+            </div>
+            <div class="popup__buttons__yes d__inline-block">
+                <a class="yes" (click)="onAssign(no)">Yes</a>
+            </div>
+        </div>
+    </popup>
+</div>

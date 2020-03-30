@@ -25,7 +25,7 @@
 } */
 
 @import 'grid';
-
+@import 'mediaquery';
 *,
 *::after,
 *::before {
@@ -59,4 +59,11 @@ body {
 
 .mat-table, .mat-paginator, .mat-input-element, .mat-raised-button, .mat-tab-label, .mat-tab-group, .mat-form-field {
     font-family: "Segoe_UI", sans-serif;
+}
+.noWrap{
+    white-space: nowrap;
+}
+
+.textLeft{
+    text-align: left!important;
 }

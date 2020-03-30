@@ -32,12 +32,15 @@ import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { HeaderComponent } from './header/header.component';
-import { CreateUserPopupComponent } from './create-user-popup/create-user-popup.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 import { QuarantineManagerComponent } from './quarantine-manager/quarantine-manager.component';
 import { MonitorCardComponent } from './quarantine-manager/monitor-card/monitor-card.component';
 import { UserSectionComponent } from './user-section/user-section.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
+import { AssignMonitorComponent } from './assign-monitor/assign-monitor.component';
+import { CaseDetailComponent } from './assign-monitor/case-detail/case-detail.component';
+import { PopupComponent } from './popup/popup.component';
+
 
 @NgModule({
   declarations: [
@@ -48,12 +51,14 @@ import { PatientListComponent } from './patient-list/patient-list.component';
     AddUserComponent,
     NoDataAvailableComponent,
     HeaderComponent,
-    CreateUserPopupComponent,
+    PopupComponent,
     PersonalDetailsComponent,
     QuarantineManagerComponent,
     MonitorCardComponent,
     UserSectionComponent,
-    PatientListComponent
+    PatientListComponent,
+    AssignMonitorComponent,
+    CaseDetailComponent
   ],
   imports: [
     BrowserModule,

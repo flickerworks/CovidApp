@@ -50,7 +50,7 @@
         position: absolute;
         right: 0;
         padding-right: 2rem;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         &-create{
             position: relative;
             top: -1.2rem;
@@ -58,6 +58,7 @@
 
             .create-user{
                 text-decoration: none;
+                font-weight: 200;
                 cursor: pointer;
                 &:hover {
                     text-decoration: underline;
@@ -68,6 +69,7 @@
         &-user{
             .name{
                 position: relative;
+                font-weight: 200;
                 top: -1.2rem;
                 margin-right: 1.5rem;
             }

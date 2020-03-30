@@ -1,0 +1,26 @@
+@import 'variables';
+
+.assign-monitor{    
+    margin-top: $header-height-main;
+    padding-top: $padding-header-bottom;
+    padding: 2.7rem;
+    
+    &__message{
+        font-size: 1.8rem;
+        font-weight: 400;
+        color: $color-grey-dark;
+    }
+
+    &__title{
+        font-size: 2rem;
+        margin-top: 1.5rem;
+        color: $color-grey-dark;
+        padding-bottom: 1rem;
+    }
+
+    &__case-list{
+        height: 70vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
