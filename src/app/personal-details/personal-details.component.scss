@@ -1,7 +1,7 @@
 @import 'variables';
 .details {
     padding: 0 2rem;
-
+    color: $color-grey-dark;
     &__header{
         position: relative;
         &-title{
@@ -41,7 +41,9 @@
         &__nameId{
             width: 70%;
             vertical-align: middle;
-
+            .name{
+                font-size: 1.8rem;
+            }
             .id{
                 margin-top: .5rem;
             }
