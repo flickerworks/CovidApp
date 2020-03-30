@@ -1,9 +1,10 @@
 @import 'variables';
 
 .assign-monitor{    
-    margin-top: $header-height-main;
-    padding-top: $padding-header-bottom;
-    padding: 2.7rem;
+    // margin-top: $header-height-main;
+    padding-top: $header-height-main + $padding-header-bottom;
+    padding-left: 2.7rem;
+    padding-right: 2.7rem;
     
     &__message{
         font-size: 1.8rem;

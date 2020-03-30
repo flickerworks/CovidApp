@@ -1,14 +1,14 @@
 @import 'variables';
 
 .manager{
-    margin-top: $header-height-main;
-    padding-top: $padding-header-bottom;
+    // margin-top: $header-height-main;
+    padding-top: $header-height-main + $padding-header-bottom;
     &__col-left{
         width: 50%;        
         border-right: .1rem solid $color-grey-light;
         .restrict {
             margin-top: 6rem;
-            margin-left: 3rem;
+            margin-left: 2rem;
             border-radius: .4rem;
             display: inline-block;
             padding: .5rem 1.3rem;
