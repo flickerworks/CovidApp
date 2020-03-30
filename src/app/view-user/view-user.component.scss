@@ -1,99 +1,28 @@
-.view_user_table {
-  margin: 5% 0%;
-  .view_user_table_section {
-    font-size: 15px;
-    color: #777777;
-    line-height: 1.65em;
-    background-color: #fff;
-    box-shadow: 0px 0 20px 0 rgba(0, 0, 0, 0.3);
-    border: 1px solid #ebebeb;
-    text-align: center;
-    padding: 25px 0px 25px 0px;
+@import "variables";
+.view_user {
+  margin: $header-height-main $no-margin-padding $no-margin-padding;
+  padding: 2.5rem;
+  font-family: 'Segoe_UI', sans-serif;
 
-    .mat-divider {
-      position: relative;
-      width: 30%;
-      border-top: 1px solid #77777794;
-      margin-bottom: 20px;
-    }
-    .view_user_table_header {
-      width: calc(100% - 40px);
-      margin: 0px 20px;
-    }
-    .mat-input-element {
-      caret-color: #777777;
-      color: #777777;
-    }
-    ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-      color: #777777 !important;
-    }
-    .container_header {
-      padding: 0px 20px 20px 20px;
-    }
-    .container_title {
-      color: #000;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .container_form {
-      width: 100%;
-    }
-    .mat-card {
-      margin: 0px 16px 0px 17px;
-      border-radius: 6px;
-      box-shadow: none;
-      overflow: auto;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-    .mat-table {
-      box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-      margin: 0 5px;
-      border-spacing: 0;
-      display: table;
-      width: 100%;
-    }
-    .mat-header-row {
-      border-radius: 6px 6px 0 0;
-      background-color: #706e6c;
-
-      .mat-header-cell {
-        font-size: 14px;
-        font-weight: 700;
-        color: #fff;
-        height: 56px;
-        min-width: 100px;
-
-        ::ng-deep .mat-sort-header-arrow {
-          color: #fff !important;
-        }
-      }
-    }
-    .mat-row {
-      background: #ebeaea;
-      min-height: 48px;
-      border-bottom-color: rgba(0,0,0,.12);
-    }
-    .update_button {
-      background-color: #fff;
-      border: 1px solid #af111c;
-      color: #000;
-      font-size: 16px;
-    }
-    .update_button:hover{
-      background-color: #af111c;
-      border: 2px solid #af111c;
-      color: #fff;
-    }
-    .mat-paginator {
-      background: #ebeaea;
-      border-radius: 50px;
-      padding: 0px 10px;
-    }
-    .view_user_table_header button {
-      background-color: #fff;
-    }
+  ::ng-deep .mat-tab-header {
+    width: auto;
+    margin: 0 auto;
+  }
+  ::ng-deep .mat-tab-header-pagination {
+    display: none;
+  }
+  ::ng-deep .mat-tab-label {
+    border: 1px solid $border-color-grey-light;
+    color: $color-grey-dark;
+    font-size: 16px;
+    opacity: 1;
+  }
+  ::ng-deep .mat-tab-label-active {
+    border: 1px solid $color-grey-dark;
+    background-color: $color-grey-dark;
+    color: $color-white;
+  }
+  ::ng-deep .mat-ink-bar {
+    display: none;
   }
 }

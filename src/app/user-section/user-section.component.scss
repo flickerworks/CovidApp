@@ -1,0 +1,78 @@
+@import "variables";
+.user_section__counter {
+  margin: 2.5rem 0;
+}
+.counter__tab {
+  border: 1px solid $border-color-grey-light;
+  padding: 1.5rem;
+    font-size: $table-header-font-size;
+    color: $border-color-grey-light;
+}
+.tab__counter {
+  font-size: 32px;
+  font-weight: bold;
+}
+.user_section__filters {
+  margin-bottom: 2.5rem;
+
+  .filters__search {
+    height: 5rem;
+    .mat-input-element {
+      padding: 10px 20px;
+      border: 1px solid $border-color-grey-light;
+      color: $input-text-color-grey-light;
+      font-size: $table-header-font-size;
+      outline-offset: 0px;
+      outline: -webkit-focus-ring-color auto 0px;
+    }
+    img {
+      width: 15px;
+      margin-right: 5px;
+    }
+  }
+}
+.mat-raised-button {
+  background-color: $color-grey-dark;
+  color: $color-white;
+  border-radius: $no-margin-padding;
+  padding: 2px 8px;
+}
+.filters__filter {
+  .filter_text {
+    color: $color-grey-dark;
+    font-size: $table-header-font-size;
+  }
+  img {
+    width: 17px;
+  }
+}
+.table_section__container {
+  overflow: auto;
+}
+.mat-table {
+  .mat-header-row {
+    background-color: $table-header-color-grey;
+    min-height: $table-header-height;
+    max-height: $table-header-height;
+    border-bottom: $no-margin-padding;
+  }
+  .mat-header-cell {
+    color: $color-grey-dark;
+    font-weight: bold;
+    font-size: $table-header-font-size;
+  }
+  .mat-row {
+    border-bottom-width: $no-margin-padding;
+    padding: 5px 0px;
+  }
+  .mat-cell {
+    color: $color-grey-dark;
+  }
+  .user_icon {
+    width: 40px;
+  }
+}
+.mat-paginator {
+  color: $color-grey-dark;
+  font-size: $paginator-font-size;
+}

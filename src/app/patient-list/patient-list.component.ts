@@ -1,27 +1,25 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import {
   DefaultErrorMessage,
   UserModel,
   UserSectionModel,
-  UserTableColumns
+  PatientTableColumns
 } from '../shared/models/shared.model';
+import { GlobalServices } from '../shared/services/global.services';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { AlertDialogComponent } from '../shared/components/alert-dialog/alert-dialog.component';
-import { GlobalServices } from '../shared/services/global.services';
 
 @Component({
-  selector: 'app-view-user',
-  templateUrl: './view-user.component.html',
-  styleUrls: ['./view-user.component.scss']
+  selector: 'app-patient-list',
+  templateUrl: './patient-list.component.html',
+  styleUrls: ['./patient-list.component.scss']
 })
-export class ViewUserComponent implements OnInit, OnDestroy {
-  quarantineManagerData: UserModel[];
-  monitorsData: UserModel[];
-  quarantineManagerSectionDetails: UserSectionModel;
-  monitorsSectionDetails: UserSectionModel;
+export class PatientListComponent implements OnInit {
+
+  patientList: UserModel[];
+  patientSectionDetails: UserSectionModel;
   isDataAvailable: boolean = true;
   userTableSubscription: Subscription;
   updateUserTableSubscription: Subscription;
@@ -33,7 +31,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getUserTableData();
+    this.getPatientList();
   }
 
   ngOnDestroy(): void {
@@ -45,8 +43,8 @@ export class ViewUserComponent implements OnInit, OnDestroy {
     // }
   }
 
-  getUserTableData(): void {
-    this.quarantineManagerData = [{
+  getPatientList(): void {
+    this.patientList = [{
       id: 123,
       firstName: 'Test',
       lastName: 'User',
@@ -61,6 +59,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       state: 'UP',
       pincode: '201306',
       zone: 'Zone 1 201306',
+      monitorAssigned: 'Taran',
       userType: 'Quarantine Managers'
     },{
       id: 456,
@@ -77,9 +76,9 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       state: 'UP',
       pincode: '201301',
       zone: 'Zone 1 201301',
+      monitorAssigned: 'Taran',
       userType: 'Quarantine Managers'
-    }];
-    this.monitorsData = [{
+    },{
       id: 765,
       firstName: 'Taran',
       lastName: 'Lamba',
@@ -94,6 +93,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       state: 'UP',
       pincode: '201306',
       zone: 'Zone 1 201306',
+      monitorAssigned: 'Karan',
       userType: 'Monitors'
     },{
       id: 876,
@@ -110,6 +110,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       state: 'UP',
       pincode: '201301',
       zone: 'Zone 1 201301',
+      monitorAssigned: 'Taran',
       userType: 'Monitors'
     },{
       id: 654,
@@ -126,26 +127,17 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       state: 'UP',
       pincode: '201306',
       zone: 'Zone 1 201306',
+      monitorAssigned: 'Taran',
       userType: 'Monitors'
     }];
-    this.quarantineManagerSectionDetails = {
-      totalUsers: 100,
-      totalZones: 20,
-      users: this.quarantineManagerData,
-      userType: 'Quarantine Manager',
-      tableColumns: this.globalServices.enumToArray(UserTableColumns),
-      enrollNewUser: false,
-      showCount: true
-    }
-    this.monitorsSectionDetails = {
-      totalUsers: 600,
-      totalZones: 20,
-      users: this.monitorsData,
-      userType: 'Monitors',
-      tableColumns: this.globalServices.enumToArray(UserTableColumns),
-      enrollNewUser: false,
-      showCount: true
-    }
+    
+    this.patientSectionDetails = {
+      users: this.patientList,
+      tableColumns: this.globalServices.enumToArray(PatientTableColumns),
+      enrollNewUser: true,
+      showCount: false,
+      searchByPincode: true
+    };
   }
 
 }

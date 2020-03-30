@@ -5,7 +5,10 @@ $color-white: #fff;
 $button-color-grey: #444444;
 $color-radio-button-grey: #535353;
 $color-off-white: #f7f7f7;
-
+$border-color-grey-light: #707070;
+$input-text-color-grey-light: #A8A8A8;
+$no-margin-padding: 0;
+$table-header-color-grey: #EDEDED;
 
 //header
 $header-height-main: 6.5rem;
@@ -15,3 +18,8 @@ $header-height-main: 6.5rem;
 $grid-width: 114rem;
 $gutter-vertical:8rem;
 $gutter-horizontal:6rem;
+
+//table
+$table-header-height: 40px;
+$paginator-font-size: 14px;
+$table-header-font-size: 16px;

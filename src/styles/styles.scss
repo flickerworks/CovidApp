@@ -45,7 +45,6 @@ body {
     font-family: 'Segoe_UI', sans-serif;
 }
 
-
 .d__inline-block{
     display: inline-block!important;
 }
@@ -56,4 +55,8 @@ body {
 
 .d-cell{
     display: table-cell;
+}
+
+.mat-table, .mat-paginator, .mat-input-element, .mat-raised-button, .mat-tab-label, .mat-tab-group, .mat-form-field {
+    font-family: "Segoe_UI", sans-serif;
 }

@@ -33,17 +33,49 @@ export interface UserRegisterModel {
 }
 
 export enum UserTableColumns {
-  ID = 'id',
-  FIRST_NAME = 'firstName',
-  LAST_NAME = 'lastName',
+  NAME = 'name',
   MOBILE_NUMBER = 'mobileNumber',
-  LAND_LINE_NUMBER = 'landLineNumber',
-  CITY = 'city',
-  ADDRESS = 'address',
   EMAIL = 'email',
-  USERNAME = 'userName',
-  USER_TYPE = 'userType',
+  ZONE = 'zone',
   ACTION = 'action'
+}
+
+export enum PatientTableColumns {
+  NAME = 'name',
+  MOBILE_NUMBER = 'mobileNumber',
+  ZONE = 'zone',
+  MONITOR = 'monitor',
+  ACTION = 'action'
+}
+
+export interface UserSectionModel {
+  totalUsers?: number;
+  totalZones?: number;
+  users: UserModel[];
+  userType?: string;
+  tableColumns: string[];
+  enrollNewUser: boolean;
+  showCount: boolean;
+  searchByPincode?: boolean;
+}
+
+export interface UserModel {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: number;
+  alternateMobileNumber: number;
+  governmentId: string;
+  doorNumber: string;
+  streetName: string;
+  area: string;
+  city: string;
+  state: string;
+  pincode: string;
+  zone: string;
+  monitorAssigned?: string;
+  userType: string;
 }
 
 export const UserTypes: string[] = ['Quarantine Managers','Monitors'];

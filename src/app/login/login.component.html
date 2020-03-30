@@ -1,11 +1,12 @@
 <div class="login">
   <div class="login__left_section">
     <div class="left_section_header">
-      <div class="left_section_header__title_1">TRACK</div>
-      <div class="left_section_header__title_2">COVID-19</div>
-    </div>
-    <div class="left_section_header">
-      <img src="">
+      <div class="left_section_header__image_1">
+        <img src="./assets/images/covid.svg">
+      </div>
+      <div class="left_section_header__image_2">
+        <img src="./assets/images/icon.svg">
+      </div>
     </div>
   </div>
   <div class="login__right_section">
@@ -15,14 +16,16 @@
           <mat-radio-button value="admin" checked="true">Login as Admin</mat-radio-button>
           <mat-radio-button value="quarantine_manager">Login as Quarantine Manager</mat-radio-button>
         </mat-radio-group>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
           <input formControlName="email" matInput placeholder="User Name">
           <mat-error *ngIf="loginForm.controls.email.errors?.required">
-            Email is required</mat-error>
+            User Name is required</mat-error>
           <mat-error *ngIf="loginForm.controls.email.errors?.pattern">
-            Email address is not valid</mat-error>
+            User Name address is not valid</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
           <input formControlName="password" type="password" matInput placeholder="Password">
           <mat-error *ngIf="loginForm.controls.password.errors?.required">
             Password is required</mat-error>
