@@ -2,13 +2,14 @@
 
 .monitor{
     margin-top: 2rem;
-    &__content{     
-        padding-left: 1rem;   
+    padding-right: 2rem;
+    &__content{      
         &-photo{
             vertical-align: middle;
             .icon{
                 color: $color-grey-light;
                 font-size: 4.5rem;
+                display: inline;
             }
         }
 

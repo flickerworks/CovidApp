@@ -21,7 +21,6 @@
 
     &__case-list{
         height: 70vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: auto;
     }
 }
