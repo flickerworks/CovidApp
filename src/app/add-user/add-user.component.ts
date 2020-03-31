@@ -33,31 +33,35 @@ export class AddUserComponent implements OnInit {
     this.userRegisterForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      userType: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      landLineNumber: [''],
+      alternateMobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
+      governmentId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      street: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
       city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-      email: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(EmailValidationPattern)]],
-      userName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20), Validators.pattern(UserNameValidationPattern)]],
-      password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(PasswordValidationPattern)]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
+      
     });
   }
 
-  submitUserForm(): void {
+  registerUser(): void {
     if (!this.userRegisterForm.invalid) {
       const userRegisterModel: UserRegisterModel = {
         firstName: this.userRegisterForm.value.firstName,
         lastName: this.userRegisterForm.value.lastName,
-        userType: this.userRegisterForm.value.userType,
-        mobileNumber: this.userRegisterForm.value.mobileNumber,
-        landLineNumber: this.userRegisterForm.value.landLineNumber ? this.userRegisterForm.value.landLineNumber : '',
-        city: this.userRegisterForm.value.city,
-        address: this.userRegisterForm.value.address,
         email: this.userRegisterForm.value.email,
-        userName: this.userRegisterForm.value.userName,
-        password: this.userRegisterForm.value.password,
-        registerDate: new Date()
+        mobileNumber: this.userRegisterForm.value.mobileNumber,
+        alternateMobileNumber: this.userRegisterForm.value.alternateMobileNumber,
+        governmentId: this.userRegisterForm.value.governmentId,
+        houseNumber: this.userRegisterForm.value.houseNumber,
+        street: this.userRegisterForm.value.street,
+        area: this.userRegisterForm.value.area,
+        city: this.userRegisterForm.value.city,
+        state: this.userRegisterForm.value.state,
+        pincode: this.userRegisterForm.value.pincode
       } as UserRegisterModel;
       // console.log(this.userRegisterForm.value);
       console.log(userRegisterModel);

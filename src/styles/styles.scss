@@ -57,13 +57,20 @@ body {
     display: table-cell;
 }
 
-.mat-table, .mat-paginator, .mat-input-element, .mat-raised-button, .mat-tab-label, .mat-tab-group, .mat-form-field {
+.mat-table, .mat-paginator, .mat-input-element, .mat-raised-button, .mat-tab-label,
+.mat-radio-button, .mat-tab-group, .mat-form-field {
     font-family: "Segoe_UI", sans-serif;
 }
 .noWrap{
     white-space: nowrap;
 }
 
-.textLeft{
+.textLeft {
     text-align: left!important;
+}
+.bold {
+    font-weight: bold;
+}
+.width_100 {
+    width: 100%;
 }

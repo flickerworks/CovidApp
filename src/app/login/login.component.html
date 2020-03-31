@@ -17,7 +17,6 @@
           <mat-radio-button value="quarantine_manager">Login as Quarantine Manager</mat-radio-button>
         </mat-radio-group>
         <mat-form-field appearance="outline">
-          <mat-label>User Name</mat-label>
           <input formControlName="email" matInput placeholder="User Name">
           <mat-error *ngIf="loginForm.controls.email.errors?.required">
             User Name is required</mat-error>
@@ -25,7 +24,6 @@
             User Name address is not valid</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
           <input formControlName="password" type="password" matInput placeholder="Password">
           <mat-error *ngIf="loginForm.controls.password.errors?.required">
             Password is required</mat-error>

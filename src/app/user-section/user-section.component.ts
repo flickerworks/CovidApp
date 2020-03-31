@@ -42,7 +42,7 @@ export class UserSectionComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.dataSource && this.paginator) {
       this.paginator.pageSizeOptions = DefaultPaginatorValues;
-      this.paginator.pageSize = DefaultPaginatorValues[1];
+      this.paginator.pageSize = DefaultPaginatorValues[0];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }

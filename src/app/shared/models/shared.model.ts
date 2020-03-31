@@ -18,18 +18,18 @@ export interface DialogModel {
 }
 
 export interface UserRegisterModel {
-  id?: number;
   firstName: string;
   lastName: string;
-  mobileNumber: number;
-  landLineNumber?: string;
-  city: string;
-  address: string;
   email: string;
-  userName: string;
-  password?: string;
-  userType: string;
-  registerDate?: Date;
+  mobileNumber: number;
+  alternateMobileNumber: number;
+  governmentId: string;
+  houseNumber: string;
+  street: string;
+  area: string;
+  city: string;
+  state: string;
+  pincode: string;
 }
 
 export enum UserTableColumns {
@@ -88,7 +88,7 @@ export const PasswordValidationPattern: string = '^(?=.*[A-Za-z])(?=.*\\d{1,3})[
 
 export const UserNameValidationPattern: string = '^(?=.*[A-Za-z])[A-Za-z][A-Za-z0-9]{4,20}$';
 
-export const DefaultPaginatorValues: number[] = [5, 10, 15, 20, 50]; 
+export const DefaultPaginatorValues: number[] = [10, 20, 30, 50]; 
 
 export const BooleanOptionValues: string[] = ['Yes', 'No'];
 

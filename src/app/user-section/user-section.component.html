@@ -32,18 +32,16 @@
         <img src="./assets/images/filter.svg">
         Filter
       </button>
-      <!-- <img src="./assets/images/filter.svg">
-      <div class="filter_text">Filter</div> -->
     </div>
   </div>
   <div class="table_section">
     <div class="table_section__container">
       <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="center center">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="250px" fxLayoutAlign="center center">
             Name
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="10px" fxFlex="200px">
+          <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="20px" fxFlex="250px">
             <img class="user_icon" src="./assets/images/user_circle.svg">
             <div>
               <div>{{element?.firstName}} {{element?.lastName}}</div>
