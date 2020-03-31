@@ -4,7 +4,8 @@
     // margin-top: $header-height-main;
     padding-top: $header-height-main + $padding-header-bottom;
     &__col-left{
-        width: 50%;        
+        width: 50%; 
+            
         border-right: .1rem solid $color-grey-light;
         .restrict {
             margin-top: 6rem;
@@ -27,10 +28,9 @@
             }
         }
     }
-
-
+    
     &__col-right{
-        padding-left: 2.75rem;
+        padding: 0 2.75rem;
 
         &__monitor-title{
             font-size: 1.8rem;
@@ -46,3 +46,4 @@
         }
     }
 }
+
