@@ -13,6 +13,7 @@ $color-off-white2: #f2f2f2;
 $color-blue-light: #3A73DB;
 $page-background-color: #F3F3F3;
 $color-blue: #4485FD;
+$color-red: #FF4701;
 
 
 //header
@@ -52,4 +53,17 @@ $page-default-padding: 2.5rem 5rem;
   min-height: 38rem;
   height: 38rem;
   position: absolute;
+}
+.background_image_circle {
+  width: 78rem;
+  min-height: 63rem;
+  height: 63rem;
+  position: absolute;
+  right: 0;
+}
+.color_red {
+  color: $color-red;
+}
+.z_index {
+  z-index: 1;
 }

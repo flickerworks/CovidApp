@@ -8,7 +8,8 @@ import {
   UserTypes,
   UserRegisterModel,
   DefaultErrorMessage,
-  UserNameValidationPattern
+  UserNameValidationPattern,
+  GovernmentIdTypes
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { AlertDialogComponent } from '../shared/components/alert-dialog/alert-dialog.component';
@@ -22,6 +23,7 @@ import { AlertDialogComponent } from '../shared/components/alert-dialog/alert-di
 export class AddUserComponent implements OnInit {
   userRegisterForm: FormGroup;
   userTypes: string[] = UserTypes;
+  governmentIdTypes: string[] = GovernmentIdTypes;
   
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -33,18 +35,35 @@ export class AddUserComponent implements OnInit {
     this.userRegisterForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      alternateMobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      governmentId: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      street: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-      
+      email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
+      designation: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      department: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      governmentIdImage: [''],
+      governmentIdImageName: ['', [Validators.required]],
+      houseNumber: ['', [Validators.minLength(1), Validators.maxLength(30)]],
+      street: ['', [Validators.minLength(1), Validators.maxLength(100)]],
+      area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
+      city: ['', [Validators.minLength(1), Validators.maxLength(30)]],
+      state: ['', [Validators.minLength(1), Validators.maxLength(30)]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
     });
+    console.log(this.userRegisterForm.controls.governmentIdImageName);
+  }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.userRegisterForm.controls.governmentIdImage = e.target.result;
+      };
+      this.userRegisterForm.controls.governmentIdImageName = inputNode.files[0].name;
+      this.userRegisterForm.updateValueAndValidity();
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
   }
 
   registerUser(): void {

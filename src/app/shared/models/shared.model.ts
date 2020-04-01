@@ -99,4 +99,6 @@ export const DefaultPaginatorValues: number[] = [10, 20, 30, 50];
 
 export const BooleanOptionValues: string[] = ['Yes', 'No'];
 
+export const GovernmentIdTypes: string[] = ['Voter Id', 'Aadhar', 'Pan Card', 'License', 'Passport'];
+
 export const DefaultErrorMessage: string = 'Oops! Something went wrong. Please try again.';
