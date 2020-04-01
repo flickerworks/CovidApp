@@ -6,7 +6,7 @@
     top: 0;
     width: 100%;
     height:$header-height-main;
-    background-color: $color-grey-dark;
+    background-color: $color-header-background;
     border: .1rem solid #707070;
     color: $color-white;
     z-index: 99;
@@ -14,7 +14,7 @@
         width: 25rem;        
         height:$header-height-main;
         &-logo{
-            padding-left: 3%;
+            padding-left: $padding-left-right;
             img{
                 position: relative;
                 top: .3rem;
@@ -48,7 +48,7 @@
 
     &__right{
         position: absolute;
-        right: 0;
+        right: $padding-left-right;
         padding-right: 2rem;
         font-size: 1.4rem;
         &-create{
@@ -67,12 +67,22 @@
         }
 
         &-user{
-            .name{
+
+            .name-type{
                 position: relative;
-                font-weight: 200;
-                top: -1.2rem;
-                margin-right: 1.5rem;
+                top: -.5rem;
+                .name, .type{
+                    position: relative;
+                    font-weight: 200;
+                    margin-right: 1rem;
+                    text-align: right;
+                }
+                .type{
+                    font-size: 1.2rem;
+                    padding-top: .4rem;
+                }
             }
+            
 
             .photo{
                 position: relative;
