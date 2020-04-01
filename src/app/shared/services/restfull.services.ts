@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {
-    LoggedInUserModel,
-} from '../models/shared.model';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { LoggedInUserModel, Payload } from '../models/shared.model';
 
 @Injectable ({providedIn: 'root'})
 export class RestfullServices {
     
-    public baseUrl: string = '';
-    public loginUrl: string = '';
+    public baseUrl: string = 'https://deap.techmahindra.com/UMPWebContainer/UMPRequestProcessor';
     
     headers = new HttpHeaders({
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
     });
 
     options = new HttpHeaderResponse({
@@ -22,13 +19,12 @@ export class RestfullServices {
 
     constructor(private http: HttpClient) {}
 
-    loginUser(loginData: LoggedInUserModel): Observable<LoggedInUserModel[]> {
-        return this.http.post(
-            this.baseUrl.concat(this.loginUrl),
-            loginData,
-            this.options
-        )
-        .pipe(
+
+    postApi(requestData:any):Observable<any>{
+        return this.http.post(this.baseUrl, requestData, {headers: this.headers}).pipe(
+            catchError((error, caught) => {
+                return this.onApiError(caught);
+            }),
             map(data => {
                 const responseData: LoggedInUserModel[] = [];
                 for (const key in data) {
@@ -39,5 +35,55 @@ export class RestfullServices {
                 return responseData;
             })
         )
+    }
+
+    onApiError(cought){
+        const source = cought.source.source.source.source.source;
+        return throwError(
+            source['value'] ? 
+            `Something bad happened, please try again later. \n Form ${source['value'].url}`
+            : "Internal server error, please try again"
+        )
+    }
+
+    getRequestFormat(){
+        return {
+            MESSAGE: {
+              HEADER: {
+                LOGIN: "vp0017711@Covid"
+              },
+              PAYLOAD: {},
+              SESSION: {
+                LATITUDE: "0.0",
+                LONGITUDE: "0.0",
+                APP: "CovidApp",
+                ORG: "Covid",
+                TRANSACTION: "",
+                KEY: "",
+                TYPE: "",
+                CHANNEL: "b2c"
+              }
+            }
+        }
+    }
+
+    drawPayload(payload: Payload){
+        let _payload = this.getRequestFormat();
+        _payload.MESSAGE.SESSION.TRANSACTION = payload.KEY;
+        _payload.MESSAGE.SESSION.KEY = payload.KEY;
+        _payload.MESSAGE.SESSION.TYPE = payload.KEY;
+        Object.assign(_payload.MESSAGE.PAYLOAD, payload.PAYLOAD);
+        return _payload;
+    }
+
+    loginUser(loginRequest: LoggedInUserModel, type: string): Observable<LoggedInUserModel[]> {
+        const payload: Payload = {
+            KEY: type,
+            PAYLOAD:{
+                LOGINBYADMIN: loginRequest
+            }
+        }
+        const request = this.drawPayload(payload);
+        return this.postApi(JSON.stringify(request));
     }
 }

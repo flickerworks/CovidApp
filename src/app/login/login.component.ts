@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -11,14 +11,16 @@ import { RestfullServices } from '../shared/services/restfull.services';
 import { Router } from '@angular/router';
 import { GlobalServices } from '../shared/services/global.services';
 import { AlertDialogComponent } from '../shared/components/alert-dialog/alert-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  loginSubscription: Subscription;
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
@@ -29,36 +31,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(EmailValidationPattern)]],
-      password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(PasswordValidationPattern)]]
+      username: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]//, Validators.pattern(PasswordValidationPattern)
     });
   }
 
   onLogIn(): void {
     const loginData: LoggedInUserModel = { 
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
+      USERNAME: this.loginForm.value.username,
+      PASSWORD: this.loginForm.value.password
     };
-    let response: LoggedInUserModel = {
-      id: 123,
-      email: 'test@gmail.com',
-      password: '12345'
-    };
-    sessionStorage.setItem('loggedInUserDetails', JSON.stringify(response));
-    this.globalServices.checkUserLoggedIn();
-    this.router.navigate(['/view-user']);
-    // this.restfullServices.loginUser(loginData)
-    // .subscribe((response: LoggedInUserModel[]) => {
-    //   if (response && response.length > 0) {
-    //     sessionStorage.setItem('loggedInUserDetails', JSON.stringify(response[0]));
-    //     this.globalServices.checkUserLoggedIn();
-    //     this.router.navigate(['/view-user']);
-    //   } else {
-    //     this.openDialog('Invalid credentials. Please try again.');
-    //   }
-    // }, (err) => {
-    //   this.openDialog(DefaultErrorMessage);
-    // });
+
+    this.loginSubscription = this.restfullServices.loginUser(loginData, "LOGINBYADMIN").subscribe(response => {
+      debugger;
+      sessionStorage.setItem('loggedInUserDetails', JSON.stringify(response));
+      this.globalServices.checkUserLoggedIn();
+      this.router.navigate(['/view-user']);
+    })   
   }
 
   openDialog(message: string, action?: boolean): void {
@@ -68,6 +57,12 @@ export class LoginComponent implements OnInit {
         message: message
       }
     });
+  }
+
+  ngOnDestroy(){
+    if(this.loginSubscription){
+      this.loginSubscription.unsubscribe();
+    }
   }
 
 }

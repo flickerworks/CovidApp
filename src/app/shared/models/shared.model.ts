@@ -7,9 +7,8 @@ export interface MenuRoute {
 }
 
 export interface LoggedInUserModel {
-  id?: number;
-  email: string;
-  password: string;
+  USERNAME: string;
+  PASSWORD: string;
 }
 
 export interface DialogModel {
@@ -78,6 +77,13 @@ export interface UserModel {
   monitorAssigned?: string;
   userType: string;
 }
+
+export interface Payload {
+  KEY:string;
+  PAYLOAD:any;
+}
+
+
 
 export const UserTypes: string[] = ['Quarantine Managers','Monitors'];
 
