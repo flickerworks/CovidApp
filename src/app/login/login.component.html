@@ -1,17 +1,22 @@
 <div class="login">
   <div class="login__left_section">
+    <img class="left_section__background_image" src="./assets/images/login_bg.png">
     <div class="left_section_header">
       <div class="left_section_header__image_1">
-        <img src="./assets/images/covid.svg">
+        <img src="./assets/images/icon_C.png">
       </div>
       <div class="left_section_header__image_2">
-        <img src="./assets/images/icon.svg">
+        <img src="./assets/images/Covid19_loginscreenlogo.png">
       </div>
+    </div>
+    <div class="copyright_section">
+      <div>Copyright © Tech Mahindra Limited.</div>
+      <div>All Rights Reserved</div>
     </div>
   </div>
   <div class="login__right_section">
     <form class="right_section__form" [formGroup]="loginForm" autocomplete = "off">
-      <div fxLayout="column wrap" fxLayoutGap="20px">
+      <div fxLayout="column wrap" fxLayoutGap="10px">
         <mat-radio-group aria-label="Select an option" fxLayoutGap="30px">
           <mat-radio-button value="admin" checked="true">Login as Admin</mat-radio-button>
           <mat-radio-button value="quarantine_manager">Login as Quarantine Manager</mat-radio-button>

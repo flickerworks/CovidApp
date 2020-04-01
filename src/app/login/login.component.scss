@@ -4,20 +4,41 @@
     display: flex;
     text-align: center;
     .login__left_section{
-        background-color: $color-grey-dark;
-        width: calc(40% - 10rem);
+        width: 40%;
         color: $color-white;
-        padding: 10rem 5rem;
+
+        .left_section__background_image {
+            position: absolute;
+            width: inherit;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
 
         .left_section_header {
-            line-height: 3rem;
+            display: block;
+            position: relative;
 
-            .left_section_header__image_1, .left_section_header__image_2 {
+            .left_section_header__image_1 {
                 width: 100%;
+                img {
+                    width: 10rem;
+                }
             }
-            .left_section_header__image_2 img {
-                height: 250px;
+            .left_section_header__image_2 {
+                width: 100%;
+                img {
+                    width: 30rem;
+                }
             }
+        }
+        .copyright_section {
+            color: #fff;
+            position: absolute;
+            bottom: 1rem;
+            text-align: center;
+            left: 1rem;
+            opacity: 0.5;
         }
     }
     .login__right_section{
@@ -36,20 +57,24 @@
             font-size: 12px;
             margin-bottom: 30px !important;
         }
-        ::ng-deep .mat-radio-outer-circle {
-            border-color: $color-grey-light;
+        ::ng-deep .mat-radio-checked .mat-radio-outer-circle {
+            border-color: $color-blue;
         }
         ::ng-deep .mat-radio-inner-circle {
-            background-color: $color-radio-button-grey;
+            background-color: $color-blue;
+        }
+        ::ng-deep .mat-radio-outer-circle {
+            border-color: $color-grey-dark;
         }
         .mat-form-field {
             font-size: 14px;
         }
         ::ng-deep .mat-form-field-outline {
             color: $border-color-grey-light;
+            box-shadow: 0px 1px 20px #0000001A;
         }
-        ::ng-deep .mat-form-field-outline-start, ::ng-deep .mat-form-field-outline-end {
-            border-radius: 0px;
+        ::ng-deep .mat-form-field-outline-start, ::ng-deep .mat-form-field-outline-gap, ::ng-deep .mat-form-field-outline-end {
+            border: 0px;
         }
         .mat-input-element {
             caret-color: $color-grey-dark !important;
@@ -59,12 +84,11 @@
             color: $color-grey-dark !important;
         }
         button{
-            background-color: $button-color-grey;
-            border: .2rem solid $button-color-grey;
+            background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
+            // border: .2rem solid $button-color-grey;
             color: $color-white;
             padding: 0 2rem;
             font-size: 1.6rem;
-            border-radius: 0px;
             font-weight: 100;
         }
         button.disabled {
