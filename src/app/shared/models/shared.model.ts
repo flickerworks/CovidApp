@@ -34,7 +34,8 @@ export interface UserRegisterModel {
 
 export enum UserTableColumns {
   NAME = 'name',
-  MOBILE_NUMBER = 'mobileNumber',
+  ID_NUMBER = "idNumber",
+  CONTACT_NUMBER = 'contactNumber',
   EMAIL = 'email',
   ZONE = 'zone',
   ACTION = 'action'

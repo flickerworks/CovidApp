@@ -2,7 +2,7 @@
   <div class="user_section__counter" *ngIf="userSectionDetails.showCount" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
     <div class="counter__tab" fxFlex="47" fxLayoutAlign="center center" fxLayout="column">
       <div class="tab__text">Total Number of {{userSectionDetails.userType}}</div>
-      <div class="tab__counter">{{userSectionDetails.totalUsers}}</div>
+      <div class="tab__counter color_blue">{{userSectionDetails.totalUsers}}</div>
     </div>
     <div class="counter__tab" fxFlex="47" fxLayoutAlign="center center" fxLayout="column">
       <div class="tab__text">Number of Zones</div>
@@ -12,44 +12,45 @@
   <div class="user_section__filters" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
     <div *ngIf="!userSectionDetails.searchByPincode" class="filters__search" fxLayoutAlign="start center">
       <input matInput placeholder="Search here..." [(ngModel)]="searchModel" fxFlex="100">
-      <button mat-raised-button (click)="searchTable(searchModel)" type="submit">
-        <img src="./assets/images/arrow_right.svg">
+      <button class="color_white bg_color_blue" mat-raised-button (click)="searchTable(searchModel)" type="submit">
+        <img src="./assets/images/arrow_right_white.svg">
         Go
       </button>
     </div>
     <div *ngIf="userSectionDetails.searchByPincode" class="filters__search" fxLayoutAlign="start center">
       <input matInput placeholder="Search pin code..." [(ngModel)]="searchPincodeModel" fxFlex="100">
-      <button mat-raised-button (click)="searchTable(searchPincodeModel)" type="submit">
-        <img src="./assets/images/arrow_right.svg">
+      <button class="color_white bg_color_blue" mat-raised-button (click)="searchTable(searchPincodeModel)" type="submit">
+        <img src="./assets/images/arrow_right_white.svg">
         Go
       </button>
     </div>
     <div class="filters__filter" fxLayoutAlign="end center" fxLayoutGap="5px">
-      <button *ngIf="userSectionDetails.enrollNewUser" mat-raised-button (click)="enrollNewUser()" type="submit">
+      <button class="color_white" *ngIf="userSectionDetails.enrollNewUser" mat-raised-button (click)="enrollNewUser()" type="submit">
         Enroll new user
       </button>
-      <button mat-button (click)="showFilters()" type="submit">
-        <img src="./assets/images/filter.svg">
+      <button class="color_white" mat-button (click)="showFilters()" type="submit">
+        <img src="./assets/images/filter_white.svg">
         Filter
       </button>
+      <img class="filters__refresh" src="./assets/images/update.svg" (click)="refreshList()" >
     </div>
   </div>
   <div class="table_section">
     <div class="table_section__container">
       <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="250px" fxLayoutAlign="center center">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="center center">
             Name
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxLayout="row" fxLayoutGap="20px" fxFlex="250px">
-            <img class="user_icon" src="./assets/images/user_circle.svg">
-            <div>
-              <div>{{element?.firstName}} {{element?.lastName}}</div>
-              <div>ID: {{element?.id}}</div>
-            </div>
-          </mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.firstName}} {{element?.lastName}}</mat-cell>
         </ng-container>
-        <ng-container matColumnDef="mobileNumber">
+        <ng-container matColumnDef="idNumber">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+            ID Number
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="contactNumber">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
             Contact Number
           </mat-header-cell>

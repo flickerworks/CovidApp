@@ -1,8 +1,9 @@
 @import "variables";
 .view_user {
   margin: $header-height-main $no-margin-padding $no-margin-padding;
-  padding: 2.5rem;
+  padding: $page-default-padding;
   font-family: 'Segoe_UI', sans-serif;
+  background-color: $page-background-color;
 
   ::ng-deep .mat-tab-header {
     width: auto;
@@ -12,17 +13,21 @@
     display: none;
   }
   ::ng-deep .mat-tab-label {
-    border: 1px solid $border-color-grey-light;
-    color: $color-grey-dark;
+    border: 1px solid $color-white;
+    color: $color-white;
     font-size: 16px;
     opacity: 1;
   }
   ::ng-deep .mat-tab-label-active {
-    border: 1px solid $color-grey-dark;
-    background-color: $color-grey-dark;
-    color: $color-white;
+    border: 1px solid $color-white;
+    background-color: $color-white;
+    color: $color-blue-light;
   }
   ::ng-deep .mat-ink-bar {
     display: none;
+  }
+  ::ng-deep .mat-tab-label:nth-child(even), ::ng-deep .mat-tab-label:nth-child(odd) {
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
   }
 }

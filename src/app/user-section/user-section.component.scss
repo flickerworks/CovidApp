@@ -4,13 +4,16 @@
 }
 .counter__tab {
   border: 1px solid $border-color-grey-light;
-  padding: 1.5rem;
-    font-size: $table-header-font-size;
-    color: $border-color-grey-light;
+  padding: 2rem;
+  font-size: $table-header-font-size;
+  color: $color-grey-dark;
+  border-radius: $border-radius;
+  background: $color-white;
 }
 .tab__counter {
-  font-size: 32px;
+  font-size: 4rem;
   font-weight: bold;
+  padding-top: 10px;
 }
 .user_section__filters {
   margin-bottom: 2.5rem;
@@ -24,15 +27,19 @@
       font-size: $table-header-font-size;
       outline-offset: 0px;
       outline: -webkit-focus-ring-color auto 0px;
+      background-color: $color-white;
     }
     img {
       width: 15px;
       margin-right: 5px;
     }
   }
+  .filters__refresh {
+    width: 7rem;
+    cursor: pointer;
+  }
 }
 .mat-raised-button {
-  background-color: $color-grey-dark;
   color: $color-white;
   border-radius: $no-margin-padding;
   padding: 2px 8px;
@@ -46,29 +53,32 @@
   overflow: auto;
 }
 .mat-table {
+  margin-top: 10px;
+  background-color: $page-background-color;
   .mat-header-row {
-    background-color: $table-header-color-grey;
+    background-color: $table-header-color-light-blue;
     min-height: $table-header-height;
     max-height: $table-header-height;
     border-bottom: $no-margin-padding;
+    box-shadow: 0px 0px 7px 0px #c1bfbf;
+    margin-bottom: 5px;
   }
   .mat-header-cell {
     color: $color-grey-dark;
-    font-weight: bold;
     font-size: $table-header-font-size;
   }
   .mat-row {
     border-bottom-width: $no-margin-padding;
     padding: 5px 0px;
+    background: $color-white;
+    margin-bottom: 5px;
   }
   .mat-cell {
     color: $color-grey-dark;
-  }
-  .user_icon {
-    width: 40px;
   }
 }
 .mat-paginator {
   color: $color-grey-dark;
   font-size: $paginator-font-size;
+  background: transparent;
 }

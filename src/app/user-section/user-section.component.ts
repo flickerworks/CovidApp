@@ -60,4 +60,6 @@ export class UserSectionComponent implements OnInit, AfterViewInit {
 
   enrollNewUser(): void {}
 
+  refreshList(): void {}
+
 }

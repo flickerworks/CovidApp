@@ -8,8 +8,10 @@ $color-off-white: #f7f7f7;
 $border-color-grey-light: #707070;
 $input-text-color-grey-light: #A8A8A8;
 $no-margin-padding: 0;
-$table-header-color-grey: #EDEDED;
+$table-header-color-light-blue: #F1F9FF;
 $color-off-white2: #f2f2f2;
+$color-blue-light: #3A73DB;
+$page-background-color: #F3F3F3;
 
 
 //header
@@ -32,4 +34,21 @@ $padding-header-bottom: 3rem;
 //bold
 .bold{
     font-weight: 700;
+}
+$border-radius: 5px;
+$page-default-padding: 2.5rem 5rem;
+.color_blue {
+  color: $color-blue-light;
+}
+.color_white {
+  color: $color-white;
+}
+.bg_color_blue {
+  background-color: $color-blue-light;
+}
+.background_image {
+  width: 100%;
+  min-height: 38rem;
+  height: 38rem;
+  position: absolute;
 }
