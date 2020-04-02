@@ -16,19 +16,51 @@ export interface DialogModel {
   action?: boolean;
 }
 
+export interface PersonalDetails {
+ name: string;
+ type: string; 
+ id: number; 
+ phone: number;
+ email: string;
+ zone: string;
+ address: string;
+}
+
+export interface MonitorAndManagerList {
+  QMID?: number;
+  MID?: number;
+  PHONE: number;
+  FIRSTNAME: string;
+  DESIGNATION: string;
+  PINCODE: string;
+  EMAIL: string;
+  LOGINNAME: string;
+  DEPARTMENT: string;
+  LASTNAME: string;
+  ADDRESS: string;
+}
+
 export interface UserRegisterModel {
   firstName: string;
   lastName: string;
-  email: string;
   mobileNumber: number;
-  alternateMobileNumber: number;
-  governmentId: string;
+  email: string;
+  designation: string;
+  department: string;
+  zone: string;
+  governmentIdType: string;
+  governmentIdImage: string;
+  userType: string;  
+
   houseNumber: string;
   street: string;
   area: string;
   city: string;
   state: string;
   pincode: string;
+  
+  loginName: string;
+  password: string;
 }
 
 export enum UserTableColumns {
@@ -48,15 +80,15 @@ export enum PatientTableColumns {
   ACTION = 'action'
 }
 
-export interface UserSectionModel {
-  totalUsers?: number;
-  totalZones?: number;
-  users: UserModel[];
-  userType?: string;
-  tableColumns: string[];
-  enrollNewUser: boolean;
-  showCount: boolean;
-  searchByPincode?: boolean;
+export class UserSectionModel {
+  totalUsers?: number = 0;
+  totalZones?: number = 0;
+  users: UserModel[] = [];
+  userType?: string = '';
+  tableColumns: string[] = [];
+  enrollNewUser: boolean = false;
+  showCount: boolean = false;
+  searchByPincode?: boolean = true;
 }
 
 export interface UserModel {

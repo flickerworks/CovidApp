@@ -1,6 +1,6 @@
-<div class="popup" *ngIf="show" (click)="hidePopup($event)">    
+<div class="popup" *ngIf="show" (click)="(backdropClose) ? hidePopup($event) : null">    
     <div class="popup__content" (click)="avoidClose($event)">
-        <a (click)="hidePopup($event)" class="popup__content__close"><mat-icon>close</mat-icon></a> 
+        <a *ngIf="closeBtn" (click)="hidePopup($event)" class="popup__content__close"><mat-icon>close</mat-icon></a> 
         <ng-content></ng-content>
     </div>
 </div>

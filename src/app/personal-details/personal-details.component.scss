@@ -1,61 +1,98 @@
 @import 'variables';
-.details {
-    padding: 0 2rem;
-    color: $color-grey-dark;
-    &__header{
+.detailsContaner{
+    padding-top: $header-height-main;
+    .details {
+        width: 80%;
+        margin: $padding-header-bottom auto;
+        padding: 2rem;
+        box-shadow: 0 .3rem .6rem rgba($color: #000029, $alpha: .2);
+        border-radius: 1rem;
+        background-color: $color-white;
         position: relative;
-        &-title{
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        &-editBtn{
-            position: absolute;
-            background-color: $color-white;
-            right: 1rem;
-            padding: 0.4rem 1.4rem 0.3rem 1rem;
-            border: .1rem solid $color-grey-dark;
-            cursor: pointer;
-            .editIcon{
-                font-size: 1.8rem;
-                position: relative;
-                top: 0.2rem;
-                display: inline;
-                padding-right:.5rem;
+        color: $color-grey-dark;
+        &__header{
+            position: relative;
+            &-title{
+                color: #3a73db;
+                font-size: 2.5rem;
+                font-weight: 700;
             }
-            span{
-                font-size: 1.4rem;
-                position: relative;
-                top: -.3rem;
+            &-editBtn{
+                color: $color-blue-light;
+                position: absolute;
+                background-color: $color-white;
+                right: 1rem;
+                padding: 0.4rem 1.4rem 0.3rem 1rem;
+                border: .1rem solid $color-blue-light;
+                cursor: pointer;
+                .editIcon{
+                    font-size: 1.8rem;
+                    position: relative;
+                    top: 0.2rem;
+                    display: inline;
+                    padding-right:.5rem;
+                }
+                span{
+                    font-size: 1.4rem;
+                    position: relative;
+                    top: -.3rem;
+                }
             }
         }
-    }
-    &__photo{
-        width: 100%;
-        margin-top: 1.5rem;
-        &__circleIcon{
-            width: 30%;
-            .icon {
-                font-size: 8rem;
-                color: $color-grey-light;
+        &__photo{
+            width: 100%;
+            margin-top: 1.5rem;
+            &__circleIcon{
+                width: 30%;
+                .icon {
+                    font-size: 8rem;
+                    color: $color-grey-light;
+                    
+                }
+            }
+            &__nameId{
+                width: 70%;
+                vertical-align: middle;
+                .name{
+                    font-size: 1.8rem;
+                }
+                .id{
+                    margin-top: .5rem;
+                }
                 
             }
         }
-        &__nameId{
-            width: 70%;
-            vertical-align: middle;
-            .name{
-                font-size: 1.8rem;
-            }
-            .id{
-                margin-top: .5rem;
-            }
+        &__contact-details{
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            
             
         }
-    }
-    &__contact-details{
-        font-size: 1.4rem;
-        margin-top: 2rem;
-        
-        
+        .restrict-btn-contaner{
+            text-align: right;
+            margin-top: 6rem;
+            position: relative;
+            .restrict {            
+                border-radius: .6rem;
+                display: inline-block;
+                padding: .6rem 1.8rem;
+                background-color: $color-red-restrict;
+                color: $color-white;
+                font-size: 1.4rem;
+                font-weight: normal;
+                cursor: pointer;
+                .interestedIcon{
+                    font-size: 1.8rem;
+                    text-align: center;
+                    top: .3rem;
+                    position: relative;
+                }
+                span{
+                    position: relative;
+                    top: -.1rem;
+                    padding-left: .5rem;            
+                }
+            }
+        }
     }
 }

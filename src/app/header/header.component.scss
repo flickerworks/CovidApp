@@ -54,9 +54,9 @@
 
         &-home{
             position: relative;
-            top: -1.2rem;
+            top: .6rem;
             margin-right: 2rem;
-
+            cursor: pointer;
             &:hover{
                 text-decoration: underline;
             }
@@ -65,9 +65,9 @@
 
         &-reports{
             position: relative;
-            top: -1.2rem;
+            top: .6rem;
             margin-right: 2rem;
-
+            cursor: pointer;
             &:hover{
                 text-decoration: underline;
             }
@@ -79,9 +79,9 @@
 
         &-logout{
             position: relative;
-            top: -1.2rem;
+            top: .6rem;
             margin-right: 2rem;
-
+            cursor: pointer;
             &:hover{
                 text-decoration: underline;
             }
@@ -101,7 +101,7 @@
 
         &-create{     
             position: relative;
-            top: -1.2rem;
+            top: .6rem;
             margin-right: 2rem;  
 
             .create-user-group{
@@ -128,7 +128,7 @@
 
             .name-type{
                 position: relative;
-                top: -.5rem;
+                top: 1.5rem;
                 .name, .type{
                     position: relative;
                     font-weight: 200;
@@ -147,8 +147,14 @@
                 top: .7rem;
                 width: 4.5rem;
                 height: 4.5rem;
-                .icon{
-                    font-size: 5rem;
+                border-radius: 50%;
+                background-color: #fff;
+
+                img{
+                    width: 65%;
+                    position: relative;
+                    top: .6rem;
+                    left: .8rem;
                 }
             }
         }

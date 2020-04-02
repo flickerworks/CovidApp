@@ -22,4 +22,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/add-user');
   }
 
+
+  redirect(pageId:string){
+    if(pageId==='login'){
+      sessionStorage.removeItem('loggedInUserDetails');
+    }      
+    this.router.navigate(['/'+pageId]);
+  }
 }

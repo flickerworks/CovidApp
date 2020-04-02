@@ -8,13 +8,13 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" class="z_index">
             <mat-label class="mat-label">User Type</mat-label>
-            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px">
+            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px" (change)="changeUser($event)" name="userType">
                 <mat-radio-button value="quarantine_manager" checked="true">Quarantine Manager</mat-radio-button>
                 <mat-radio-button value="monitor">Monitor</mat-radio-button>
             </mat-radio-group>
         </div>
         <div class="add_user__section_form z_index" fxFlex="100" fxLayout="column" fxLayoutAlign="start center">
-            <form [formGroup]="userRegisterForm" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
+            <form [formGroup]="userRegisterForm"  fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
                 <div class="add_user__section_title bold width_100 margin_bottom_20">Personal Details</div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="30">
@@ -90,8 +90,8 @@
                         </mat-form-field>
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : ''}}</div>
-                            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
-                            <button class="upload_button" type="button" mat-raised-button (click)="fileInput.click()">Browse</button>
+                            <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
+                            <button class="upload_button" type="button" mat-raised-button (click)="fileInput.click(event)">Browse</button>
                         </div>
                     </div>
                     <div fxFlex="30"></div>
@@ -149,10 +149,36 @@
                             Pin code should be 1 to 10 characters long</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="add_user__section_title bold width_100 margin_bottom_20">Credentials</div>
+                <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
+                    <mat-form-field appearance="outline" fxFlex="30">
+                        <div class="labels">User Name<span class="color_red">*</span></div>
+                        <input formControlName="loginName" matInput>
+                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.required">
+                            User Name is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.minlength || userRegisterForm.controls.loginName.errors?.maxlength">
+                            User Name should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="30">
+                        <div class="labels">Password<span class="color_red">*</span></div>
+                        <input formControlName="password" matInput>
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.required">
+                            Password is required</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.minlength || userRegisterForm.controls.password.errors?.maxlength">
+                            Password should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                    <div fxFlex="30"></div>
+                </div>
                 <div class="width_100" fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-                    <button mat-raised-button (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="submit">Save Details</button>
+                    <button mat-raised-button  (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="button">Save Details</button>
                 </div> 
             </form>
         </div>
     </div>
 </div>
+<popup [show]="showPopup" [closeBtn]="false">
+    <div class="popup-content">
+        <p>{{profileName}}'s profile has been created as {{(registrationAs === "monitor") ? "Monitor" : "Quarantine Manager"}} successfully</p>
+        <a class="popup-content__button" (click)="popupDone()">Done</a>
+    </div>
+</popup>

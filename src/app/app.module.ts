@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -40,6 +40,7 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { AssignMonitorComponent } from './assign-monitor/assign-monitor.component';
 import { CaseDetailComponent } from './assign-monitor/case-detail/case-detail.component';
 import { PopupComponent } from './popup/popup.component';
+import { InterceptService } from './shared/services/intercept.service';
 
 
 @NgModule({
@@ -106,6 +107,11 @@ import { PopupComponent } from './popup/popup.component';
       provide: DateAdapter,
       useClass: NativeDateAdapter
     },
+    /* {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptService,
+      multi: true
+    }, */
     GlobalServices,
     AuthGuard
   ],

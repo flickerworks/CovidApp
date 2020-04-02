@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalServices } from '../shared/services/global.services';
+import { PersonalDetails } from '../shared/models/shared.model';
 
 @Component({
   selector: 'personal-details',
@@ -6,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal-details.component.scss']
 })
 export class PersonalDetailsComponent implements OnInit {
-
-  constructor() { }
+  personalDetails: PersonalDetails;
+  constructor(private globalService: GlobalServices) { }
 
   ngOnInit() {
+    this.personalDetails = this.globalService.personalDetal;
   }
 
 }

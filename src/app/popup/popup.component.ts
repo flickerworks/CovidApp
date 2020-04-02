@@ -8,15 +8,20 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
+  @Input() backdropClose:boolean = true;
+  @Input() closeBtn:boolean = true;
   @Input() show:boolean=false;
   constructor(private globalService: GlobalServices) { }
 
   ngOnInit() {
+    this.globalService.showPopup.subscribe(value => {
+      this.show = value;
+    })
   }
 
   hidePopup(event){
     event.stopPropagation();
-    this.globalService.showPopup.next(false);
+    this.show = false;
   }
 
   avoidClose(event){

@@ -94,3 +94,22 @@
         pointer-events: none;
     }
 }
+
+.popup-content{
+    position: relative;
+    width: 25rem;
+    font-size: 1.6rem;
+    color: $color-grey-dark;
+    font-weight: 200;
+    text-align: center;
+    &__button{
+        background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
+        border-radius: .5rem;
+        padding: .6rem 3rem;
+        color: $color-white;
+        font-size: 1.2rem;
+        margin-top: 3rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+}

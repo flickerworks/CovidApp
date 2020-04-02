@@ -5,12 +5,12 @@
     <mat-tab-group dynamicHeight fxFlex="100">
       <mat-tab label="Quarantine Managers">
         <div class="view_users__tabs_section">
-          <app-user-section [userSectionDetails]="quarantineManagerSectionDetails"></app-user-section>
+          <app-user-section (refresh)="getQManagerList()" [userSectionDetails]="quarantineManagerSectionDetails"></app-user-section>
         </div>
       </mat-tab>
       <mat-tab label="Monitors">
         <div class="view_users__tabs_section">
-          <app-user-section [userSectionDetails]="monitorsSectionDetails"></app-user-section>
+          <app-user-section (refresh)="getMonitorsList()"  [userSectionDetails]="monitorsSectionDetails"></app-user-section>
         </div>
       </mat-tab>
     </mat-tab-group>

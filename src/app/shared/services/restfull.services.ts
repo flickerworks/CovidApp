@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { LoggedInUserModel, Payload } from '../models/shared.model';
+import { LoggedInUserModel, Payload, UserModel, UserRegisterModel } from '../models/shared.model';
 
 @Injectable ({providedIn: 'root'})
 export class RestfullServices {
@@ -10,7 +10,7 @@ export class RestfullServices {
     public baseUrl: string = 'https://deap.techmahindra.com/UMPWebContainer/UMPRequestProcessor';
     
     headers = new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json; charset=utf-8'
     });
 
     options = new HttpHeaderResponse({
@@ -76,14 +76,15 @@ export class RestfullServices {
         return _payload;
     }
 
-    loginUser(loginRequest: LoggedInUserModel, type: string): Observable<LoggedInUserModel[]> {
+    post(request: any, type: string): Observable<any> {
         const payload: Payload = {
             KEY: type,
             PAYLOAD:{
-                LOGINBYADMIN: loginRequest
+                [type]: request
             }
         }
-        const request = this.drawPayload(payload);
-        return this.postApi(JSON.stringify(request));
+        const _request = this.drawPayload(payload);
+        return this.postApi(JSON.stringify(_request));
     }
+    
 }

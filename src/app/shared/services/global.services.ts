@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { LoggedInUserModel, MenuRoute } from '../models/shared.model';
+import { LoggedInUserModel, MenuRoute, MonitorAndManagerList, UserModel, PersonalDetails } from '../models/shared.model';
 import { Subject } from 'rxjs';
 
 @Injectable()
 export class GlobalServices {
   showPopup = new Subject<boolean>();
+  private token: string = "";
+  private personalDetals:PersonalDetails;
   public isUserLoggedIn: boolean = false;
   public loggedInUserDetails: LoggedInUserModel;
   public menuRoutes: MenuRoute[] = [];
@@ -45,4 +47,38 @@ export class GlobalServices {
     const keys: string[] = Object.keys(enumType);
     return keys.map(el => Object(enumType)[el]);
   }
+
+  setToken(token):void {
+    this.token = token;
+  }
+
+  getToken(): string {
+    return this.token;
+  }
+
+  firstLetterUppercase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+
+  getPincodeCount(data:UserModel[]){
+    let pinCodeObj = {};
+    let total = [];
+    data.forEach(ele => {
+      if(!pinCodeObj[ele.pincode]){
+        pinCodeObj[ele.pincode] = ele.pincode;
+        total.push(ele.pincode);
+      }
+    })
+    return total.length;
+  }
+
+  set personalDetal(personalDetals: PersonalDetails){
+    this.personalDetals = personalDetals;
+  }
+
+  get personalDetal(){
+    return this.personalDetals;
+  }
+
 }

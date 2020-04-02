@@ -42,8 +42,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       PASSWORD: this.loginForm.value.password
     };
 
-    this.loginSubscription = this.restfullServices.loginUser(loginData, "LOGINBYADMIN").subscribe(response => {
-      debugger;
+    this.loginSubscription = this.restfullServices.post(loginData, "LOGINBYADMIN").subscribe(response => {
+      //validation here
+      
       sessionStorage.setItem('loggedInUserDetails', JSON.stringify(response));
       this.globalServices.checkUserLoggedIn();
       this.router.navigate(['/view-user']);

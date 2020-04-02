@@ -42,7 +42,7 @@
     <div class="table_section__container">
       <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="center center">
+          <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="left center">
             Name
           </mat-header-cell>
           <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.firstName}} {{element?.lastName}}</mat-cell>

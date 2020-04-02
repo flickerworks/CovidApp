@@ -1,36 +1,50 @@
-<div class="details">
-    <div class="details__header">
-        <h2 class="details__header-title d__inline-block">Personal Details</h2>
-        <a class="details__header-editBtn d__inline-block">
-            <mat-icon class="editIcon">edit</mat-icon>
-            <span>Edit</span>
-        </a>
-    </div>
-    <div class="details__photo d-table">
-        <div class="details__photo__circleIcon d-cell">
-            <mat-icon class="icon">account_circle</mat-icon>
+<header></header>
+<img class="background_image_circle" src="./assets/images/admin_create_new_user_bg.png">
+<div class="detailsContaner">
+    <div class="details">
+        <div class="details__header">
+            <h2 class="details__header-title d__inline-block">Personal details</h2>
+            <a class="details__header-editBtn d__inline-block">
+                <mat-icon class="editIcon">edit</mat-icon>
+                <span>Edit</span>
+            </a>
         </div>
-        <div class="details__photo__nameId d-cell">
-            <h2 class="name">Atun Kulkarni</h2>
-            <h2 class="id">ID: 1234567890</h2>
+        <div class="details__photo d-table">
+            <div class="details__photo__circleIcon d-cell">
+                <mat-icon class="icon">account_circle</mat-icon>
+            </div>
+            <div class="details__photo__nameId d-cell">
+                <h2 class="name">{{personalDetails?.name}}</h2>
+                <h2 class="id dark-blue-text">{{personalDetails?.type}}</h2>
+            </div>
         </div>
-    </div>
-    <div class="details__contact-details">
-        <div class="__row">
-            <div class="__col w30 bold">Contact Number</div>
-            <div class="__col w70">8798765434</div>
+        <div class="details__contact-details">
+            <div class="__row">
+                <div class="__col w30 bold">ID</div>
+                <div class="__col w70">{{personalDetails?.id}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w30 bold">Contact Number</div>
+                <div class="__col w70">{{personalDetails?.phone}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w30 bold">Mail ID</div>
+                <div class="__col w70 light-blue-text">{{personalDetails?.email}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w30 bold">Zone</div>
+                <div class="__col w70">{{personalDetails?.zone}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w30 bold">Address</div>
+                <div class="__col w70">{{personalDetails?.address}}</div>
+            </div>
         </div>
-        <div class="__row">
-            <div class="__col w30 bold">Mail ID</div>
-            <div class="__col w70">atulkulkarni@gmail.com</div>
-        </div>
-        <div class="__row">
-            <div class="__col w30 bold">Zone</div>
-            <div class="__col w70">Zone 1, 545355</div>
-        </div>
-        <div class="__row">
-            <div class="__col w30 bold">Address</div>
-            <div class="__col w70">Plot 45-46, Phase 2, Electronic City, Bangalore, Karnataka 560100</div>
-        </div>
+        <div class="restrict-btn-contaner">
+            <a class="restrict">
+                <mat-icon class="interestedIcon">not_interested</mat-icon>
+                <span>Restrict</span>
+            </a>
+        </div>        
     </div>
 </div>
