@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class GlobalServices {
   showPopup = new Subject<boolean>();
+  showLoader = new Subject<boolean>();
   private token: string = "";
   private personalDetals:PersonalDetails;
   public isUserLoggedIn: boolean = false;

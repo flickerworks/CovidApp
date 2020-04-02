@@ -20,7 +20,8 @@ import {
   MatPaginatorModule,
   MatSortModule,
   MatCardModule,
-  MatTabsModule
+  MatTabsModule,
+  MatProgressSpinnerModule
   } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { AssignMonitorComponent } from './assign-monitor/assign-monitor.componen
 import { CaseDetailComponent } from './assign-monitor/case-detail/case-detail.component';
 import { PopupComponent } from './popup/popup.component';
 import { InterceptService } from './shared/services/intercept.service';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { InterceptService } from './shared/services/intercept.service';
     UserSectionComponent,
     PatientListComponent,
     AssignMonitorComponent,
-    CaseDetailComponent
+    CaseDetailComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,8 @@ import { InterceptService } from './shared/services/intercept.service';
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     FormsModule,

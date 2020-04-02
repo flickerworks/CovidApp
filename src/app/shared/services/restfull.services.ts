@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, flatMap } from 'rxjs/operators';
 import { LoggedInUserModel, Payload, UserModel, UserRegisterModel } from '../models/shared.model';
+import { GlobalServices } from './global.services';
 
 @Injectable ({providedIn: 'root'})
 export class RestfullServices {
@@ -17,7 +18,7 @@ export class RestfullServices {
         headers: this.headers
     });
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private globalService: GlobalServices) {}
 
 
     postApi(requestData:any):Observable<any>{
@@ -76,7 +77,9 @@ export class RestfullServices {
         return _payload;
     }
 
+
     post(request: any, type: string): Observable<any> {
+        this.globalService.showLoader.next(true);
         const payload: Payload = {
             KEY: type,
             PAYLOAD:{
@@ -84,7 +87,14 @@ export class RestfullServices {
             }
         }
         const _request = this.drawPayload(payload);
-        return this.postApi(JSON.stringify(_request));
+        return this.postApi(JSON.stringify(_request)).pipe(
+            flatMap(response => {
+                this.globalService.showLoader.next(false);
+                return new Observable(observer => {
+                    observer.next(response);
+                })  
+            })
+        )                      
     }
     
 }
