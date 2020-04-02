@@ -1,9 +1,10 @@
 @import 'variables';
 .detailsContaner{
-    padding-top: $header-height-main;
+    padding-top: 10.5rem;
+    position: relative;
     .details {
         width: 80%;
-        margin: $padding-header-bottom auto;
+        margin: 0 auto;
         padding: 2rem;
         box-shadow: 0 .3rem .6rem rgba($color: #000029, $alpha: .2);
         border-radius: 1rem;
@@ -16,6 +17,7 @@
                 color: #3a73db;
                 font-size: 2.5rem;
                 font-weight: 700;
+                padding-left: .8rem;                
             }
             &-editBtn{
                 color: $color-blue-light;
@@ -43,7 +45,7 @@
             width: 100%;
             margin-top: 1.5rem;
             &__circleIcon{
-                width: 30%;
+                width: 7%;
                 .icon {
                     font-size: 8rem;
                     color: $color-grey-light;
@@ -56,17 +58,18 @@
                 .name{
                     font-size: 1.8rem;
                 }
-                .id{
+                .type{
                     margin-top: .5rem;
+                    font-size: 1.2rem;
+                    font-weight: 200;
                 }
                 
             }
         }
         &__contact-details{
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             margin-top: 2rem;
-            
-            
+            padding-left: .8rem;            
         }
         .restrict-btn-contaner{
             text-align: right;
