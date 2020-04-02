@@ -49,7 +49,7 @@
     &__right{
         position: absolute;
         right: $padding-left-right;
-        padding-right: 2rem;
+        padding-right: 1rem;
         font-size: 1.6rem;
 
         &-home{
@@ -125,7 +125,7 @@
         }
 
         &-user{
-
+            position: relative;
             .name-type{
                 position: relative;
                 top: 1.5rem;
@@ -143,7 +143,7 @@
             
 
             .photo{
-                position: relative;
+                position: absolute;
                 top: .7rem;
                 width: 4.5rem;
                 height: 4.5rem;
