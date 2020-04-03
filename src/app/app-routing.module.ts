@@ -7,6 +7,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { AssignMonitorComponent } from './assign-monitor/assign-monitor.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
+import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
+import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,16 @@ const routes: Routes = [
     path: 'patient-list',
     component: PatientListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'monitor-details',
+    component: MonitorDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'quarantine-dashboard',
+    component: QuarantineManagerDashboardComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: "**",

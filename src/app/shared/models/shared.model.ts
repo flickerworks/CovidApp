@@ -103,6 +103,27 @@ export class UserSectionModel {
   searchByPincode?: boolean = true;
 }
 
+export enum QuarantineTableColumns {
+  NAME = 'name',
+  ID_NUMBER = "idNumber",
+  CONTACT_NUMBER = 'contactNumber',
+  EMAIL = 'email',
+  ZONE = 'zone',
+  IN_QUARANTINE = 'inQuarantine',
+  SYMPTOMS = 'symptoms',
+  MONITORED_BY = 'monitoredBy'
+}
+
+export enum MonitorTableColumns {
+  NAME = 'name',
+  ID_NUMBER = "idNumber",
+  CONTACT_NUMBER = 'contactNumber',
+  EMAIL = 'email',
+  ZONE = 'zone',
+  QUARANTINE_COUNT = 'quarantineCount',
+  ACTION = 'action'
+}
+
 export interface UserModel {
   id: number;
   firstName: string;

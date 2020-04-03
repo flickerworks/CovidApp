@@ -1,0 +1,77 @@
+<div class="table_section">
+  <div class="table_section__container">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="row" fxLayoutAlign="start center">
+          <img src="./assets/images/user_circle.svg">
+          <b>{{element?.name}}</b></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="idNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          ID Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px"><b>{{element?.id}}</b></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Contact Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.contactNumber}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Mail ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.mail}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="zone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Zone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.zone}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="inQuarantine">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          In Quarantine
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px"><b>{{element?.period}}</b></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="symptoms">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Symptoms
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="center center">
+          <div class="color_red" *ngFor="let symptom of element.symptoms"><b>{{symptom}}</b></div>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="monitoredBy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Monitored By
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.monitoredBy}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quarantineCount">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px"></mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="center center">
+          <div class="color_red"><span class="quarantine_counter">{{element?.critical}}</span> <span>Critical</span></div>
+          <div class="color_orange"><span class="quarantine_counter">{{element?.flaged}}</span> <span>Flaged</span></div>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px"></mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">
+          <button mat-button class="update_button" (click)="viewDetails(element)">View Details</button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <app-no-data-available *ngIf="!isDataAvailable && this.dataSource.data.length === 0"></app-no-data-available>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <mat-paginator showFirstLastButtons></mat-paginator>
+  </div>
+</div>

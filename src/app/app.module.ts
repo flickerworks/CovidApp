@@ -43,6 +43,9 @@ import { CaseDetailComponent } from './assign-monitor/case-detail/case-detail.co
 import { PopupComponent } from './popup/popup.component';
 import { InterceptService } from './shared/services/intercept.service';
 import { LoaderComponent } from './loader/loader.component';
+import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
+import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
+import { QuarantineTableComponent } from './quarantine-manager-dashboard/quarantine-table/quarantine-table.component';
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { LoaderComponent } from './loader/loader.component';
     PatientListComponent,
     AssignMonitorComponent,
     CaseDetailComponent,
-    LoaderComponent
+    LoaderComponent,
+    MonitorDetailsComponent,
+    QuarantineManagerDashboardComponent,
+    QuarantineTableComponent
   ],
   imports: [
     BrowserModule,

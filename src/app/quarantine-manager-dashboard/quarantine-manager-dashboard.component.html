@@ -1,0 +1,63 @@
+<header></header>
+<img class="background_image_quarantine_manager" src="./assets/images/quarantine_manager_dashboard_bg.png">
+<div class="quarantine_manager_dashboard" fxFlex="100" fxLayout="column" fxLayoutAlign="start center">
+  <div class="quarantine_manager_dashboard__details" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="quarantine_manager_address" fxLayoutGap="10px" fxLayout="row">
+      <img src="./assets/images/arrow_right_white.svg">
+      <div>Zone 1, Hinjewadi Phase 3, PIN 533101</div>
+    </div>
+    <div class="quarantine_manager_filter" fxLayoutGap="10px" fxLayout="row">
+      <button class="color_white" mat-button (click)="refreshList()" type="submit">
+        <img src="./assets/images/update_icon.svg">
+        Update
+      </button>
+      <div class="filters__search" fxLayoutAlign="start center">
+        <input matInput placeholder="Search here..." [(ngModel)]="searchModel" fxFlex="100">
+        <button class="color_white bg_color_blue" mat-raised-button (click)="searchTable(searchModel)" type="submit">
+          <img src="./assets/images/arrow_right_white.svg">
+          Go
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="quarantine_manager_dashboard__tabs" fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
+    <mat-tab-group dynamicHeight fxFlex="100">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="tab_color_red">Critical Cases
+          <div class="quarantine_tabs_badge tab_color_red_1">200</div></div>
+        </ng-template>
+        <div class="quarantine_details_tabs_section">
+          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="tab_color_orange">Flagged Cases
+          <div class="quarantine_tabs_badge tab_color_orange_1">150</div></div>
+        </ng-template>
+        <div class="quarantine_details_tabs_section">
+          <app-quarantine-table [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="tab_color_blue">Total Cases
+          <div class="quarantine_tabs_badge tab_color_blue_1">1734</div></div>
+        </ng-template>
+        <div class="quarantine_details_tabs_section">
+          <app-quarantine-table [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div class="tab_color_grey">Total Monitors
+          <div class="quarantine_tabs_badge tab_color_grey_1">600</div></div>
+        </ng-template>
+        <div class="quarantine_details_tabs_section">
+          <app-quarantine-table [quarantineTableDetails]="monitorDetails"></app-quarantine-table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

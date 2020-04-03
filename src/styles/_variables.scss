@@ -1,6 +1,8 @@
 //colors
 $color-grey-dark: #4d4d4d;
 $color-grey-light: #d4d4d4;
+$color-grey-light-2: #3B3B3B;
+$color-grey-dark-1: #5B5B5B;
 $color-white: #fff;
 $button-color-grey: #444444;
 $color-radio-button-grey: #535353;
@@ -16,6 +18,11 @@ $color-blue: #4485FD;
 $color-red: #FF4701;
 $color-red-restrict: #d22030;
 $color-blue-dark: #244787;
+$color-dark-red: #D22030;
+$color-orange: #FF7030;
+$color-blue: #00C2FF;
+$color-dark-black: #060606;
+
 
 //header
 $header-height-main: 6.5rem;
@@ -55,6 +62,12 @@ $page-default-padding: 2.5rem 5rem;
   height: 38rem;
   position: absolute;
 }
+.background_image_quarantine_manager {
+  width: 100%;
+  min-height: 28rem;
+  height: 28rem;
+  position: absolute;
+}
 .background_image_circle {
   width: 78rem;
   min-height: 63rem;
@@ -65,6 +78,13 @@ $page-default-padding: 2.5rem 5rem;
 .color_red {
   color: $color-red;
 }
+.color_orange {
+  color: $color-orange;
+}
 .z_index {
   z-index: 1;
+}
+.mat-table {
+  width: fit-content;
+  min-width: 100%;
 }

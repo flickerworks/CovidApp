@@ -1,0 +1,102 @@
+@import "variables";
+.monitor_details {
+  margin: $header-height-main $no-margin-padding $no-margin-padding;
+  padding: $page-default-padding;
+  font-family: 'Segoe_UI', sans-serif;
+  color: $color-grey-dark;
+  z-index: 1;
+  
+  .monitor_intro {
+    font-size: 1.6rem;
+    color: $color-grey-dark;
+
+    .monitor_name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $color-blue-light;
+    }
+    .monitor_type {
+      font-size: 14px;
+    }
+    .monitor_address {
+      margin-top: 3px;
+    }
+    .monitor_user_counter {
+      padding: 1rem;
+      border: 1px solid $border-color-grey-light;
+      border-radius: 50%;
+      margin-top: -1rem;
+      margin-left: 1rem;
+      font-weight: bold;
+      background-color: $color-white;
+      font-size: 2.2rem;
+      color: $color-grey-dark;
+    }
+  }
+  ::ng-deep .mat-tab-header {
+    border-bottom: 0px;
+  }
+  .mat-tab-group {
+    ::ng-deep .mat-tab-label {
+      opacity: 1;
+      width: 25%;
+      border-bottom: 0.1rem solid #ccc;
+    }
+    ::ng-deep .mat-tab-label-active:nth-child(1) {
+      border-bottom: 2px solid $color-dark-red;
+    }
+    ::ng-deep .mat-tab-label-active:nth-child(2) {
+      border-bottom: 2px solid $color-orange;
+    }
+    ::ng-deep .mat-tab-label-active:nth-child(3) {
+      border-bottom: 2px solid $color-blue;
+    }
+    ::ng-deep .mat-tab-label-active:nth-child(4) {
+      border-bottom: 2px solid $color-grey-dark;
+    }
+    ::ng-deep .mat-tab-label-active .mat-tab-label-content {
+      font-weight: bold;
+    }
+    ::ng-deep .mat-tab-label-active .mat-tab-label-content .tab_color_red {
+      color: $color-dark-red;
+    }
+    ::ng-deep .mat-tab-label-active .mat-tab-label-content .tab_color_orange {
+      color: $color-orange;
+    }
+    ::ng-deep .mat-tab-label-active .mat-tab-label-content .tab_color_blue {
+      color: $color-blue;
+    }
+    ::ng-deep .mat-tab-label-active .mat-tab-label-content .tab_color_grey {
+      color: $color-grey-dark;
+    }
+    ::ng-deep .mat-ink-bar {
+      display: none;
+    }
+    ::ng-deep .mat-tab-label-content {
+      font-size: 1.6rem;
+      color: $color-grey-light-2;
+    }
+    ::ng-deep .tab_color_red_1 {
+      background-color: $color-dark-red;
+    }
+    ::ng-deep .tab_color_orange_1 {
+      background-color: $color-orange;
+    }
+    ::ng-deep .tab_color_blue_1 {
+      background-color: $color-blue;
+    }
+    ::ng-deep .tab_color_grey_1 {
+      background-color: $color-white;
+      color: $color-grey-dark !important;
+    }
+    ::ng-deep .monitor_tabs_badge {
+      color: $color-white;
+      font-size: 1.2rem;
+      padding: 3px 10px;
+      border-radius: 1rem;
+      font-weight: 100;
+      bottom: 3px;
+      position: relative;
+    }
+  }
+}
