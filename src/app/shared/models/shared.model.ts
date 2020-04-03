@@ -23,21 +23,33 @@ export interface PersonalDetails {
  phone: number;
  email: string;
  zone: string;
- address: string;
+ area: string;
+ houseNo: string;
+ street: string;
+ state: string;
+ pincode: string;
+ city: string;
 }
 
 export interface MonitorAndManagerList {
   QMID?: number;
   MID?: number;
+  STATE: string;
+  AREA: string;
+  STREETNAME: string;
+  HNO: string;
+  IDCARDTYPE: string;
   PHONE: number;
   FIRSTNAME: string;
   DESIGNATION: string;
+  IDNUMBER: number;
   PINCODE: string;
+  ZONE: string;
   EMAIL: string;
+  CITY: string;
   LOGINNAME: string;
   DEPARTMENT: string;
-  LASTNAME: string;
-  ADDRESS: string;
+  LASTNAME: string; 
 }
 
 export interface UserRegisterModel {

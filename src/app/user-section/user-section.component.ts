@@ -72,19 +72,18 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
       phone: userDetails.mobileNumber,
       email: userDetails.email,
       zone: userDetails.zone,
-      address: `${userDetails.doorNumber}${this.removeComma(userDetails.doorNumber)} ${userDetails.streetName}${this.removeComma(userDetails.streetName)} ${userDetails.area}${this.removeComma(userDetails.area)} ${userDetails.city}${this.removeComma(userDetails.city)} ${userDetails.state} ${userDetails.pincode}`
+      houseNo: userDetails.doorNumber,
+      street: userDetails.streetName,
+      state: userDetails.state,
+      area: userDetails.area,
+      pincode: userDetails.pincode,
+      city: userDetails.city     
     }
     this.globalServices.personalDetal = personalDetails;
     this.router.navigate(['/personal-details']);
   }
 
-  removeComma(value):string{
-    if(value){
-      return ',';
-    }else{
-      return '';
-    }
-  }
+  
 
   showFilters(): void {}
 

@@ -10,12 +10,23 @@ import { Router } from '@angular/router';
 })
 export class PersonalDetailsComponent implements OnInit {
   personalDetails: PersonalDetails;
+  address: string;
   constructor(private globalService: GlobalServices, private router: Router) { }
 
   ngOnInit() {
     this.personalDetails = this.globalService.personalDetal;
+    const userDetails = this.personalDetails; 
+    this.address= `${userDetails.houseNo}${this.removeComma(userDetails.houseNo)} ${userDetails.street}${this.removeComma(userDetails.street)} ${userDetails.area}${this.removeComma(userDetails.area)} ${userDetails.city}${this.removeComma(userDetails.city)} ${userDetails.state} ${userDetails.pincode}`
     if(!this.personalDetails){
       this.router.navigate(['/view-user']);
+    }
+  }
+
+  removeComma(value):string{
+    if(value){
+      return ',';
+    }else{
+      return '';
     }
   }
 
