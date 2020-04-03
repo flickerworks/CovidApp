@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
+      loginType: ['admin', [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]//, Validators.pattern(PasswordValidationPattern)
     });
@@ -41,11 +42,20 @@ export class LoginComponent implements OnInit, OnDestroy {
       USERNAME: this.loginForm.value.username,
       PASSWORD: this.loginForm.value.password
     };
-
-    this.loginSubscription = this.restfullServices.post(loginData, "LOGINBYADMIN").subscribe(response => {
+    const type = this.loginForm.get('loginType').value;
+    const payloadType = (type == 'admin') ? "LOGINBYADMIN" : "LOGINQMGR";
+    this.loginSubscription = this.restfullServices.post(loginData, payloadType).subscribe(response => {
       //validation here
-      
-      sessionStorage.setItem('loggedInUserDetails', JSON.stringify(response));
+      const data = response[0].PAYLOAD[payloadType];
+      const loginData = {
+        loginAs: type,
+        phone: data.PHONE,
+        firstName: data.FIRSTNAME,
+        lastName: data.LASTNAME,
+        pincode: data.PINCODE,
+        email: data.EMAIL
+      }
+      sessionStorage.setItem('loggedInUserDetails', JSON.stringify(loginData));
       this.globalServices.checkUserLoggedIn();
       this.router.navigate(['/view-user']);
     })   

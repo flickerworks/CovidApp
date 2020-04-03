@@ -14,12 +14,17 @@ export class PersonalDetailsComponent implements OnInit {
   constructor(private globalService: GlobalServices, private router: Router) { }
 
   ngOnInit() {
-    this.personalDetails = this.globalService.personalDetal;
-    const userDetails = this.personalDetails; 
-    this.address= `${userDetails.houseNo}${this.removeComma(userDetails.houseNo)} ${userDetails.street}${this.removeComma(userDetails.street)} ${userDetails.area}${this.removeComma(userDetails.area)} ${userDetails.city}${this.removeComma(userDetails.city)} ${userDetails.state} ${userDetails.pincode}`
-    if(!this.personalDetails){
+    if(this.globalService.personalDetal){
+      this.personalDetails = this.globalService.personalDetal;
+      const userDetails = this.personalDetails; 
+      this.address= `${userDetails.houseNo}${this.removeComma(userDetails.houseNo)} ${userDetails.street}${this.removeComma(userDetails.street)} ${userDetails.area}${this.removeComma(userDetails.area)} ${userDetails.city}${this.removeComma(userDetails.city)} ${userDetails.state} ${userDetails.pincode}`      
+    } else {
       this.router.navigate(['/view-user']);
-    }
+    }  
+  }
+
+  editUser(){
+    this.router.navigate(['/add-user','true']);
   }
 
   removeComma(value):string{

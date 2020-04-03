@@ -17,7 +17,7 @@
   <div class="login__right_section">
     <form class="right_section__form" [formGroup]="loginForm" autocomplete = "off">
       <div fxLayout="column wrap" fxLayoutGap="10px">
-        <mat-radio-group aria-label="Select an option" fxLayoutGap="30px">
+        <mat-radio-group aria-label="Select an option" formControlName="loginType" fxLayoutGap="30px">
           <mat-radio-button value="admin" checked="true">Login as Admin</mat-radio-button>
           <mat-radio-button value="quarantine_manager">Login as Quarantine Manager</mat-radio-button>
         </mat-radio-group>

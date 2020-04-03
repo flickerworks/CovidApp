@@ -17,7 +17,7 @@ export interface DialogModel {
 }
 
 export interface PersonalDetails {
- name: string;
+ name?: string;
  type: string; 
  id: number; 
  phone: number;
@@ -29,6 +29,12 @@ export interface PersonalDetails {
  state: string;
  pincode: string;
  city: string;
+ firstName: string;
+ lastName: string;
+ loginName: string;
+ department: string;
+ designation: string;
+ idCardType: string;
 }
 
 export interface MonitorAndManagerList {
@@ -141,6 +147,9 @@ export interface UserModel {
   zone: string;
   monitorAssigned?: string;
   userType: string;
+  designation: string;
+  department: string;
+  loginName:string;
 }
 
 export interface Payload {

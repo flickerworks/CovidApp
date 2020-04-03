@@ -8,7 +8,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" class="z_index">
             <mat-label class="mat-label">User Type</mat-label>
-            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px" (change)="changeUser($event)" name="userType">
+            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px" [(ngModel)]='userType' (change)="changeUser($event)" name="userType">
                 <mat-radio-button value="quarantine_manager" checked="true">Quarantine Manager</mat-radio-button>
                 <mat-radio-button value="monitor">Monitor</mat-radio-button>
             </mat-radio-group>
@@ -170,7 +170,7 @@
                     <div fxFlex="30"></div>
                 </div>
                 <div class="width_100" fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-                    <button mat-raised-button  (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="button">Save Details</button>
+                    <button mat-raised-button  (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="button">{{isEdit ? 'Update' : 'Save Details'}}</button>
                 </div> 
             </form>
         </div>

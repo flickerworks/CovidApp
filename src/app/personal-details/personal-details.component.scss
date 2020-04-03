@@ -23,7 +23,7 @@
                 color: $color-blue-light;
                 position: absolute;
                 background-color: $color-white;
-                right: 1rem;
+                right: 0;
                 padding: 0.4rem 1.4rem 0.3rem 1rem;
                 border: .1rem solid $color-blue-light;
                 cursor: pointer;
@@ -75,9 +75,9 @@
             text-align: right;
             margin-top: 6rem;
             position: relative;
-            .restrict {            
+            .restrict {           
                 border-radius: .6rem;
-                display: inline-block;
+                display: none;
                 padding: .6rem 1.8rem;
                 background-color: $color-red-restrict;
                 color: $color-white;

@@ -5,12 +5,13 @@ import {
   EmailValidationPattern,
   UserTypes,
   UserRegisterModel,
-  GovernmentIdTypes
+  GovernmentIdTypes,
+  PersonalDetails
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Subscription } from 'rxjs';
 import { GlobalServices } from '../shared/services/global.services';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -20,17 +21,20 @@ import { Router } from '@angular/router';
 })
 export class AddUserComponent implements OnInit {
   userRegisterForm: FormGroup;
-  userTypes: string[] = UserTypes;
+  isEdit:boolean = false;
+  // userTypes: string[] = UserTypes;
   governmentIdTypes: string[] = GovernmentIdTypes;
   userSubscription: Subscription;
   registrationAs: string = "quarantine_manager";
   showPopup:boolean = false;
   profileName: string;
+  userType = 'quarantine_manager';
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
     private globalService: GlobalServices,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -54,7 +58,42 @@ export class AddUserComponent implements OnInit {
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]]
     });
-    console.log(this.userRegisterForm.controls.governmentIdImageName);
+    this.checkParams();
+  }
+
+  checkParams():void {
+    this.route.paramMap.subscribe(params => {
+      const _param = params['params'];
+      this.isEdit = _param.isEdit === "true"; 
+      if(this.isEdit){
+        const personalDetails: PersonalDetails = this.globalService.personalDetal;
+        if(!personalDetails){
+          this.router.navigate(['/view-user']);
+          return;
+        }
+        this.userType = (personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
+        this.userRegisterForm.patchValue({
+          firstName: personalDetails.firstName,
+          lastName: personalDetails.lastName,
+          mobileNumber: personalDetails.phone,
+          email: personalDetails.email,
+          designation: personalDetails.designation,
+          department: personalDetails.department,
+          zone: personalDetails.zone,
+          governmentIdType: personalDetails.idCardType,
+          governmentIdImage: '',
+          governmentIdImageName: '',
+          houseNumber: personalDetails.houseNo,
+          street: personalDetails.street,
+          area: personalDetails.area,
+          city: personalDetails.city,
+          state: personalDetails.state,
+          pincode: personalDetails.pincode,
+          loginName: personalDetails.loginName,
+          password: ''
+        })
+      }
+    })
   }
 
   onFileSelected() {

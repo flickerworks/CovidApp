@@ -8,10 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  loginData;
+  loginName:string;
+  loginAs:string;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    const session = sessionStorage.getItem('loggedInUserDetails');
+    if(session){
+      this.loginData = JSON.parse(session);
+      const name = `${this.loginData.firstName} ${this.loginData.lastName}`;
+      this.loginName = name.trim() ? name : "User";
+      this.loginAs = this.loginData.loginAs;
+    }
   }
 
   /* showPopup(){
@@ -19,7 +28,7 @@ export class HeaderComponent implements OnInit {
   }  */
 
   addUser(){
-    this.router.navigateByUrl('/add-user');
+    this.router.navigate(['/add-user', false]);
   }
 
 

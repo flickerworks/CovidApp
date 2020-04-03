@@ -9,6 +9,7 @@ import { AssignMonitorComponent } from './assign-monitor/assign-monitor.componen
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
+import { MgrAuthGuardService } from './mgr-auth-guard.service';
 
 const routes: Routes = [
   {
@@ -35,24 +36,24 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'add-user',
+    path: 'add-user/:isEdit',
     component: AddUserComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'patient-list',
     component: PatientListComponent,
-    canActivate: [AuthGuard]
+    canActivate: [MgrAuthGuardService]
   },
   {
     path: 'monitor-details',
     component: MonitorDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [MgrAuthGuardService]
   },
   {
     path: 'quarantine-dashboard',
     component: QuarantineManagerDashboardComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [MgrAuthGuardService]
   },
   {
     path: "**",

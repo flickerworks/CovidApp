@@ -77,7 +77,13 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
       state: userDetails.state,
       area: userDetails.area,
       pincode: userDetails.pincode,
-      city: userDetails.city     
+      city: userDetails.city,
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      idCardType: userDetails.governmentId,
+      department: userDetails.department,
+      designation: userDetails.designation,
+      loginName: userDetails.loginName
     }
     this.globalServices.personalDetal = personalDetails;
     this.router.navigate(['/personal-details']);

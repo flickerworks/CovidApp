@@ -102,7 +102,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
           email: ele.EMAIL,
           mobileNumber: ele.PHONE,
           alternateMobileNumber:0,
-          governmentId:'',
+          governmentId:ele.IDCARDTYPE,
           doorNumber: ele.HNO,
           streetName: ele.STREETNAME,
           area: ele.AREA,
@@ -111,6 +111,9 @@ export class ViewUserComponent implements OnInit, OnDestroy {
           pincode: ele.PINCODE,
           zone: ele.ZONE,
           monitorAssigned:'',
+          designation: ele.DESIGNATION,
+          department: ele.DEPARTMENT,
+          loginName: ele.LOGINNAME,
           userType:(type==='monitor') ? 'Monitor' : 'Quarantine Manager'
         }
         list.push(obj);
