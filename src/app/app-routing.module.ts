@@ -10,6 +10,7 @@ import { PersonalDetailsComponent } from './personal-details/personal-details.co
 import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
 import { MgrAuthGuardService } from './mgr-auth-guard.service';
+import { PatientRegisterComponent } from './patient-register/patient-register.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,11 @@ const routes: Routes = [
     path: 'quarantine-dashboard',
     component: QuarantineManagerDashboardComponent,
     canActivate: [MgrAuthGuardService]
+  },
+  {
+    path: 'register-patient',
+    component: PatientRegisterComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: "**",

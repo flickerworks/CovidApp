@@ -1,0 +1,37 @@
+@import "variables";
+.health_status_stepper__section_form {
+  font-family: 'Segoe_UI', sans-serif;
+  color: $color-grey-dark;
+
+  ::ng-deep .mat-slide-toggle-label {
+    position: relative;
+    font-size: 1.4rem;
+    color: $color-grey-dark;
+    .mat-slide-toggle-bar {
+      position: absolute;
+      right: 1rem;
+    }
+    .mat-slide-toggle-content {
+      white-space: pre-line;
+      width: 75%;
+    }
+  }
+
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: $color-blue;
+  }
+  
+  ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: $color-blue-lighter;
+  }
+
+  ::ng-deep .mat-form-field-suffix {
+    color: $color-grey-dark-1;
+    height: 100%;
+    padding: 1.2rem 1.4rem 1.2rem 1.4rem;
+    top: 2px;
+    opacity: 1;
+    left: 1rem;
+    border-left: 1px solid $color-grey-dark-1;
+  }
+}

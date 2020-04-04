@@ -1,0 +1,92 @@
+@import "variables";
+.patient_register {
+  margin: $header-height-main $no-margin-padding $no-margin-padding;
+  padding: $page-default-padding;
+  font-family: 'Segoe_UI', sans-serif;
+  background-color: $color-white;
+  .mat-stepper-horizontal {
+    width: 100%;
+    background-color: transparent;
+  }
+  ::ng-deep .mat-step-header {
+    .mat-step-icon-selected {
+      background-color: $color-blue-light;
+    }
+    .mat-step-icon-state-edit {
+      background-color: $color-green;
+    }
+    .mat-step-label {
+      color: $color-grey-dark;
+    }
+    .mat-step-label.mat-step-label-selected {
+      color: $color-blue-light !important;
+    }
+    .mat-step-label.mat-step-label-active {
+      color: $color-green;
+    }
+  }
+  ::ng-deep .margin_bottom_20 {
+    margin-bottom: 40px !important;
+  }
+  ::ng-deep form {
+    width: 100%;
+  }
+  ::ng-deep .labels {
+    position: absolute;
+    top: -15px;
+    color: $color-grey-dark;
+    left: -10px;
+    font-size: 12px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  ::ng-deep .mat-form-field {
+      font-size: 14px;
+  }
+
+  ::ng-deep .mat-form-field-prefix {
+    background-color: $color-grey-dark;
+    color: $color-white;
+    height: 100%;
+    padding: 1.2rem;
+    top: 2px;
+    opacity: 1;
+    right: 1rem;
+  }
+  ::ng-deep .mat-form-field-outline {
+    color: $border-color-grey-light;
+  }
+  ::ng-deep .mat-input-element {
+    caret-color: #777777;
+    color: #777777;
+  }
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #777777 !important;
+  }
+  ::ng-deep .mat-form-field-outline-start, ::ng-deep .mat-form-field-outline-end {
+    border-radius: 0px;
+  }
+  ::ng-deep .mat-form-field-infix {
+    border-top: 0em solid transparent;
+  }
+  ::ng-deep .mat-raised-button{
+    background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
+    color: $color-white;
+    padding: 0 2rem;
+    font-size: 1.6rem;
+    font-weight: 100;
+  }
+  ::ng-deep .mat-raised-button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  ::ng-deep .section_title {
+    font-size: 16px;
+  }
+  ::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+  }
+}

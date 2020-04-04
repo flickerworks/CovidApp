@@ -1,0 +1,50 @@
+<div class="assign_monitor_stepper__section_form z_index" fxFlex="100" fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start center">
+  <div class="table_section__container width_100">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">
+          <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(element) : null"
+            [checked]="selection.isSelected(element)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="align_center" fxFlex="150px" fxLayout="column" fxLayoutAlign="start start">
+          <b class="color_blue">{{element?.firstName}} {{element?.lastName}}</b>
+          <b>{{element?.userType}}</b>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contactNumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Contact Number
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.mobileNumber}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="zone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Zone
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.zone}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+          Mail ID
+        </mat-header-cell>
+        <mat-cell class="color_blue" *matCellDef="let element" fxFlex="150px">{{element?.email}}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+      (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+    </mat-table>
+    <app-no-data-available *ngIf="!isDataAvailable && this.dataSource.data.length === 0"></app-no-data-available>
+  </div>
+  <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
+    <button mat-raised-button (click)="goBack()" type="button">Previous</button>
+    <button mat-raised-button (click)="saveMonitor(selection._selected[0])" [ngClass]="{'disabled' : selection.selected.length === 0}" type="button">Save</button>
+  </div> 
+</div>

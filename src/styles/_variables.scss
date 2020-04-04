@@ -20,8 +20,10 @@ $color-red-restrict: #d22030;
 $color-blue-dark: #244787;
 $color-dark-red: #D22030;
 $color-orange: #FF7030;
-$color-blue: #00C2FF;
+$color-blue-light-2: #00C2FF;
 $color-dark-black: #060606;
+$color-blue-lighter: #DFF1FF;
+$color-green: #0EC173;
 
 
 //header
@@ -87,4 +89,7 @@ $page-default-padding: 2.5rem 5rem;
 .mat-table {
   width: fit-content;
   min-width: 100%;
+}
+.width_100 {
+  width: 100%;
 }

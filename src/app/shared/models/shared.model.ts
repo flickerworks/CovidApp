@@ -157,7 +157,61 @@ export interface Payload {
   PAYLOAD:any;
 }
 
+export interface PatientPersonalDetailsModel {
+  firstName: string;
+  lastName: string;
+  mobileNumber: number;
+  alternateMobileNumber: number;
+  governmentIdType: string;
+  governmentIdNumber: string;
+  email: string;
+  dateOfBirth: string;
+}
 
+export interface PatientHealthStatusModel {
+  fever: string;
+  temperature: string;
+  cough: string;
+  fatigue: string;
+  breathing: string;
+  diarrhea: string;
+  runnyNose: string;
+}
+
+export interface PatientAddressModel {
+  currentAddress: AddressModel,
+  permanentAddress: AddressModel,
+  quarantineAddress: AddressModel,
+  quarantineType: string;
+}
+
+export interface AddressModel {
+  houseNumber: string;
+  streetName: string;
+  area: string;
+  city: string;
+  state: string;
+  pincode: string;
+}
+
+export interface AssignMonitorModel {
+  idNumber: string;
+  firstName: string;
+  lastName: string;
+  mobileNumber: string;
+  zone: string;
+  email: string;
+  userType: string;
+}
+
+export enum AssignMonitorColumns {
+  // ID_NUMBER = "idNumber",
+  SELECT = 'select',
+  NAME = 'name',
+  CONTACT_NUMBER = 'contactNumber',
+  ZONE = 'zone',
+  EMAIL = 'email'
+}
 
 export const UserTypes: string[] = ['Quarantine Managers','Monitors'];
 
@@ -174,5 +228,7 @@ export const DefaultPaginatorValues: number[] = [10, 20, 30, 50];
 export const BooleanOptionValues: string[] = ['Yes', 'No'];
 
 export const GovernmentIdTypes: string[] = ['Voter Id', 'Aadhar', 'Pan Card', 'License', 'Passport'];
+
+export const QuarantineTypes: string[] = ['Home', 'Quarantine Center'];
 
 export const DefaultErrorMessage: string = 'Oops! Something went wrong. Please try again.';

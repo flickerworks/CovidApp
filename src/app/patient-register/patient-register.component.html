@@ -1,0 +1,25 @@
+<header></header>
+<img class="background_image_circle" src="./assets/images/admin_create_new_user_bg.png">
+<div class="patient_register" fxFlex="100" fxLayout="column" fxLayoutAlign="start center">
+  <div fxFlex="100" fxLayout="row" fxLayoutAlign="end center" class="z_index width_100">
+    <div class="color_red">*Mandatory fields</div>
+  </div>
+  <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
+    <mat-step [stepControl]="personalDetailsFormGroup" [editable]="isEditable">
+      <ng-template matStepLabel>Personal Details</ng-template>
+      <app-personal-details-stepper (previousStep)="goBack()" (personalFormDetails)="savePersonalDetails($event)"></app-personal-details-stepper>
+    </mat-step>
+    <mat-step [stepControl]="healthStatusFormGroup" [editable]="isEditable">
+      <ng-template matStepLabel>Health Status</ng-template>
+      <app-health-status-stepper (previousStep)="goBack()" (healthStatusForm)="saveHealthStatus($event)"></app-health-status-stepper>
+    </mat-step>
+    <mat-step [stepControl]="addressFormGroup" [editable]="isEditable">
+      <ng-template matStepLabel>Address</ng-template>
+      <app-address-stepper (previousStep)="goBack()" (addressDetails)="saveAddress($event)"></app-address-stepper>
+    </mat-step>
+    <mat-step [stepControl]="assignMonitorFormGroup" [editable]="isEditable">
+      <ng-template matStepLabel>Assign Monitor</ng-template>
+      <app-assign-monitor-stepper (previousStep)="goBack()" (monitorDetails)="saveMonitor($event)"></app-assign-monitor-stepper>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

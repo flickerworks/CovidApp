@@ -21,7 +21,10 @@ import {
   MatSortModule,
   MatCardModule,
   MatTabsModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatStepperModule,
+  MatSlideToggleModule,
+  MatCheckboxModule
   } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,6 +49,11 @@ import { LoaderComponent } from './loader/loader.component';
 import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
 import { QuarantineTableComponent } from './quarantine-manager-dashboard/quarantine-table/quarantine-table.component';
+import { PatientRegisterComponent } from './patient-register/patient-register.component';
+import { PersonalDetailsStepperComponent } from './patient-register/personal-details-stepper/personal-details-stepper.component';
+import { HealthStatusStepperComponent } from './patient-register/health-status-stepper/health-status-stepper.component';
+import { AddressStepperComponent } from './patient-register/address-stepper/address-stepper.component';
+import { AssignMonitorStepperComponent } from './patient-register/assign-monitor-stepper/assign-monitor-stepper.component';
 
 
 @NgModule({
@@ -68,7 +76,12 @@ import { QuarantineTableComponent } from './quarantine-manager-dashboard/quarant
     LoaderComponent,
     MonitorDetailsComponent,
     QuarantineManagerDashboardComponent,
-    QuarantineTableComponent
+    QuarantineTableComponent,
+    PatientRegisterComponent,
+    PersonalDetailsStepperComponent,
+    HealthStatusStepperComponent,
+    AddressStepperComponent,
+    AssignMonitorStepperComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +105,10 @@ import { QuarantineTableComponent } from './quarantine-manager-dashboard/quarant
     MatSortModule,
     MatCardModule,
     MatTabsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatStepperModule,
+    MatSlideToggleModule,
+    MatCheckboxModule
   ],
   exports: [
     FormsModule,
@@ -110,7 +126,10 @@ import { QuarantineTableComponent } from './quarantine-manager-dashboard/quarant
     MatPaginatorModule,
     MatSortModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatStepperModule,
+    MatSlideToggleModule,
+    MatCheckboxModule
   ],
   providers: [
     { 
