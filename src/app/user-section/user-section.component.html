@@ -45,7 +45,7 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="left center">
             Name
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.firstName}} {{element?.lastName}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxLayoutAlign="start center" fxFlex="200px">{{element?.firstName}} {{element?.lastName}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="idNumber">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
@@ -80,13 +80,13 @@
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px"></mat-header-cell>
           <mat-cell *matCellDef="let element" fxFlex="200px">
-            <button mat-button class="update_button" (click)="viewDetails(element)">View Details</button>
+            <button mat-button class="update_button color_blue" (click)="viewDetails(element)">View details</button>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <app-no-data-available *ngIf="!isDataAvailable && this.userTableData.length === 0"></app-no-data-available>
+      <app-no-data-available *ngIf="!isDataAvailable"></app-no-data-available>
     </div>
     <div fxLayout="row" fxLayoutAlign="end center">
       <mat-paginator showFirstLastButtons></mat-paginator>

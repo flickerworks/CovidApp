@@ -63,6 +63,11 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
 
   searchTable(filterValue: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.filteredData && this.dataSource.filteredData.length === 0) {
+      this.isDataAvailable = false;
+    } else {
+      this.isDataAvailable = true;
+    }
   }
 
   viewDetails(userDetails: UserModel):  void {

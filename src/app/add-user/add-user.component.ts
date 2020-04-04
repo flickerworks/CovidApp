@@ -96,7 +96,9 @@ export class AddUserComponent implements OnInit {
           pincode: this.personalDetails.pincode,
           loginName: this.personalDetails.loginName,
           password: this.personalDetails.password
-        })
+        });
+        this.userRegisterForm.updateValueAndValidity();
+        this.userRegisterForm.markAllAsTouched();
       }
     })
   }
