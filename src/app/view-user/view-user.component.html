@@ -2,15 +2,15 @@
 <img class="background_image" src="./assets/images/admindashboard_bg.png">
 <div class="view_user" fxFlex="100" fxLayout="row" fxLayoutAlign="start center">
   <div class="view_user__tabs" fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
-    <mat-tab-group dynamicHeight fxFlex="100">
+    <mat-tab-group dynamicHeight fxFlex="100" [(selectedIndex)]="tabIndex">
       <mat-tab label="Quarantine Managers">
         <div class="view_users__tabs_section">
-          <app-user-section (refresh)="getQManagerList()" [userSectionDetails]="quarantineManagerSectionDetails"></app-user-section>
+          <app-user-section (refresh)="getQManagerList()" [userSectionDetails]="quarantineManagerSectionDetails" [tabIndex]="tabIndex"></app-user-section>
         </div>
       </mat-tab>
       <mat-tab label="Monitors">
         <div class="view_users__tabs_section">
-          <app-user-section (refresh)="getMonitorsList()"  [userSectionDetails]="monitorsSectionDetails"></app-user-section>
+          <app-user-section (refresh)="getMonitorsList()"  [userSectionDetails]="monitorsSectionDetails" [tabIndex]="tabIndex"></app-user-section>
         </div>
       </mat-tab>
     </mat-tab-group>

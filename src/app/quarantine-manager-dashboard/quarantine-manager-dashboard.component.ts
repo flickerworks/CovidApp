@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuarantineTableColumns, MonitorTableColumns } from '../shared/models/shared.model';
 import { GlobalServices } from '../shared/services/global.services';
+import { RestfullServices } from '../shared/services/restfull.services';
 
 @Component({
   selector: 'app-quarantine-manager-dashboard',
@@ -19,7 +20,8 @@ export class QuarantineManagerDashboardComponent implements OnInit {
     tableColumns: []
   };
   constructor(
-    private globalServices: GlobalServices
+    private globalServices: GlobalServices,
+    private restApi: RestfullServices
   ) { }
 
   ngOnInit() {
@@ -99,9 +101,24 @@ export class QuarantineManagerDashboardComponent implements OnInit {
       }],
       tableColumns: this.globalServices.enumToArray(MonitorTableColumns)
     };
+    this.getDashboardData();
+  }
+
+  getDashboardData(){
+    const request = {
+      PNCODE: "560068"
+    }
+    this.restApi.post(request, "QMDASHBOARD").subscribe(response => {
+      const list = response[0].PAYLOAD.QMDASHBOARD.RECORD;
+      console.log(list);
+    })
   }
 
   searchTable(filterValue: string): void {
     this.searchString = filterValue;
+  }
+
+  refreshList(){
+
   }
 }

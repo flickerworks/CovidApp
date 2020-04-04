@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -11,6 +10,7 @@ import { MonitorDetailsComponent } from './monitor-details/monitor-details.compo
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
 import { MgrAuthGuardService } from './mgr-auth-guard.service';
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
+import { AuthGuardService } from './auth.guard.service';
 
 const routes: Routes = [
   {
@@ -24,22 +24,22 @@ const routes: Routes = [
   {
     path: 'view-user',
     component: ViewUserComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'personal-details',
     component: PersonalDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'assign-monitor/:name/:id',
     component: AssignMonitorComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'add-user/:isEdit',
     component: AddUserComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'patient-list',
@@ -64,7 +64,7 @@ const routes: Routes = [
   {
     path: "**",
     redirectTo: "view-user",
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuardService]
   }
 ];
 

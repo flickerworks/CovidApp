@@ -8,6 +8,7 @@ export class GlobalServices {
   showLoader = new Subject<boolean>();
   private token: string = "";
   private personalDetals:PersonalDetails;
+  private selectedAdminTabId: number;
   public isUserLoggedIn: boolean = false;
   public loggedInUserDetails: LoggedInUserModel;
   public menuRoutes: MenuRoute[] = [];
@@ -80,6 +81,14 @@ export class GlobalServices {
 
   get personalDetal(){
     return this.personalDetals;
+  }
+
+  set lastSelectedAdminTab(tabId: number){
+    this.selectedAdminTabId = tabId;
+  }
+
+  get lastSelectedAdminTab(){
+    return this.selectedAdminTabId;
   }
 
 }

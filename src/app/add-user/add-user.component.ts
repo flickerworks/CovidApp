@@ -22,6 +22,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddUserComponent implements OnInit {
   userRegisterForm: FormGroup;
   isEdit:boolean = false;
+  popupMessage: string;
   // userTypes: string[] = UserTypes;
   governmentIdTypes: string[] = GovernmentIdTypes;
   userSubscription: Subscription;
@@ -29,6 +30,7 @@ export class AddUserComponent implements OnInit {
   showPopup:boolean = false;
   profileName: string;
   userType = 'quarantine_manager';
+  personalDetails: PersonalDetails;
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
@@ -65,38 +67,41 @@ export class AddUserComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const _param = params['params'];
       this.isEdit = _param.isEdit === "true"; 
+      
       if(this.isEdit){
-        const personalDetails: PersonalDetails = this.globalService.personalDetal;
-        if(!personalDetails){
+        this.userRegisterForm.controls.loginName.disable();
+        this.userRegisterForm.get('governmentIdImageName').clearValidators();
+        this.personalDetails = this.globalService.personalDetal;
+        if(!this.personalDetails){
           this.router.navigate(['/view-user']);
           return;
         }
-        this.userType = (personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
+        this.userType = (this.personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
         this.userRegisterForm.patchValue({
-          firstName: personalDetails.firstName,
-          lastName: personalDetails.lastName,
-          mobileNumber: personalDetails.phone,
-          email: personalDetails.email,
-          designation: personalDetails.designation,
-          department: personalDetails.department,
-          zone: personalDetails.zone,
-          governmentIdType: personalDetails.idCardType,
+          firstName: this.personalDetails.firstName,
+          lastName: this.personalDetails.lastName,
+          mobileNumber: this.personalDetails.phone,
+          email: this.personalDetails.email,
+          designation: this.personalDetails.designation,
+          department: this.personalDetails.department,
+          zone: this.personalDetails.zone,
+          governmentIdType: this.personalDetails.idCardType,
           governmentIdImage: '',
           governmentIdImageName: '',
-          houseNumber: personalDetails.houseNo,
-          street: personalDetails.street,
-          area: personalDetails.area,
-          city: personalDetails.city,
-          state: personalDetails.state,
-          pincode: personalDetails.pincode,
-          loginName: personalDetails.loginName,
-          password: ''
+          houseNumber: this.personalDetails.houseNo,
+          street: this.personalDetails.street,
+          area: this.personalDetails.area,
+          city: this.personalDetails.city,
+          state: this.personalDetails.state,
+          pincode: this.personalDetails.pincode,
+          loginName: this.personalDetails.loginName,
+          password: this.personalDetails.password
         })
       }
     })
   }
 
-  onFileSelected() {
+  onFileSelected(event) {
     const inputNode: any = document.querySelector('#file');
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
@@ -134,6 +139,7 @@ export class AddUserComponent implements OnInit {
         EMAIL: _form.email,
         DESIGNATION: _form.designation,
         DEPARTMENT: _form.department,
+        DEVICE_TOKEN:"",
         IDCARDTYPE: _form.governmentIdType,
         IDCARDNUMBER: "",
         IDCARDIMAGE: _form.governmentIdImage,
@@ -147,7 +153,8 @@ export class AddUserComponent implements OnInit {
         PASSWORD: _form.password
       };
 
-      if(this.registrationAs === "monitor"){
+      const condition = this.isEdit ? this.personalDetails.type : this.userType;
+      if(condition.toLowerCase() === "monitor"){
         this.registerMonitor(userRegisterModel);
       }else {
         this.registerQManager(userRegisterModel);
@@ -155,21 +162,39 @@ export class AddUserComponent implements OnInit {
     }
   }
 
-  registerMonitor(userRegisterModel){
-    this.userSubscription = this.restfullServices.post(userRegisterModel, "ADDMONITOR").subscribe(response => {
+  registerMonitor(userRegisterModel){    
+    let payloadType = "ADDMONITOR";
+    let _userRegisterModel = userRegisterModel;
+    this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
+    this.popupMessage = `${this.profileName}'s profile has been created as a Monitor successfully`;
+    if(this.isEdit){      
+      this.popupMessage = `${this.profileName}'s profile has been updated successfully`;
+      _userRegisterModel.MID = this.personalDetails.id;
+      delete _userRegisterModel.LOGINNAME;
+      payloadType = "EDITMONITORBYMID";
+    }
+    this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
-      console.log(response);
-      this.profileName = this.globalService.firstLetterUppercase(userRegisterModel.FIRSTNAME);
+      console.log(response);      
       this.showPopup = true;
     })   
   }
   
 
   registerQManager(userRegisterModel){
-    this.userSubscription = this.restfullServices.post(userRegisterModel, "ADDQURANTINEMGR").subscribe(response => {
+    let _userRegisterModel = userRegisterModel;    
+    let payloadType = "ADDQURANTINEMGR";
+    this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
+    this.popupMessage = `${this.profileName}'s profile has been created as a Quarantine Manager successfully`;
+    if(this.isEdit){
+      this.popupMessage = `${this.profileName}'s profile has been updated successfully`;
+      _userRegisterModel.QMID = this.personalDetails.id;
+      delete _userRegisterModel.LOGINNAME;
+      payloadType = "EDITQUARANTINEMGR";
+    }
+    this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
       console.log(response);
-      this.profileName = this.globalService.firstLetterUppercase(userRegisterModel.FIRSTNAME);
       this.showPopup = true;
     }) 
   }

@@ -8,7 +8,7 @@
         </div>
         <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" class="z_index">
             <mat-label class="mat-label">User Type</mat-label>
-            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px" [(ngModel)]='userType' (change)="changeUser($event)" name="userType">
+            <mat-radio-group aria-label="Profile Type" fxLayoutGap="30px" [(ngModel)]='userType' (change)="changeUser($event)" name="userType" [disabled]="isEdit">
                 <mat-radio-button value="quarantine_manager" checked="true">Quarantine Manager</mat-radio-button>
                 <mat-radio-button value="monitor">Monitor</mat-radio-button>
             </mat-radio-group>
@@ -91,7 +91,7 @@
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : ''}}</div>
                             <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
-                            <button class="upload_button" type="button" mat-raised-button (click)="fileInput.click(event)">Browse</button>
+                            <button class="upload_button" type="button" mat-raised-button (click)="fileInput.click($event)">Browse</button>
                         </div>
                     </div>
                     <div fxFlex="30"></div>
@@ -178,7 +178,7 @@
 </div>
 <popup [show]="showPopup" [closeBtn]="false">
     <div class="popup-content">
-        <p>{{profileName}}'s profile has been created as {{(registrationAs === "monitor") ? "Monitor" : "Quarantine Manager"}} successfully</p>
+        <p>{{popupMessage}}</p>
         <a class="popup-content__button" (click)="popupDone()">Done</a>
     </div>
 </popup>

@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   loginData;
+  homeRoute: string = "view-user";
+  addUserRoute:string = 'add-user';
   loginName:string;
   loginAs:string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private globalService: GlobalServices) { }
 
   ngOnInit() {
     const session = sessionStorage.getItem('loggedInUserDetails');
@@ -19,7 +21,9 @@ export class HeaderComponent implements OnInit {
       this.loginData = JSON.parse(session);
       const name = `${this.loginData.firstName} ${this.loginData.lastName}`;
       this.loginName = name.trim() ? name : "User";
-      this.loginAs = this.loginData.loginAs;
+      this.loginAs = (this.loginData.loginAs !== 'admin') ? "Manager" : "Admin";
+      this.homeRoute = (this.loginData.loginAs === 'admin') ? "view-user" : "quarantine-dashboard";
+      this.addUserRoute = (this.loginData.loginAs.toLowerCase() === 'admin') ? "add-user" : "";
     }
   }
 
@@ -28,14 +32,16 @@ export class HeaderComponent implements OnInit {
   }  */
 
   addUser(){
-    this.router.navigate(['/add-user', false]);
+    this.router.navigate(['/'+this.addUserRoute, false]);
   }
 
 
   redirect(pageId:string){
+    console.log(pageId);
     if(pageId==='login'){
       sessionStorage.removeItem('loggedInUserDetails');
-    }      
+    } 
+    this.globalService.lastSelectedAdminTab = 0;
     this.router.navigate(['/'+pageId]);
   }
 }

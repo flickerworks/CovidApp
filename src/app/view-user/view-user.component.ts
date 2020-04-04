@@ -19,6 +19,7 @@ import { GlobalServices } from '../shared/services/global.services';
   styleUrls: ['./view-user.component.scss']
 })
 export class ViewUserComponent implements OnInit, OnDestroy {
+  tabIndex: number = 0;
   quarantineManagerData: UserModel[]=[];
   monitorsData: UserModel[];
   quarantineManagerSectionDetails: UserSectionModel = new UserSectionModel();
@@ -35,6 +36,9 @@ export class ViewUserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getUserTableData();
+    if(this.globalServices.lastSelectedAdminTab){
+      this.tabIndex = this.globalServices.lastSelectedAdminTab;
+    }
   }
 
   ngOnDestroy(): void {
@@ -114,6 +118,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
           designation: ele.DESIGNATION,
           department: ele.DEPARTMENT,
           loginName: ele.LOGINNAME,
+          password: ele.PASSWORD,
           userType:(type==='monitor') ? 'Monitor' : 'Quarantine Manager'
         }
         list.push(obj);

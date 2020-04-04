@@ -28,7 +28,6 @@ import {
   } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './auth.guard';
 import { GlobalServices } from './shared/services/global.services';
 import { LoginComponent } from './login/login.component';
 import { AlertDialogComponent } from './shared/components/alert-dialog/alert-dialog.component';
@@ -54,6 +53,8 @@ import { PersonalDetailsStepperComponent } from './patient-register/personal-det
 import { HealthStatusStepperComponent } from './patient-register/health-status-stepper/health-status-stepper.component';
 import { AddressStepperComponent } from './patient-register/address-stepper/address-stepper.component';
 import { AssignMonitorStepperComponent } from './patient-register/assign-monitor-stepper/assign-monitor-stepper.component';
+import { AuthGuardService } from './auth.guard.service';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -132,6 +133,10 @@ import { AssignMonitorStepperComponent } from './patient-register/assign-monitor
     MatCheckboxModule
   ],
   providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
     { 
       provide: DateAdapter,
       useClass: NativeDateAdapter
@@ -141,8 +146,7 @@ import { AssignMonitorStepperComponent } from './patient-register/assign-monitor
       useClass: InterceptService,
       multi: true
     }, */
-    GlobalServices,
-    AuthGuard
+    GlobalServices, AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

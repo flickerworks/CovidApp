@@ -8,7 +8,7 @@ import { LoggedInUserModel } from './shared/models/shared.model';
   providedIn: 'root'
 })
 export class MgrAuthGuardService implements CanActivate {
-  constructor(private router : Router, private _location: Location){}
+  constructor(private router: Router, private _location: Location){}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -21,7 +21,11 @@ export class MgrAuthGuardService implements CanActivate {
       if(loggedInUserDetails && loginData.loginAs !== 'admin'){
         return true;
       } else {
-        this._location.back();
+        if(!loggedInUserDetails){
+          this.router.navigate(['/login']);
+        }else{
+          this._location.back();
+        }        
         return false;
       }
   }

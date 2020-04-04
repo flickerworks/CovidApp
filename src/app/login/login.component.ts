@@ -30,20 +30,31 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    const sessionData = sessionStorage.getItem('loginas');
+    let loginAs = 'admin';
+    if(sessionData){
+      loginAs = sessionData;
+    }
     this.loginForm = this.formBuilder.group({
-      loginType: ['admin', [Validators.required]],
+      loginType: [loginAs, [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]//, Validators.pattern(PasswordValidationPattern)
     });
+    
   }
 
   onLogIn(): void {
     const loginData: LoggedInUserModel = { 
-      USERNAME: this.loginForm.value.username,
+      LOGINNAME: this.loginForm.value.username,
       PASSWORD: this.loginForm.value.password
     };
     const type = this.loginForm.get('loginType').value;
-    const payloadType = (type == 'admin') ? "LOGINBYADMIN" : "LOGINQMGR";
+    let payloadType = "LOGINQMGR";
+    let redirectTo = "/quarantine-dashboard";
+    if(type == 'admin') {
+      payloadType = "LOGINBYADMIN";
+      redirectTo = "/view-user";
+    };
     this.loginSubscription = this.restfullServices.post(loginData, payloadType).subscribe(response => {
       //validation here
       const data = response[0].PAYLOAD[payloadType];
@@ -56,8 +67,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         email: data.EMAIL
       }
       sessionStorage.setItem('loggedInUserDetails', JSON.stringify(loginData));
+      sessionStorage.setItem('loginas', type.toLowerCase());
       this.globalServices.checkUserLoggedIn();
-      this.router.navigate(['/view-user']);
+      this.router.navigate([redirectTo]);
     })   
   }
 

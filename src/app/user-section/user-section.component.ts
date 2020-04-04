@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() userSectionDetails: UserSectionModel;
   @Output() refresh = new EventEmitter<null>();
+  @Input() tabIndex:number;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   dataSource: MatTableDataSource<UserModel> = new MatTableDataSource<UserModel>();
@@ -83,8 +84,10 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
       idCardType: userDetails.governmentId,
       department: userDetails.department,
       designation: userDetails.designation,
-      loginName: userDetails.loginName
+      loginName: userDetails.loginName,
+      password: userDetails.password
     }
+    this.globalServices.lastSelectedAdminTab = this.tabIndex;
     this.globalServices.personalDetal = personalDetails;
     this.router.navigate(['/personal-details']);
   }

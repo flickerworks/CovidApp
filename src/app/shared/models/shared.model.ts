@@ -7,7 +7,7 @@ export interface MenuRoute {
 }
 
 export interface LoggedInUserModel {
-  USERNAME: string;
+  LOGINNAME: string;
   PASSWORD: string;
 }
 
@@ -32,6 +32,7 @@ export interface PersonalDetails {
  firstName: string;
  lastName: string;
  loginName: string;
+ password: string;
  department: string;
  designation: string;
  idCardType: string;
@@ -54,6 +55,7 @@ export interface MonitorAndManagerList {
   EMAIL: string;
   CITY: string;
   LOGINNAME: string;
+  PASSWORD: string;
   DEPARTMENT: string;
   LASTNAME: string; 
 }
@@ -150,6 +152,7 @@ export interface UserModel {
   designation: string;
   department: string;
   loginName:string;
+  password: string;
 }
 
 export interface Payload {

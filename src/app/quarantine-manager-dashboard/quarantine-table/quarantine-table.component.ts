@@ -46,4 +46,8 @@ export class QuarantineTableComponent implements OnInit, OnChanges {
     }
   }
 
+  viewDetails(element){
+
+  }
+
 }
