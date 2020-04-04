@@ -1,13 +1,18 @@
 @import "variables";
 .address_stepper__section_form {
-    font-family: 'Segoe_UI', sans-serif;
-    color: $color-grey-dark;
+  font-family: 'Segoe_UI', sans-serif;
+  color: $color-grey-dark;
 
-    .mat-checkbox {
-      font-size: 1.2rem;
-    }
+  .mat-checkbox {
+    font-size: 1.2rem;
+  }
 
-    ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-      background-color: $color-blue-light;
-    }
+  ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: $color-blue-light;
+  }
+  .map_section {
+    border: 1px solid;
+    height: 50rem;
+    margin-left: 5rem;
+  }
 }
