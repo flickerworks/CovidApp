@@ -58,11 +58,11 @@
                     </mat-form-field>
                 </div>
             </form>
-            <div class="width_100" fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="10px" fxFlex="100">
-                <mat-checkbox [(ngModel)]="markPermanentAddress">Mark same as permanent address</mat-checkbox>
-                <mat-checkbox [(ngModel)]="markQuarantineAddress">Mark same as quarantine address</mat-checkbox>
+            <div [ngClass]="{'disabled' : !currentAddressFormGroup.valid}" class="width_100" fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="10px" fxFlex="100">
+                <mat-checkbox (change)="checkPermanentAddress(markPermanentAddress)" [(ngModel)]="markPermanentAddress">Mark same as permanent address</mat-checkbox>
+                <mat-checkbox (change)="checkQuarantineAddress_1(markQuarantineAddress)" [(ngModel)]="markQuarantineAddress">Mark same as quarantine address</mat-checkbox>
             </div>
-            <form [formGroup]="permanentAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
+            <form [ngClass]="{'disabled' : markPermanentAddress}" [formGroup]="permanentAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
                 <div class="section_title bold color_blue width_100 margin_bottom_20">Permanent Address</div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
@@ -119,10 +119,10 @@
                     </mat-form-field>
                 </div>
             </form>
-            <div class="width_100" fxLayout="column wrap" fxLayoutAlign="start start" fxLayoutGap="10px" fxFlex="100">
-                <mat-checkbox [(ngModel)]="markQuarantineAddress2">Mark same as quarantine address</mat-checkbox>
+            <div [ngClass]="{'disabled' : (!permanentAddressFormGroup.valid || markQuarantineAddress)}" class="width_100" fxLayout="column wrap" fxLayoutAlign="start start" fxLayoutGap="10px" fxFlex="100">
+                <mat-checkbox (change)="checkQuarantineAddress_2(markQuarantineAddress2)" [(ngModel)]="markQuarantineAddress2">Mark same as quarantine address</mat-checkbox>
             </div>
-            <form [formGroup]="quarantineAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
+            <form [ngClass]="{'disabled' : markQuarantineAddress}" [formGroup]="quarantineAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
                 <div class="section_title bold color_blue width_100 margin_bottom_20">Quarantine Address</div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
@@ -178,6 +178,8 @@
                             Pincode should be 1 to 30 characters long</mat-error>
                     </mat-form-field>
                 </div>
+            </form>
+            <form [formGroup]="quarantineTypeFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Quarantine Type</div>
@@ -185,7 +187,7 @@
                             <mat-option value="">Select type</mat-option>
                             <mat-option *ngFor="let idType of quarantineTypes" [value]="idType">{{idType}}</mat-option>
                         </mat-select>
-                        <mat-error *ngIf="quarantineAddressFormGroup.controls.quarantineType.errors?.required">
+                        <mat-error *ngIf="quarantineTypeFormGroup.controls.quarantineType.errors?.required">
                             Quarantine Type is required</mat-error>
                     </mat-form-field>
                 </div>
@@ -195,6 +197,6 @@
     </div>
     <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
         <button mat-raised-button (click)="goBack()" type="button">Previous</button>
-        <button mat-raised-button (click)="saveForm()" [ngClass]="{'disabled' : !quarantineAddressFormGroup.valid}" type="button">Continue</button>
+        <button mat-raised-button (click)="saveForm()" [ngClass]="{'disabled' : isFormDisabled()}" type="button">Continue</button>
     </div> 
 </div>

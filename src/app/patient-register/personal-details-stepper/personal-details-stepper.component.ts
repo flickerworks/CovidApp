@@ -24,17 +24,17 @@ export class PersonalDetailsStepperComponent implements OnInit {
 
   ngOnInit() {
     this.personalDetailsFormGroup = this.formBuilder.group({
-      firstName: ['test', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      lastName: ['test', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      mobileNumber: ['1231231231', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      alternateMobileNumber: ['1231231231', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      governmentIdType: ['Voter Id', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      governmentIdNumber: ['123', [Validators.required]],
-      email: ['tets@gmail.com', [Validators.required, Validators.pattern(EmailValidationPattern)]],
-      dateOfBirth: ['04/30/2020', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
+      alternateMobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
+      governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      governmentIdNumber: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
+      dateOfBirth: ['', [Validators.required]],
     });
-    this.personalDetailsFormGroup.updateValueAndValidity();
-    this.personalDetailsFormGroup.markAllAsTouched();
+    // this.personalDetailsFormGroup.updateValueAndValidity();
+    // this.personalDetailsFormGroup.markAllAsTouched();
   }
 
   saveForm(): void {
