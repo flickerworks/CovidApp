@@ -10,6 +10,7 @@ import {
 } from '../shared/models/shared.model';
 import { GlobalServices } from '../shared/services/global.services';
 import { RestfullServices } from '../shared/services/restfull.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-register',
@@ -26,10 +27,13 @@ export class PatientRegisterComponent implements OnInit {
   longitude;
   isEditable: boolean;
   MID: string;
+  showPopup: boolean = false;
+  popupMessage = "Monitor assigned successfully"
   constructor(
     private formBuilder: FormBuilder,
     private globalService: GlobalServices,
-    private restAPI: RestfullServices
+    private restAPI: RestfullServices,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -245,7 +249,12 @@ export class PatientRegisterComponent implements OnInit {
       LONGITUDE: this.longitude
     }
     this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
-
+      //condition
+      this.showPopup = true;
+      setTimeout(_ => {
+        this.showPopup = false;
+        this.router.navigate(['/quarantine-dashboard']);
+      }, 3000)
     })
 
   }

@@ -90,3 +90,16 @@
     pointer-events: none !important;
   }
 }
+
+.popup-content{
+  font-size: 1.6rem;
+  text-align: center;
+  .success{
+    font-weight: bold;
+    padding: 1rem 0 1.5rem 0;
+  }
+  .message{
+    font-weight: 200;
+    color:$color-grey-dark;
+  }
+}
