@@ -45,6 +45,6 @@
   </div>
   <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <button mat-raised-button (click)="goBack()" type="button">Previous</button>
-    <button mat-raised-button (click)="saveMonitor(selection._selected[0])" [ngClass]="{'disabled' : selection.selected.length === 0}" type="button">Save</button>
+    <button mat-raised-button (click)="saveMonitor(selection.selected[0])" [ngClass]="{'disabled' : selection.selected.length === 0}" type="button">Save</button>
   </div> 
 </div>
