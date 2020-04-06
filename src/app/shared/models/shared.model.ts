@@ -235,3 +235,5 @@ export const GovernmentIdTypes: string[] = ['Voter Id', 'Aadhar', 'Pan Card', 'L
 export const QuarantineTypes: string[] = ['Home', 'Quarantine Center'];
 
 export const DefaultErrorMessage: string = 'Oops! Something went wrong. Please try again.';
+
+export const FileExtension: string[] = ['jpg', 'jpeg', 'png'];

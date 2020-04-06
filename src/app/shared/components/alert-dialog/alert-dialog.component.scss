@@ -1,25 +1,22 @@
-.alert_dialog {
-    text-align: center
-}
-.alert_title {
-    color: #af111c;
-    font-weight: 700;
-    font-size: 20px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-button{
-    background-color: #fff;
-    border: 2px solid #af111c;
-    color: #000;
-    padding: 5px 20px;
-    font-size: 16px;
-    width: 30%;
-    margin: 0 auto;
-    clear: both;
-}
-button:hover{
-    background-color: #af111c;
-    border: 2px solid #af111c;
-    color: #fff;
+@import "variables";
+.alert_dialog{
+    position: relative;
+    // width: 25rem;
+    font-size: 1.6rem;
+    color: $color-grey-dark;
+    font-weight: 200;
+    text-align: center;
+    p {
+        margin-bottom: 2rem;
+    }
+    &__button{
+        background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
+        border-radius: .5rem;
+        padding: .6rem 3rem;
+        color: $color-white;
+        font-size: 1.2rem;
+        margin-top: 3rem;
+        display: inline-block;
+        cursor: pointer;
+    }
 }

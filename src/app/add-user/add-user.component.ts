@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { 
   MobileNumberValidationPattern,
   EmailValidationPattern,
   UserTypes,
   UserRegisterModel,
   GovernmentIdTypes,
-  PersonalDetails
+  PersonalDetails,
+  FileExtension
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Subscription } from 'rxjs';
 import { GlobalServices } from '../shared/services/global.services';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertDialogComponent } from '../shared/components/alert-dialog/alert-dialog.component';
 
 
 @Component({
@@ -36,7 +39,8 @@ export class AddUserComponent implements OnInit {
     private restfullServices: RestfullServices,
     private globalService: GlobalServices,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -105,7 +109,8 @@ export class AddUserComponent implements OnInit {
 
   onFileSelected(event) {
     const inputNode: any = document.querySelector('#file');
-    if (typeof (FileReader) !== 'undefined') {
+    const fileExtension: string = inputNode.files[0].name.split('.')[1].toLowerCase();
+    if (typeof (FileReader) !== 'undefined' && FileExtension.includes(fileExtension)) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const base64String = this.arrayBufferToBase64(e.target.result);
@@ -114,6 +119,13 @@ export class AddUserComponent implements OnInit {
       this.userRegisterForm.controls.governmentIdImageName = inputNode.files[0].name;
       this.userRegisterForm.updateValueAndValidity();
       reader.readAsArrayBuffer(inputNode.files[0]);
+    } else {
+      this.dialog.open(AlertDialogComponent, {
+        width: '400px',
+        data: {
+          message: 'Invalid file extension. Please upload jpg/png file only'
+        }
+      });
     }
   }
 
