@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoggedInUserModel, MenuRoute, MonitorAndManagerList, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
+import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
 import { Subject } from 'rxjs';
 
 @Injectable()
