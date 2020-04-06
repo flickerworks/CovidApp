@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { 
   AssignMonitorModel,
@@ -7,6 +7,7 @@ import {
 import { MatTableDataSource } from '@angular/material';
 import { GlobalServices } from '../../shared/services/global.services';
 import { SelectionModel } from '@angular/cdk/collections';
+import { RestfullServices } from 'src/app/shared/services/restfull.services';
 
 @Component({
   selector: 'app-assign-monitor-stepper',
@@ -23,7 +24,8 @@ export class AssignMonitorStepperComponent implements OnInit {
   selection = new SelectionModel<AssignMonitorModel>(false, []);
   constructor(
     private formBuilder: FormBuilder,
-    private globalServices: GlobalServices
+    private globalServices: GlobalServices,
+    private restAPI: RestfullServices
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,9 @@ export class AssignMonitorStepperComponent implements OnInit {
       userType: ['', Validators.required]
     });
     this.displayedColumns = this.globalServices.enumToArray(AssignMonitorColumns)
-    this.getMonitors();
+    this.globalServices.pincodeChange.subscribe(pincode => {
+      this.getMonitors(pincode);
+    })    
   }
 
   isAllSelected() {
@@ -46,40 +50,30 @@ export class AssignMonitorStepperComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  getMonitors(): void {
-    this.dataSource.data = [{
-      idNumber: '123',
-      firstName: 'Test',
-      lastName: 'User',
-      mobileNumber: '1231231231',
-      zone: 'Hinjewadi 1',
-      email: 'test@gmai.com',
-      userType: 'Monitor'
-    },{
-      idNumber: '456',
-      firstName: 'Taran',
-      lastName: 'Lamba',
-      mobileNumber: '9988776655',
-      zone: 'Hinjewadi 2',
-      email: 'taran@gmai.com',
-      userType: 'Monitor'
-    },{
-      idNumber: '789',
-      firstName: 'Karan',
-      lastName: 'User',
-      mobileNumber: '4534567856',
-      zone: 'Hinjewadi 3',
-      email: 'karan@gmai.com',
-      userType: 'Monitor'
-    },{
-      idNumber: '999',
-      firstName: 'Hellow',
-      lastName: 'User',
-      mobileNumber: '7652947623',
-      zone: 'Hinjewadi 5',
-      email: 'hello@gmai.com',
-      userType: 'Monitor'
-    }];
+  getMonitors(pincode: string): void {
+    const request = {
+      PINCODE: pincode
+    }
+    this.restAPI.post(request, "SEARCHMONITORBYPINCODE").subscribe(response => {
+      const list = response[0].PAYLOAD.SEARCHMONITORBYPINCODE.MONITOR;
+      if(Array.isArray(list)){
+        const data = [];
+        list.forEach(ele => {
+          const obj = {
+            idNumber: ele.MID,
+            firstName: ele.FIRSTNAME,
+            lastName: ele.LASTNAME,
+            mobileNumber: ele.PHONE,
+            zone: ele.ZONE || "",
+            email: ele.EMAIL,
+            userType: "Monitor"
+          }
+          data.push(obj);
+        })
+
+        this.dataSource.data = [...data];
+      }
+    })
   }
 
   saveMonitor(data: AssignMonitorModel) {

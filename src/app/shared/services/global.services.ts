@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class GlobalServices {
   showPopup = new Subject<boolean>();
   showLoader = new Subject<boolean>();
+  pincodeChange = new ReplaySubject<string>();
   private token: string = "";
   private personalDetals:PersonalDetails;
   private monitorDetals: PatientDetails;

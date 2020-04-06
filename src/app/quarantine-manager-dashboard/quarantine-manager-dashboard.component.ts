@@ -176,7 +176,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
 
   getPropCount(list, prop:string):number {
     const filteredData = list.filter(ele => {
-      return ele[prop].toUpperCase() === "Y";
+      return ele[prop] && ele[prop].toUpperCase() === "Y";
     })
     return filteredData.length;
   }

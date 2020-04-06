@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuarantineTypes, PatientAddressModel } from '../../shared/models/shared.model';
+import { GlobalServices } from 'src/app/shared/services/global.services';
 
 @Component({
   selector: 'app-address-stepper',
@@ -10,6 +11,7 @@ import { QuarantineTypes, PatientAddressModel } from '../../shared/models/shared
 export class AddressStepperComponent implements OnInit {
   @Output() addressDetails: EventEmitter<PatientAddressModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
+  
   currentAddressFormGroup: FormGroup;
   permanentAddressFormGroup: FormGroup;
   quarantineAddressFormGroup: FormGroup;
@@ -20,7 +22,8 @@ export class AddressStepperComponent implements OnInit {
   markQuarantineAddress2: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private globalService: GlobalServices
   ) { }
 
   ngOnInit() {
@@ -81,6 +84,7 @@ export class AddressStepperComponent implements OnInit {
         quarantineType: this.quarantineTypeFormGroup.controls.quarantineType.value
       } as PatientAddressModel;
       this.addressDetails.emit(formDetails);
+      this.globalService.pincodeChange.next(this.quarantineAddressFormGroup.controls.pincode.value);
     }
   }
 
@@ -165,4 +169,8 @@ export class AddressStepperComponent implements OnInit {
     }
     return false;
   }
+
+
+  //map section
+  
 }

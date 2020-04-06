@@ -5,9 +5,11 @@ import {
   PatientPersonalDetailsModel,
   PatientHealthStatusModel,
   PatientAddressModel,
-  AssignMonitorModel
+  AssignMonitorModel,
+  AddressModel
 } from '../shared/models/shared.model';
 import { GlobalServices } from '../shared/services/global.services';
+import { RestfullServices } from '../shared/services/restfull.services';
 
 @Component({
   selector: 'app-patient-register',
@@ -20,11 +22,14 @@ export class PatientRegisterComponent implements OnInit {
   healthStatusFormGroup: FormGroup;
   addressFormGroup: FormGroup;
   assignMonitorFormGroup: FormGroup;
+  latitude;
+  longitude;
   isEditable: boolean;
-
+  MID: string;
   constructor(
     private formBuilder: FormBuilder,
-    private globalService: GlobalServices
+    private globalService: GlobalServices,
+    private restAPI: RestfullServices
   ) { }
 
   ngOnInit() {
@@ -155,6 +160,7 @@ export class PatientRegisterComponent implements OnInit {
   }
 
   saveMonitor(data: AssignMonitorModel): void {
+    this.MID = data.idNumber;
     this.assignMonitorFormGroup.controls.idNumber.setValue(data.idNumber);
     this.assignMonitorFormGroup.controls.firstName.setValue(data.firstName);
     this.assignMonitorFormGroup.controls.lastName.setValue(data.lastName);
@@ -165,9 +171,88 @@ export class PatientRegisterComponent implements OnInit {
     this.assignMonitorFormGroup.updateValueAndValidity();
     this.savePatientDetails();
   }
+  
 
   savePatientDetails(): void {
-    //hit api to save patient details
+    const personalDetails:PatientPersonalDetailsModel = this.personalDetailsFormGroup.value;
+    const permanentAddress:AddressModel = this.getPermanentAddressForm().value;
+    const quarantineAddress:AddressModel = this.getQuarantineAddressForm().value;
+    const presentAddress: AddressModel = this.getCurrentAddressForm().value;
+    
+    const request = {
+        PERMANENTSTATE:permanentAddress.state,
+        PERMANENTSTREETNAME:permanentAddress.streetName,
+        PERMANENTCITY:permanentAddress.city,        
+        PERMANENTAREA:permanentAddress.area,
+        PERMANENTHNO:permanentAddress.houseNumber,
+        PERMANENTPINCODE:permanentAddress.pincode,
+
+        QUARANTINEHNO:quarantineAddress.houseNumber,
+        QUARANTINESTREETNAME:quarantineAddress.streetName,
+        QUARANTINECITY:quarantineAddress.city,
+        QUARANTINESTATE:quarantineAddress.state,  
+        QUARANTINEAREA:quarantineAddress.area,
+        PINCODE:quarantineAddress.pincode,
+
+        PRESENTCITY:presentAddress.city,
+        PRESENTSTATE:presentAddress.state,
+        PRESENTHNO:presentAddress.houseNumber,        
+        PRESENTSTREETNAME:presentAddress.streetName,
+        PRESENTAREA:presentAddress.area,  
+        PRESENTPINCODE:presentAddress.pincode,
+        
+        FIRSTNAME: personalDetails.firstName,
+        LONGITUDE: this.longitude,
+        LATITUDE: this.latitude,
+        MOBILENUMBER:personalDetails.mobileNumber,        
+        ALTERNATEPHONE:personalDetails.alternateMobileNumber,
+
+        PASSWORD:'',
+        LOGINNAME:'',
+        GOVTIDIMAGE:'',
+        
+        GOVTIDNUMBER:personalDetails.governmentIdNumber,
+        LASTNAME:personalDetails.lastName,        
+        EMAIL:personalDetails.email,        
+        GOVTIDTYPE:personalDetails.governmentIdType,
+        DOB:personalDetails.dateOfBirth,
+        QUARANTINETYPE:this.addressFormGroup.getRawValue().quarantineType,      
+    }
+    this.restAPI.post(request, "ADDENDUSER").subscribe(response => {
+      const QID = response[0].PAYLOAD.ADDENDUSER.QID;
+      if(QID){
+        this.callStatusAPI(QID);
+      }
+    })
+  }
+
+  callStatusAPI(id){
+    const healthStatus: PatientHealthStatusModel = this.healthStatusFormGroup.getRawValue();
+    const request = {
+      QID: id,
+      MID: this.MID,
+      FEVER: healthStatus.fever,
+      STATUS: "",
+      TEMPERATURE: healthStatus.temperature,
+      COUGHING: healthStatus.cough,
+      DIARRHEA: healthStatus.diarrhea,
+      RUNNYNOSE: healthStatus.runnyNose,
+      REVIEWTIME: this.getTime(),
+      BREATHING: healthStatus.breathing,
+      UNUSUALFATIQUE: healthStatus.fatigue,
+      UPDATETYPE: "",
+      LATITUDE: this.latitude,
+      LONGITUDE: this.longitude
+    }
+    this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
+
+    })
+
+  }
+
+  getTime(): number{
+    const _date  = new Date();
+    return _date.getHours();
   }
 
   goBack(){

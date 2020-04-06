@@ -15,6 +15,7 @@ import {
 export class PersonalDetailsStepperComponent implements OnInit {
   @Output() personalFormDetails: EventEmitter<PatientPersonalDetailsModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
+  currentDate = new Date();
   personalDetailsFormGroup: FormGroup;
   governmentIdTypes: string[] = GovernmentIdTypes;
   
