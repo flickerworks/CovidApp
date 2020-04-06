@@ -11,6 +11,8 @@ import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashbo
 import { MgrAuthGuardService } from './mgr-auth-guard.service';
 import { PatientRegisterComponent } from './patient-register/patient-register.component';
 import { AuthGuardService } from './auth.guard.service';
+import { ReportsComponent } from './reports/reports.component';
+import { LoginAuthService } from './login-auth.service';
 
 const routes: Routes = [
   {
@@ -19,7 +21,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginAuthService]
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
   },
   {
     path: 'view-user',
@@ -57,9 +64,9 @@ const routes: Routes = [
     canActivate: [MgrAuthGuardService]
   },
   {
-    path: 'register-patient',
+    path: 'register-patient/:isEdit',
     component: PatientRegisterComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [MgrAuthGuardService]
   },
   {
     path: "**",

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { DefaultPaginatorValues } from '../../shared/models/shared.model';
+import { DefaultPaginatorValues, PatientDetails } from '../../shared/models/shared.model';
+import { GlobalServices } from 'src/app/shared/services/global.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quarantine-table',
@@ -8,6 +10,7 @@ import { DefaultPaginatorValues } from '../../shared/models/shared.model';
   styleUrls: ['./quarantine-table.component.scss']
 })
 export class QuarantineTableComponent implements OnInit, OnChanges {
+  @Input() tabIndex: number;
   @Input() quarantineTableDetails = {
     users: [],
     tableColumns: []
@@ -18,18 +21,11 @@ export class QuarantineTableComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   displayedColumns: string[];
   isDataAvailable: boolean = true;
-  constructor() { }
+  constructor(private globalService: GlobalServices, private router: Router) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
-    this.displayedColumns = this.quarantineTableDetails.tableColumns;
-    if (this.quarantineTableDetails.users && this.quarantineTableDetails.users.length > 0) {
-      this.dataSource.data = this.quarantineTableDetails.users;
-      this.isDataAvailable = true;
-    } else {
-      this.isDataAvailable = false;
-    }
-  }
+    this.dataSource = new MatTableDataSource();    
+  }  
 
   ngAfterViewInit(): void {
     if (this.dataSource && this.paginator) {
@@ -44,10 +40,25 @@ export class QuarantineTableComponent implements OnInit, OnChanges {
     if (currentChanges.filterString && currentChanges.filterString.currentValue) {
       this.dataSource.filter = this.filterString.trim().toLowerCase();
     }
+    if(currentChanges.quarantineTableDetails){
+      this.drawTable();
+    }    
   }
 
-  viewDetails(element){
+  drawTable(){
+    this.displayedColumns = this.quarantineTableDetails.tableColumns;
+    if (this.quarantineTableDetails.users && this.quarantineTableDetails.users.length > 0) {
+      this.dataSource.data = this.quarantineTableDetails.users;
+      this.isDataAvailable = true;
+    } else {
+      this.isDataAvailable = false;
+    }
+  }
 
+  viewDetails(element: PatientDetails){
+    this.globalService.monitorDetail = element;
+    this.globalService.QMDashboardIndex = this.tabIndex;
+    this.router.navigate(['/monitor-details']); 
   }
 
 }

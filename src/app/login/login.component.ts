@@ -5,7 +5,8 @@ import {
   EmailValidationPattern,
   PasswordValidationPattern,
   LoggedInUserModel,
-  DefaultErrorMessage
+  DefaultErrorMessage,
+  LoginResponse
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Router } from '@angular/router';
@@ -30,10 +31,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const sessionData = sessionStorage.getItem('loginas');
+    const sessionData = sessionStorage.getItem('loggedInUserDetails');
     let loginAs = 'admin';
     if(sessionData){
-      loginAs = sessionData;
+      loginAs = JSON.parse(sessionData).loginAs;
     }
     this.loginForm = this.formBuilder.group({
       loginType: [loginAs, [Validators.required]],
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.restfullServices.post(loginData, payloadType).subscribe(response => {
       //validation here
       const data = response[0].PAYLOAD[payloadType];
-      const loginData = {
+      const loginData: LoginResponse = {
         loginAs: type,
         phone: data.PHONE,
         firstName: data.FIRSTNAME,
@@ -67,7 +68,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         email: data.EMAIL
       }
       sessionStorage.setItem('loggedInUserDetails', JSON.stringify(loginData));
-      sessionStorage.setItem('loginas', type.toLowerCase());
       this.globalServices.checkUserLoggedIn();
       this.router.navigate([redirectTo]);
     })   

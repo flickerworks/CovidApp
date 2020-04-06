@@ -2,20 +2,20 @@
 <img class="background_image_circle" src="./assets/images/admin_create_new_user_bg.png">
 <div class="monitor_details" fxFlex="100" fxLayout="column" fxLayoutGap="20px">
   <div class="monitor_intro" fxLayoutAlign="start start" fxFlex="100" fxLayout="row" fxLayoutGap="10px">
-    <img src="./assets/images/arrow_left.svg">
+    <img src="./assets/images/arrow_left.svg" (click)="goBack()">
     <div fxLayout="column" fxLayoutGap="5px">
-      <div class="monitor_name">Ramanathan /</div>
+      <div class="monitor_name">{{monitor?.name}} /</div>
       <div class="monitor_type">Monitor</div>
     </div>
-    <div class="monitor_address">Total User of Zone 1, Hinjewadi : 411057</div>
-    <div class="monitor_user_counter">45</div>
+    <div class="monitor_address">Total User of {{monitor?.zone}}</div>
+    <div class="monitor_user_counter">{{allPatientDetails.length}}</div>
   </div>
   <div class="monitor_tabs" fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
     <mat-tab-group dynamicHeight fxFlex="100">
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_red">Critical
-          <span class="monitor_tabs_badge tab_color_red_1">15</span></div>
+          <span class="monitor_tabs_badge tab_color_red_1">{{criticalPatientDetails.length}}</span></div>
         </ng-template>
         <div class="monitor_details_tabs_section">
           <app-patient-list [patientDetails]="criticalPatientDetails"></app-patient-list>
@@ -24,28 +24,28 @@
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_orange">Missed Update
-          <span class="monitor_tabs_badge tab_color_orange_1">10</span></div>
+          <span class="monitor_tabs_badge tab_color_orange_1">{{missedPatientDetails.length}}</span></div>
         </ng-template>
         <div class="monitor_details_tabs_section">
-          <app-patient-list [patientDetails]="criticalPatientDetails"></app-patient-list>
+          <app-patient-list [patientDetails]="missedPatientDetails"></app-patient-list>
         </div>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_blue">To be reviewed
-          <span class="monitor_tabs_badge tab_color_blue_1">20</span></div>
+          <span class="monitor_tabs_badge tab_color_blue_1">{{reviewedPatientDetails.length}}</span></div>
         </ng-template>
         <div class="monitor_details_tabs_section">
-          <app-patient-list [patientDetails]="criticalPatientDetails"></app-patient-list>
+          <app-patient-list [patientDetails]="reviewedPatientDetails"></app-patient-list>
         </div>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_grey">All
-          <span class="monitor_tabs_badge tab_color_grey_1">45</span></div>
+          <span class="monitor_tabs_badge tab_color_grey_1">{{allPatientDetails.length}}</span></div>
         </ng-template>
         <div class="monitor_details_tabs_section">
-          <app-patient-list [patientDetails]="criticalPatientDetails"></app-patient-list>
+          <app-patient-list [patientDetails]="allPatientDetails"></app-patient-list>
         </div>
       </mat-tab>
     </mat-tab-group>

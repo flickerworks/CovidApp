@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
       this.loginName = name.trim() ? name : "User";
       this.loginAs = (this.loginData.loginAs !== 'admin') ? "Manager" : "Admin";
       this.homeRoute = (this.loginData.loginAs === 'admin') ? "view-user" : "quarantine-dashboard";
-      this.addUserRoute = (this.loginData.loginAs.toLowerCase() === 'admin') ? "add-user" : "";
+      this.addUserRoute = (this.loginData.loginAs.toLowerCase() === 'admin') ? "add-user" : "register-patient";
     }
   }
 

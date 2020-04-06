@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalServices } from '../shared/services/global.services';
+import { PatientDetails } from '../shared/models/shared.model';
+import { RestfullServices } from '../shared/services/restfull.services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-monitor-details',
@@ -6,34 +10,63 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monitor-details.component.scss']
 })
 export class MonitorDetailsComponent implements OnInit {
-  criticalPatientDetails: {} = [{
-    'name': 'Test tester',
-    'id': 'CVD12345',
-    'period': '10 Days',
-    'area': 'Hinjewadi PH3',
-    'symptoms': ['High Fever']
-  },{
-    'name': 'Abc Xyz',
-    'id': 'CVD12346',
-    'period': '9 Days',
-    'area': 'Hinjewadi PH3',
-    'symptoms': ['High Fever', 'Persitant Coughing']
-  },{
-    'name': 'Def Abc',
-    'id': 'CVD12347',
-    'period': '8 Days',
-    'area': 'Hinjewadi PH3',
-    'symptoms': ['High Fever','Fatgue']
-  },{
-    'name': 'Test User',
-    'id': 'CVD12348',
-    'period': '7 Days',
-    'area': 'Hinjewadi PH3',
-    'symptoms': ['High Fever']
-  }]
-  constructor() { }
+  criticalPatientDetails: PatientDetails[] = [];
+  missedPatientDetails: PatientDetails[] = [];
+  reviewedPatientDetails: PatientDetails[] = [];
+  allPatientDetails: PatientDetails[] = [];
+  monitor:PatientDetails;
+  constructor(
+    private globalService: GlobalServices, 
+    private restService: RestfullServices,
+    private router: Router
+    ) { }
 
   ngOnInit() {
+    this.monitor = this.globalService.monitorDetail;
+    if(!this.monitor){
+      this.router.navigate(['/quarantine-dashboard']);
+    }else{
+      this.getMonitorDetails();
+    }
+    
+  }
+
+  goBack(){
+    this.router.navigate(['/quarantine-dashboard']);
+  }
+
+  getMonitorDetails():void{
+    this.criticalPatientDetails = this.missedPatientDetails = this.reviewedPatientDetails = this.allPatientDetails= [];
+
+    const request = {
+      MID: this.monitor.id
+    }
+    this.restService.post(request, "FETCHUSERBYMID").subscribe(response => {
+      const list = response[0].PAYLOAD.FETCHALLUSERBYMID.RECORD;
+      if(Array.isArray(list)){
+        this.criticalPatientDetails = [...this.drawCriticalPatientList(list, 'CRITICAL')];
+        this.missedPatientDetails = [...this.drawCriticalPatientList(list, 'MISSEDUPDATE')];
+        this.reviewedPatientDetails = [...this.drawCriticalPatientList(list, 'PENDINGREVIEW')];
+        this.allPatientDetails = [...this.drawCriticalPatientList(list, '', true)];
+      }      
+    })
+  }
+
+  drawCriticalPatientList(list, type: string, all:boolean = false): PatientDetails[]{
+    let data: PatientDetails[] = [];
+    list.forEach(ele => {
+      if(all || ele[type].toUpperCase() === "Y"){
+        const obj: PatientDetails = {
+          name: `${ele.FIRSTNAME} ${ele.LASTNAME}`,
+          id: ele.QID,
+          period: this.globalService.getDaysCount(new Date(ele.QSTARTDATE), new Date(ele.TODAYDATE)),
+          zone: ele.ZONE,
+          symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+") : ""
+        }
+        data.push(obj);
+      }
+    });
+    return data;
   }
 
 }

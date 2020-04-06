@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoggedInUserModel, MenuRoute, MonitorAndManagerList, UserModel, PersonalDetails } from '../models/shared.model';
+import { LoggedInUserModel, MenuRoute, MonitorAndManagerList, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
 import { Subject } from 'rxjs';
 
 @Injectable()
@@ -8,7 +8,9 @@ export class GlobalServices {
   showLoader = new Subject<boolean>();
   private token: string = "";
   private personalDetals:PersonalDetails;
+  private monitorDetals: PatientDetails;
   private selectedAdminTabId: number;
+  private selectedQMIndex: number;
   public isUserLoggedIn: boolean = false;
   public loggedInUserDetails: LoggedInUserModel;
   public menuRoutes: MenuRoute[] = [];
@@ -62,6 +64,14 @@ export class GlobalServices {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  getDaysCount(start, end): string {
+    let days = 0;
+    const oneDay = 24 * 60 * 60 * 1000, // hours*minutes*seconds*milliseconds
+    difference = start - end;
+    days = Math.round(Math.abs(difference / oneDay));
+    return days + ((days>1) ? ' Days' : ' Day');
+  }
+
 
   getPincodeCount(data:UserModel[]){
     let pinCodeObj = {};
@@ -83,12 +93,28 @@ export class GlobalServices {
     return this.personalDetals;
   }
 
+  set monitorDetail(monitorDetals: PatientDetails){
+    this.monitorDetals = monitorDetals;
+  }
+
+  get monitorDetail(){
+    return this.monitorDetals;
+  }
+
   set lastSelectedAdminTab(tabId: number){
     this.selectedAdminTabId = tabId;
   }
 
   get lastSelectedAdminTab(){
     return this.selectedAdminTabId;
+  }
+
+  set QMDashboardIndex(tabId: number){
+    this.selectedQMIndex = tabId;
+  }
+
+  get QMDashboardIndex(){
+    return this.selectedQMIndex;
   }
 
 }

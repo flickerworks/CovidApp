@@ -53,8 +53,8 @@ export class ViewUserComponent implements OnInit, OnDestroy {
   getQManagerList():void{
     const request = {};
     this.restfullServices.post(request, "LISTQMGRS").subscribe(response => {
-      this.quarantineManagerData = this.drawUserModalData(response, 'manager');
-
+      const data = this.drawUserModalData(response, 'manager');
+      this.quarantineManagerData = data.reverse();
       this.quarantineManagerSectionDetails = {
         totalUsers: this.quarantineManagerData.length ,
         totalZones: this.globalServices.getPincodeCount(this.quarantineManagerData),

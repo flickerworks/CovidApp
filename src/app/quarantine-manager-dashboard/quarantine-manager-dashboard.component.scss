@@ -70,6 +70,15 @@
       }
       ::ng-deep .mat-tab-label-active:nth-child(1) {
         background-color : $color-dark-red;
+        &:after{
+          top: 554px;
+          left: 311px;
+          width: 43px;
+          height: 27px;
+          transform: matrix(-1, 0, 0, -1, 0, 0);
+          background: #D22030 0% 0% no-repeat padding-box;
+          opacity: 1;
+        }
       }
       ::ng-deep .mat-tab-label-active:nth-child(2) {
         background-color: $color-orange;

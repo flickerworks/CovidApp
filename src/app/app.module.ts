@@ -55,6 +55,7 @@ import { AddressStepperComponent } from './patient-register/address-stepper/addr
 import { AssignMonitorStepperComponent } from './patient-register/assign-monitor-stepper/assign-monitor-stepper.component';
 import { AuthGuardService } from './auth.guard.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ReportsComponent } from './reports/reports.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     PersonalDetailsStepperComponent,
     HealthStatusStepperComponent,
     AddressStepperComponent,
-    AssignMonitorStepperComponent
+    AssignMonitorStepperComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

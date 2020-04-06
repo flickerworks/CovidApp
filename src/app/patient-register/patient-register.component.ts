@@ -7,6 +7,7 @@ import {
   PatientAddressModel,
   AssignMonitorModel
 } from '../shared/models/shared.model';
+import { GlobalServices } from '../shared/services/global.services';
 
 @Component({
   selector: 'app-patient-register',
@@ -22,10 +23,12 @@ export class PatientRegisterComponent implements OnInit {
   isEditable: boolean;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private globalService: GlobalServices
   ) { }
 
   ngOnInit() {
+    this.globalService.QMDashboardIndex = 0;
     this.isEditable = true;
     this.personalDetailsFormGroup = this.formBuilder.group({
       firstName: ['', [Validators.required]],

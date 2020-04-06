@@ -21,41 +21,41 @@
     </div>
   </div>
   <div class="quarantine_manager_dashboard__tabs" fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
-    <mat-tab-group dynamicHeight fxFlex="100">
+    <mat-tab-group dynamicHeight fxFlex="100" [(selectedIndex)]="tabIndex">
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_red">Critical Cases
-          <div class="quarantine_tabs_badge tab_color_red_1">200</div></div>
+          <div class="quarantine_tabs_badge tab_color_red_1">{{criticalCasesData.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="criticalCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_orange">Flagged Cases
-          <div class="quarantine_tabs_badge tab_color_orange_1">150</div></div>
+          <div class="quarantine_tabs_badge tab_color_orange_1">{{flaggedCasesData.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+          <app-quarantine-table [quarantineTableDetails]="flaggedCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_blue">Total Cases
-          <div class="quarantine_tabs_badge tab_color_blue_1">1734</div></div>
+          <div class="quarantine_tabs_badge tab_color_blue_1">{{totalCasesData.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="criticalCasesData"></app-quarantine-table>
+          <app-quarantine-table [quarantineTableDetails]="totalCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
           <div class="tab_color_grey">Total Monitors
-          <div class="quarantine_tabs_badge tab_color_grey_1">600</div></div>
+          <div class="quarantine_tabs_badge tab_color_grey_1">{{monitorDetails.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="monitorDetails"></app-quarantine-table>
+          <app-quarantine-table [quarantineTableDetails]="monitorDetails" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
     </mat-tab-group>

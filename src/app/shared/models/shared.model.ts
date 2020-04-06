@@ -11,6 +11,17 @@ export interface LoggedInUserModel {
   PASSWORD: string;
 }
 
+
+
+export interface LoginResponse {
+  loginAs: string;
+  phone: string;
+  firstName: string;
+  lastName: string;
+  pincode: string;
+  email: string;
+}
+
 export interface DialogModel {
   message: string;
   action?: boolean;
@@ -90,6 +101,19 @@ export enum UserTableColumns {
   EMAIL = 'email',
   ZONE = 'zone',
   ACTION = 'action'
+}
+
+export interface PatientDetails {
+  name: string;
+  id: string;
+  contactNumber?: number;
+  mail?: string;
+  zone: string;
+  period?: string;
+  symptoms?: string[];
+  monitoredBy?: string;
+  critical?: number;
+  flaged?: number;
 }
 
 export enum PatientTableColumns {
