@@ -59,7 +59,7 @@ export class MonitorDetailsComponent implements OnInit {
         const obj: PatientDetails = {
           name: `${ele.FIRSTNAME} ${ele.LASTNAME}`,
           id: ele.QID,
-          period: this.globalService.getDaysCount(new Date(ele.QSTARTDATE), new Date(ele.TODAYDATE)),
+          period: this.globalService.getDaysCount(ele.QSTARTDATE ? new Date(ele.QSTARTDATE) : new Date(), new Date(ele.TODAYDATE)),
           zone: ele.ZONE,
           symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+") : ""
         }
