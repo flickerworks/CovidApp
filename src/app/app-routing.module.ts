@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { AssignMonitorComponent } from './assign-monitor/assign-monitor.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
 import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
@@ -36,11 +35,6 @@ const routes: Routes = [
   {
     path: 'personal-details',
     component: PersonalDetailsComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'assign-monitor/:name/:id',
-    component: AssignMonitorComponent,
     canActivate: [AuthGuardService]
   },
   {

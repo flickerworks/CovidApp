@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -36,14 +36,9 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { NoDataAvailableComponent } from './no-data-available/no-data-available.component';
 import { HeaderComponent } from './header/header.component';
 import { PersonalDetailsComponent } from './personal-details/personal-details.component';
-import { QuarantineManagerComponent } from './quarantine-manager/quarantine-manager.component';
-import { MonitorCardComponent } from './quarantine-manager/monitor-card/monitor-card.component';
 import { UserSectionComponent } from './user-section/user-section.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { AssignMonitorComponent } from './assign-monitor/assign-monitor.component';
-import { CaseDetailComponent } from './assign-monitor/case-detail/case-detail.component';
 import { PopupComponent } from './popup/popup.component';
-import { InterceptService } from './shared/services/intercept.service';
 import { LoaderComponent } from './loader/loader.component';
 import { MonitorDetailsComponent } from './monitor-details/monitor-details.component';
 import { QuarantineManagerDashboardComponent } from './quarantine-manager-dashboard/quarantine-manager-dashboard.component';
@@ -69,12 +64,8 @@ import { ReportsComponent } from './reports/reports.component';
     HeaderComponent,
     PopupComponent,
     PersonalDetailsComponent,
-    QuarantineManagerComponent,
-    MonitorCardComponent,
     UserSectionComponent,
     PatientListComponent,
-    AssignMonitorComponent,
-    CaseDetailComponent,
     LoaderComponent,
     MonitorDetailsComponent,
     QuarantineManagerDashboardComponent,
