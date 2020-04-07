@@ -48,6 +48,7 @@ export class MonitorDetailsComponent implements OnInit {
         this.criticalPatientDetails = [...this.drawCriticalPatientList(list, 'CRITICAL')];
         this.missedPatientDetails = [...this.drawCriticalPatientList(list, 'MISSEDUPDATE')];
         this.reviewedPatientDetails = [...this.drawCriticalPatientList(list, 'PENDINGREVIEW')];
+        this.flaggedPatientDetails = [...this.drawCriticalPatientList(list, 'FLAGGED')];
         this.allPatientDetails = [...this.drawCriticalPatientList(list, '', true)];
       }      
     })
@@ -62,7 +63,7 @@ export class MonitorDetailsComponent implements OnInit {
           id: ele.QID,
           period: this.globalService.getDaysCount(ele.QSTARTDATE ? new Date(ele.QSTARTDATE) : new Date(), new Date(ele.TODAYDATE)),
           zone: ele.ZONE,
-          symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+") : ""
+          symptoms: type==='FLAGGED' ? ele.SUSPICIOUSREASON :((ele.SYMPTOM) ? ele.SYMPTOM.split("+") : "")
         }
         data.push(obj);
       }
