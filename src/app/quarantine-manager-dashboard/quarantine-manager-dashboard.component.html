@@ -4,7 +4,7 @@
   <div class="quarantine_manager_dashboard__details" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
     <div class="quarantine_manager_address" fxLayoutGap="10px" fxLayout="row">
       <img src="./assets/images/navigation.svg">
-      <div>Zone 1, Hinjewadi Phase 3, PIN 533101</div>
+      <div>{{loggedInUserDetails?.zone}}, PIN {{loggedInUserDetails?.pincode}}</div>
     </div>
     <div class="quarantine_manager_filter" fxLayoutGap="10px" fxLayout="row">
       <button class="color_white" mat-button (click)="refreshList()" type="submit">
