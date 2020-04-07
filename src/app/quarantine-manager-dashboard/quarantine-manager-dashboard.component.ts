@@ -78,7 +78,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
           contactNumber: ele.MOBILENUMBER,
           mail: ele.EMAIL,
           zone: ele.ZONE,
-          period: this.globalServices.getDaysCount(new Date(ele.START), new Date()),
+          period: this.globalServices.getDaysCount(ele.START ? new Date(ele.START) : new Date(), new Date()),
           symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+"):"",
           monitoredBy: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`
         } 
@@ -103,7 +103,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
           contactNumber: ele.MOBILENUMBER,
           mail: ele.EMAIL,
           zone: ele.ZONE,
-          period: this.globalServices.getDaysCount(new Date(ele.START), new Date()),
+          period: this.globalServices.getDaysCount(ele.START ? new Date(ele.START) : new Date(), new Date()),
           symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+"):"",
           monitoredBy: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`
         } 
@@ -127,7 +127,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
           contactNumber: ele.MOBILENUMBER,
           mail: ele.EMAIL,
           zone: ele.ZONE,
-          period: this.globalServices.getDaysCount(new Date(ele.START), new Date()),
+          period: this.globalServices.getDaysCount(ele.START ? new Date(ele.START) : new Date(), new Date()),
           symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+"):"",
           monitoredBy: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`
         } 
