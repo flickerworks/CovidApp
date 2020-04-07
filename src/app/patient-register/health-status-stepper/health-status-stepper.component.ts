@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { 
-  MobileNumberValidationPattern,
-  EmailValidationPattern,
-  GovernmentIdTypes,
+  TemperatureValidationPattern,
   PatientHealthStatusModel
 } from '../../shared/models/shared.model';
 
@@ -16,7 +14,6 @@ export class HealthStatusStepperComponent implements OnInit {
   @Output() healthStatusForm: EventEmitter<PatientHealthStatusModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   healthStatusFormGroup: FormGroup;
-  governmentIdTypes: string[] = GovernmentIdTypes;
 
   constructor(
     private formBuilder: FormBuilder
@@ -25,7 +22,7 @@ export class HealthStatusStepperComponent implements OnInit {
   ngOnInit() {
     this.healthStatusFormGroup = this.formBuilder.group({
       fever: [false, Validators.required],
-      temperature: ['', [Validators.required]],
+      temperature: ['', [Validators.required, Validators.pattern(TemperatureValidationPattern)]],
       cough: [false, Validators.required],
       fatigue: [false, Validators.required],
       breathing: [false, Validators.required],

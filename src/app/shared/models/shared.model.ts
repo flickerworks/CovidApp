@@ -246,6 +246,8 @@ export const MobileNumberValidationPattern: string = '^[0-9]{10}$';
 
 export const EmailValidationPattern: string = '[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}';
 
+export const TemperatureValidationPattern: string = '[0-9.]{0,6}';
+
 export const PasswordValidationPattern: string = '^(?=.*[A-Za-z])(?=.*\\d{1,3})[A-Za-z0-9\\d@$.!%*_#?&]{5,20}$';
 
 export const UserNameValidationPattern: string = '^(?=.*[A-Za-z])[A-Za-z][A-Za-z0-9]{4,20}$';

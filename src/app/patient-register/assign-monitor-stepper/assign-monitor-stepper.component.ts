@@ -69,9 +69,11 @@ export class AssignMonitorStepperComponent implements OnInit {
             userType: "Monitor"
           }
           data.push(obj);
-        })
-
+        });
         this.dataSource.data = [...data];
+        this.isDataAvailable = true;
+      } else {
+        this.isDataAvailable = false;
       }
     })
   }

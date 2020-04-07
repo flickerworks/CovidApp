@@ -41,7 +41,7 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
     </mat-table>
-    <app-no-data-available *ngIf="!isDataAvailable && this.dataSource.data.length === 0"></app-no-data-available>
+    <app-no-data-available *ngIf="!isDataAvailable"></app-no-data-available>
   </div>
   <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <button mat-raised-button (click)="goBack()" type="button">Previous</button>
