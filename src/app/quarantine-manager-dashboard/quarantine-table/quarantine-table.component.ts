@@ -37,8 +37,17 @@ export class QuarantineTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(currentChanges: SimpleChanges): void {
-    if (currentChanges.filterString && currentChanges.filterString.currentValue) {
-      this.dataSource.filter = this.filterString.trim().toLowerCase();
+    if (currentChanges.filterString) {
+      if (currentChanges.filterString.currentValue) {
+        this.dataSource.filter = this.filterString.trim().toLowerCase();
+      } else {
+        this.dataSource.filter = null;
+      }
+      if (this.dataSource.filteredData && this.dataSource.filteredData.length === 0) {
+        this.isDataAvailable = false;
+      } else {
+        this.isDataAvailable = true;
+      }
     }
     if(currentChanges.quarantineTableDetails){
       this.drawTable();

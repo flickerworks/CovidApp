@@ -69,7 +69,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
-    <app-no-data-available *ngIf="!isDataAvailable && this.dataSource.data.length === 0"></app-no-data-available>
+    <app-no-data-available *ngIf="!isDataAvailable"></app-no-data-available>
   </div>
   <div fxLayout="row" fxLayoutAlign="end center">
     <mat-paginator showFirstLastButtons></mat-paginator>

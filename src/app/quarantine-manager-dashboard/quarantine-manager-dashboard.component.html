@@ -37,7 +37,7 @@
           <div class="quarantine_tabs_badge tab_color_orange_1">{{flaggedCasesData.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="flaggedCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
+          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="flaggedCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
       <mat-tab>
@@ -46,7 +46,7 @@
           <div class="quarantine_tabs_badge tab_color_blue_1">{{totalCasesData.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="totalCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
+          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="totalCasesData" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
       <mat-tab>
@@ -55,7 +55,7 @@
           <div class="quarantine_tabs_badge tab_color_grey_1">{{monitorDetails.users.length}}</div></div>
         </ng-template>
         <div class="quarantine_details_tabs_section">
-          <app-quarantine-table [quarantineTableDetails]="monitorDetails" [tabIndex]="tabIndex"></app-quarantine-table>
+          <app-quarantine-table [filterString]="searchString" [quarantineTableDetails]="monitorDetails" [tabIndex]="tabIndex"></app-quarantine-table>
         </div>
       </mat-tab>
     </mat-tab-group>
