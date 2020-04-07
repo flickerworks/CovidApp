@@ -13,6 +13,7 @@ export class MonitorDetailsComponent implements OnInit {
   criticalPatientDetails: PatientDetails[] = [];
   missedPatientDetails: PatientDetails[] = [];
   reviewedPatientDetails: PatientDetails[] = [];
+  flaggedPatientDetails: PatientDetails[] = [];
   allPatientDetails: PatientDetails[] = [];
   monitor:PatientDetails;
   constructor(

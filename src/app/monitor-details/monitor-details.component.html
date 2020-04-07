@@ -41,6 +41,15 @@
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
+          <div class="tab_color_blue_light">Flagged
+          <span class="monitor_tabs_badge tab_color_blue_light_1">{{flaggedPatientDetails.length}}</span></div>
+        </ng-template>
+        <div class="monitor_details_tabs_section">
+          <app-patient-list [patientDetails]="flaggedPatientDetails"></app-patient-list>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
           <div class="tab_color_grey">All
           <span class="monitor_tabs_badge tab_color_grey_1">{{allPatientDetails.length}}</span></div>
         </ng-template>
