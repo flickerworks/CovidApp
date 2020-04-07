@@ -11,6 +11,7 @@ import {
 import { GlobalServices } from '../shared/services/global.services';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-patient-register',
@@ -23,17 +24,17 @@ export class PatientRegisterComponent implements OnInit {
   healthStatusFormGroup: FormGroup;
   addressFormGroup: FormGroup;
   assignMonitorFormGroup: FormGroup;
-  latitude;
-  longitude;
+  isSuccess: boolean;
   isEditable: boolean;
   MID: string;
   showPopup: boolean = false;
-  popupMessage = "Monitor assigned successfully"
+  popupMessage = "The user phone number is already registered";
   constructor(
     private formBuilder: FormBuilder,
     private globalService: GlobalServices,
     private restAPI: RestfullServices,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -206,8 +207,8 @@ export class PatientRegisterComponent implements OnInit {
         PRESENTPINCODE:presentAddress.pincode,
         
         FIRSTNAME: personalDetails.firstName,
-        LONGITUDE: this.longitude,
-        LATITUDE: this.latitude,
+        LONGITUDE: this.globalService.longitude,
+        LATITUDE: this.globalService.latitude,
         MOBILENUMBER:personalDetails.mobileNumber,        
         ALTERNATEPHONE:personalDetails.alternateMobileNumber,
 
@@ -219,13 +220,22 @@ export class PatientRegisterComponent implements OnInit {
         LASTNAME:personalDetails.lastName,        
         EMAIL:personalDetails.email,        
         GOVTIDTYPE:personalDetails.governmentIdType,
-        DOB:personalDetails.dateOfBirth,
+        DOB:this.datePipe.transform(personalDetails.dateOfBirth, 'dd-MM-yyyy'),
         QUARANTINETYPE:this.addressFormGroup.getRawValue().quarantineType,      
     }
     this.restAPI.post(request, "ADDENDUSER").subscribe(response => {
       const QID = response[0].PAYLOAD.ADDENDUSER.QID;
       if(QID){
+        this.popupMessage = "Monitor assigned successfully";
+        this.isSuccess = true;
         this.callStatusAPI(QID);
+      }else{
+        this.isSuccess = false;
+        this.popupMessage = "The user phone number is already registered";
+        this.showPopup = true;
+        setTimeout(_ => {
+          this.showPopup = false;
+        }, 3000)
       }
     })
   }
@@ -245,8 +255,8 @@ export class PatientRegisterComponent implements OnInit {
       BREATHING: healthStatus.breathing,
       UNUSUALFATIQUE: healthStatus.fatigue,
       UPDATETYPE: "",
-      LATITUDE: this.latitude,
-      LONGITUDE: this.longitude
+      LATITUDE: this.globalService.latitude,
+      LONGITUDE: this.globalService.longitude
     }
     this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
       //condition

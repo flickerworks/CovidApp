@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
 import { Subject, ReplaySubject } from 'rxjs';
 
@@ -7,6 +7,9 @@ export class GlobalServices {
   showPopup = new Subject<boolean>();
   showLoader = new Subject<boolean>();
   pincodeChange = new ReplaySubject<string>();
+  activeArea = new Subject<ElementRef>();
+  public longitude:number;
+  public latitude: number;
   private token: string = "";
   private personalDetals:PersonalDetails;
   private monitorDetals: PatientDetails;

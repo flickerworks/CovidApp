@@ -57,7 +57,7 @@ export class MonitorDetailsComponent implements OnInit {
   drawCriticalPatientList(list, type: string, all:boolean = false): PatientDetails[]{
     let data: PatientDetails[] = [];
     list.forEach(ele => {
-      if(all || ele[type].toUpperCase() === "Y"){
+      if(all || (ele[type] && ele[type].toUpperCase() === "Y")){
         const obj: PatientDetails = {
           name: `${ele.FIRSTNAME} ${ele.LASTNAME}`,
           id: ele.QID,

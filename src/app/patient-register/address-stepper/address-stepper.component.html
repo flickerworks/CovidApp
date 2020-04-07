@@ -24,7 +24,7 @@
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Area<span class="color_red">*</span></div>
-                        <input formControlName="area" matInput>
+                        <input formControlName="area" matInput appHost>
                         <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.required">
                             Area is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.minlength || currentAddressFormGroup.controls.area.errors?.maxlength">
@@ -85,7 +85,7 @@
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Area<span class="color_red">*</span></div>
-                        <input formControlName="area" matInput>
+                        <input formControlName="area" matInput  appHost>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.required">
                             Area is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.minlength || permanentAddressFormGroup.controls.area.errors?.maxlength">
@@ -145,7 +145,7 @@
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Area<span class="color_red">*</span></div>
-                        <input formControlName="area" matInput>
+                        <input formControlName="area" matInput  appHost>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.required">
                             Area is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.minlength || quarantineAddressFormGroup.controls.area.errors?.maxlength">
@@ -194,7 +194,7 @@
             </form>
         </div>
         <div class="map_section" fxLayout="column" fxLayoutGap="20px" fxFlex="40" fxLayoutAlign="start center">
-           
+           <app-map></app-map>
         </div>
     </div>
     <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">

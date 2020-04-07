@@ -11,7 +11,7 @@ import { GlobalServices } from 'src/app/shared/services/global.services';
 export class AddressStepperComponent implements OnInit {
   @Output() addressDetails: EventEmitter<PatientAddressModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
-  
+  // @ViewChild('area1', {static: false}) searchElementRef: ElementRef;
   currentAddressFormGroup: FormGroup;
   permanentAddressFormGroup: FormGroup;
   quarantineAddressFormGroup: FormGroup;
@@ -169,8 +169,5 @@ export class AddressStepperComponent implements OnInit {
     }
     return false;
   }
-
-
-  //map section
   
 }

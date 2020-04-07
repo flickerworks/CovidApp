@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 import {
   MatButtonModule,
   MatDividerModule,
@@ -49,8 +50,10 @@ import { HealthStatusStepperComponent } from './patient-register/health-status-s
 import { AddressStepperComponent } from './patient-register/address-stepper/address-stepper.component';
 import { AssignMonitorStepperComponent } from './patient-register/assign-monitor-stepper/assign-monitor-stepper.component';
 import { AuthGuardService } from './auth.guard.service';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { ReportsComponent } from './reports/reports.component';
+import { MapComponent } from './patient-register/map/map.component';
+import { HostDirective } from './host.directive';
 
 
 @NgModule({
@@ -75,7 +78,9 @@ import { ReportsComponent } from './reports/reports.component';
     HealthStatusStepperComponent,
     AddressStepperComponent,
     AssignMonitorStepperComponent,
-    ReportsComponent
+    ReportsComponent,
+    MapComponent,
+    HostDirective
   ],
   imports: [
     BrowserModule,
@@ -102,7 +107,11 @@ import { ReportsComponent } from './reports/reports.component';
     MatProgressSpinnerModule,
     MatStepperModule,
     MatSlideToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AgmCoreModule.forRoot({
+      apiKey:"AIzaSyB4Jty4ZDNZsi3i9h6oXFMjLj86nr8d2M4",
+      libraries: ['places']
+    })
   ],
   exports: [
     FormsModule,
@@ -126,6 +135,7 @@ import { ReportsComponent } from './reports/reports.component';
     MatCheckboxModule
   ],
   providers: [
+    DatePipe,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
