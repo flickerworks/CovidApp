@@ -24,6 +24,8 @@
                             First Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.minlength || userRegisterForm.controls.firstName.errors?.maxlength">
                             First Name should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.whitespace">
+                            First Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Last Name<span class="color_red">*</span></div>
@@ -32,6 +34,8 @@
                             Last Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.minlength || userRegisterForm.controls.lastName.errors?.maxlength">
                             Last Name should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.whitespace">
+                            Last Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Contact Number<span class="color_red">*</span></div>
@@ -59,6 +63,8 @@
                             Designation is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.designation.errors?.minlength || userRegisterForm.controls.designation.errors?.maxlength">
                             Designation should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.designation.errors?.whitespace">
+                            Designation is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Department<span class="color_red">*</span></div>
@@ -67,6 +73,8 @@
                             Department is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.department.errors?.minlength || userRegisterForm.controls.department.errors?.maxlength">
                             Department should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.department.errors?.whitespace">
+                            Department is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -77,6 +85,8 @@
                             Zone is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.zone.errors?.minlength || userRegisterForm.controls.zone.errors?.maxlength">
                             Zone should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.zone.errors?.whitespace">
+                            Zone is invalid</mat-error>
                     </mat-form-field>
                     <div fxFlex="30" fxLayout="column">
                         <mat-form-field appearance="outline" fxFlex="30">
@@ -87,6 +97,8 @@
                             </mat-select>
                             <mat-error *ngIf="userRegisterForm.controls.governmentIdType.errors?.required">
                                 Government ID is required</mat-error>
+                            <mat-error *ngIf="userRegisterForm.controls.governmentIdType.errors?.whitespace">
+                                Government ID is invalid</mat-error>
                         </mat-form-field>
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : ''}}</div>
@@ -147,6 +159,8 @@
                             Pin code is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.minlength || userRegisterForm.controls.pincode.errors?.maxlength">
                             Pin code should be 1 to 10 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.whitespace">
+                            Pin code is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="add_user__section_title bold width_100 margin_bottom_20">Credentials</div>
@@ -157,7 +171,9 @@
                         <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.required">
                             User Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.minlength || userRegisterForm.controls.loginName.errors?.maxlength">
-                            User Name should be 1 to 30 characters long</mat-error>
+                            User Name should be 5 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.whitespace">
+                            User Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Password<span class="color_red">*</span></div>
@@ -165,7 +181,9 @@
                         <mat-error *ngIf="userRegisterForm.controls.password.errors?.required">
                             Password is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.password.errors?.minlength || userRegisterForm.controls.password.errors?.maxlength">
-                            Password should be 1 to 30 characters long</mat-error>
+                            Password should be 5 to 30 characters long</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.whitespace">
+                            Password is invalid</mat-error>
                     </mat-form-field>
                     <div fxFlex="30"></div>
                 </div>

@@ -8,9 +8,9 @@
               <span matSuffix>&#8457;</span>
               <input formControlName="temperature" matInput>
               <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.required">
-                  Temperature is required</mat-error>
-              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.pattern">
-                  Temperature is not valid</mat-error>
+                Temperature is required</mat-error>
+              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.pattern || healthStatusFormGroup.controls.temperature.errors?.whitespace">
+                Temperature is not valid</mat-error>
           </mat-form-field>
       </div>
       <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">

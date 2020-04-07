@@ -1,6 +1,7 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
 import { Subject, ReplaySubject } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
 
 @Injectable()
 export class GlobalServices {
@@ -119,6 +120,12 @@ export class GlobalServices {
 
   get QMDashboardIndex(){
     return this.selectedQMIndex;
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

@@ -45,14 +45,14 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.userRegisterForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
       email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
-      designation: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      department: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      designation: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      department: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       governmentIdImage: [''],
       governmentIdImageName: ['', [Validators.required]],
       houseNumber: ['', [Validators.minLength(1), Validators.maxLength(30)]],
@@ -60,9 +60,9 @@ export class AddUserComponent implements OnInit {
       area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
       city: ['', [Validators.minLength(1), Validators.maxLength(30)]],
       state: ['', [Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-      loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]]
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10), this.globalService.noWhitespaceValidator]],
+      loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
     this.checkParams();
   }
@@ -147,24 +147,24 @@ export class AddUserComponent implements OnInit {
     if (!this.userRegisterForm.invalid) {
       const _form: UserRegisterModel = this.userRegisterForm.value;
       const userRegisterModel = {
-        FIRSTNAME: _form.firstName,
-        LASTNAME: _form.lastName,
+        FIRSTNAME: _form.firstName.trim(),
+        LASTNAME: _form.lastName.trim(),
         PHONE: _form.mobileNumber,
-        EMAIL: _form.email,
-        DESIGNATION: _form.designation,
-        DEPARTMENT: _form.department,
+        EMAIL: _form.email.trim(),
+        DESIGNATION: _form.designation.trim(),
+        DEPARTMENT: _form.department.trim(),
         DEVICE_TOKEN:"",
-        IDCARDTYPE: _form.governmentIdType,
+        IDCARDTYPE: _form.governmentIdType.trim(),
         IDCARDNUMBER: "",
         IDCARDIMAGE: _form.governmentIdImage,
-        HNO: _form.houseNumber,
-        STREETNAME: _form.street,
-        AREA: _form.area,
-        CITY: _form.city,
-        STATE: _form.state,
-        PINCODE: _form.pincode,
-        LOGINNAME: _form.loginName,
-        PASSWORD: _form.password
+        HNO: _form.houseNumber.trim(),
+        STREETNAME: _form.street.trim(),
+        AREA: _form.area.trim(),
+        CITY: _form.city.trim(),
+        STATE: _form.state.trim(),
+        PINCODE: _form.pincode.trim(),
+        LOGINNAME: _form.loginName.trim(),
+        PASSWORD: _form.password.trim()
       };
 
       const condition = this.isEdit ? this.personalDetails.type : this.userType;

@@ -28,28 +28,28 @@ export class AddressStepperComponent implements OnInit {
 
   ngOnInit() {
     this.currentAddressFormGroup = this.formBuilder.group({
-      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]
+      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
     this.permanentAddressFormGroup = this.formBuilder.group({
-      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]
+      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
     this.quarantineAddressFormGroup = this.formBuilder.group({
-      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
     this.quarantineTypeFormGroup = this.formBuilder.group({
       quarantineType: ['', Validators.required]
@@ -60,31 +60,31 @@ export class AddressStepperComponent implements OnInit {
     if (this.currentAddressFormGroup.valid) {
       const formDetails: PatientAddressModel = {
         currentAddress : {
-          houseNumber: this.currentAddressFormGroup.controls.houseNumber.value,
-          streetName: this.currentAddressFormGroup.controls.streetName.value,
-          area: this.currentAddressFormGroup.controls.area.value,
-          city: this.currentAddressFormGroup.controls.city.value,
-          state: this.currentAddressFormGroup.controls.state.value,
-          pincode: this.currentAddressFormGroup.controls.pincode.value
+          houseNumber: this.currentAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.currentAddressFormGroup.controls.streetName.value.trim(),
+          area: this.currentAddressFormGroup.controls.area.value.trim(),
+          city: this.currentAddressFormGroup.controls.city.value.trim(),
+          state: this.currentAddressFormGroup.controls.state.value.trim(),
+          pincode: this.currentAddressFormGroup.controls.pincode.value.trim()
         }, permanentAddress : {
-          houseNumber: this.permanentAddressFormGroup.controls.houseNumber.value,
-          streetName: this.permanentAddressFormGroup.controls.streetName.value,
-          area: this.permanentAddressFormGroup.controls.area.value,
-          city: this.permanentAddressFormGroup.controls.city.value,
-          state: this.permanentAddressFormGroup.controls.state.value,
-          pincode: this.permanentAddressFormGroup.controls.pincode.value
+          houseNumber: this.permanentAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.permanentAddressFormGroup.controls.streetName.value.trim(),
+          area: this.permanentAddressFormGroup.controls.area.value.trim(),
+          city: this.permanentAddressFormGroup.controls.city.value.trim(),
+          state: this.permanentAddressFormGroup.controls.state.value.trim(),
+          pincode: this.permanentAddressFormGroup.controls.pincode.value.trim()
         }, quarantineAddress : {
-          houseNumber: this.quarantineAddressFormGroup.controls.houseNumber.value,
-          streetName: this.quarantineAddressFormGroup.controls.streetName.value,
-          area: this.quarantineAddressFormGroup.controls.area.value,
-          city: this.quarantineAddressFormGroup.controls.city.value,
-          state: this.quarantineAddressFormGroup.controls.state.value,
-          pincode: this.quarantineAddressFormGroup.controls.pincode.value
+          houseNumber: this.quarantineAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.quarantineAddressFormGroup.controls.streetName.value.trim(),
+          area: this.quarantineAddressFormGroup.controls.area.value.trim(),
+          city: this.quarantineAddressFormGroup.controls.city.value.trim(),
+          state: this.quarantineAddressFormGroup.controls.state.value.trim(),
+          pincode: this.quarantineAddressFormGroup.controls.pincode.value.trim()
         },
-        quarantineType: this.quarantineTypeFormGroup.controls.quarantineType.value
+        quarantineType: this.quarantineTypeFormGroup.controls.quarantineType.value.trim()
       } as PatientAddressModel;
       this.addressDetails.emit(formDetails);
-      this.globalService.pincodeChange.next(this.quarantineAddressFormGroup.controls.pincode.value);
+      this.globalService.pincodeChange.next(this.quarantineAddressFormGroup.controls.pincode.value.trim());
     }
   }
 
@@ -95,12 +95,12 @@ export class AddressStepperComponent implements OnInit {
   checkPermanentAddress(checked: boolean): void {
     if (checked) {
       const formDetails = this.currentAddressFormGroup.controls;
-      this.permanentAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value);
-      this.permanentAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value);
-      this.permanentAddressFormGroup.controls.area.setValue(formDetails.area.value);
-      this.permanentAddressFormGroup.controls.city.setValue(formDetails.city.value);
-      this.permanentAddressFormGroup.controls.state.setValue(formDetails.state.value);
-      this.permanentAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value);
+      this.permanentAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
+      this.permanentAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
+      this.permanentAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
+      this.permanentAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
+      this.permanentAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
+      this.permanentAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
       this.permanentAddressFormGroup.updateValueAndValidity();
       this.permanentAddressFormGroup.markAllAsTouched();
     } else {
@@ -117,12 +117,12 @@ export class AddressStepperComponent implements OnInit {
   checkQuarantineAddress_1(checked: boolean): void {
     if (checked) {
       const formDetails = this.currentAddressFormGroup.controls;
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value);
-      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value);
-      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value);
-      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value);
-      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value);
-      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value);
+      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
+      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
+      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
+      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
+      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
+      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
       this.quarantineAddressFormGroup.updateValueAndValidity();
       this.quarantineAddressFormGroup.markAllAsTouched();
     } else {
@@ -139,12 +139,12 @@ export class AddressStepperComponent implements OnInit {
   checkQuarantineAddress_2(checked: boolean): void {
     if (checked) {
       const formDetails = this.permanentAddressFormGroup.controls;
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value);
-      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value);
-      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value);
-      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value);
-      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value);
-      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value);
+      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
+      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
+      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
+      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
+      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
+      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
       this.quarantineAddressFormGroup.updateValueAndValidity();
       this.quarantineAddressFormGroup.markAllAsTouched();
     } else {

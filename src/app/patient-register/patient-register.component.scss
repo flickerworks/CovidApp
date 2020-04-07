@@ -79,7 +79,7 @@
     font-size: 1.6rem;
     font-weight: 100;
   }
-  ::ng-deep .mat-raised-button.disabled {
+  ::ng-deep .mat-raised-button.disabled, ::ng-deep input.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
@@ -89,6 +89,7 @@
   ::ng-deep .mat-horizontal-stepper-header{
     pointer-events: none !important;
   }
+
 }
 
 .popup-content{

@@ -11,6 +11,8 @@
                             House No. is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.houseNumber.errors?.minlength || currentAddressFormGroup.controls.houseNumber.errors?.maxlength">
                             House No. should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.houseNumber.errors?.whitespace">
+                            House No. is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Street Name<span class="color_red">*</span></div>
@@ -19,6 +21,8 @@
                             Street Name is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.streetName.errors?.minlength || currentAddressFormGroup.controls.streetName.errors?.maxlength">
                             Street Name should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.streetName.errors?.whitespace">
+                            Street Name is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -29,6 +33,8 @@
                             Area is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.minlength || currentAddressFormGroup.controls.area.errors?.maxlength">
                             Area should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.whitespace">
+                            Area is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -37,6 +43,8 @@
                             City is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.city.errors?.minlength || currentAddressFormGroup.controls.city.errors?.maxlength">
                             City should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.city.errors?.whitespace">
+                            City is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -47,6 +55,8 @@
                             State is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.state.errors?.minlength || currentAddressFormGroup.controls.state.errors?.maxlength">
                             State should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.state.errors?.whitespace">
+                            State is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Pincode<span class="color_red">*</span></div>
@@ -55,6 +65,8 @@
                             Pincode is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.pincode.errors?.minlength || currentAddressFormGroup.controls.pincode.errors?.maxlength">
                             Pincode should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.pincode.errors?.whitespace">
+                            Pincode is invalid</mat-error>
                     </mat-form-field>
                 </div>
             </form>
@@ -72,6 +84,8 @@
                             House No. is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.houseNumber.errors?.minlength || permanentAddressFormGroup.controls.houseNumber.errors?.maxlength">
                             House No. should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.houseNumber.errors?.whitespace">
+                            House No. is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Street Name<span class="color_red">*</span></div>
@@ -80,6 +94,8 @@
                             Street Name is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.streetName.errors?.minlength || permanentAddressFormGroup.controls.streetName.errors?.maxlength">
                             Street Name should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.streetName.errors?.whitespace">
+                            Street Name is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -90,6 +106,8 @@
                             Area is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.minlength || permanentAddressFormGroup.controls.area.errors?.maxlength">
                             Area should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.whitespace">
+                            Area is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -98,6 +116,8 @@
                             City is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.city.errors?.minlength || permanentAddressFormGroup.controls.city.errors?.maxlength">
                             City should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.city.errors?.whitespace">
+                            City is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -108,6 +128,8 @@
                             State is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.state.errors?.minlength || permanentAddressFormGroup.controls.state.errors?.maxlength">
                             State should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.state.errors?.whitespace">
+                            State is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Pincode<span class="color_red">*</span></div>
@@ -116,6 +138,8 @@
                             Pincode is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.pincode.errors?.minlength || permanentAddressFormGroup.controls.pincode.errors?.maxlength">
                             Pincode should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.pincode.errors?.whitespace">
+                            Pincode is invalid</mat-error>
                     </mat-form-field>
                 </div>
             </form>
@@ -132,6 +156,8 @@
                             House No. is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.houseNumber.errors?.minlength || quarantineAddressFormGroup.controls.houseNumber.errors?.maxlength">
                             House No. should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.houseNumber.errors?.whitespace">
+                            House No.  is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Street Name<span class="color_red">*</span></div>
@@ -140,6 +166,8 @@
                             Street Name is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.streetName.errors?.minlength || quarantineAddressFormGroup.controls.streetName.errors?.maxlength">
                             Street Name should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.streetName.errors?.whitespace">
+                            Street Name is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -150,6 +178,8 @@
                             Area is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.minlength || quarantineAddressFormGroup.controls.area.errors?.maxlength">
                             Area should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.whitespace">
+                            Area is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -158,6 +188,8 @@
                             City is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.city.errors?.minlength || quarantineAddressFormGroup.controls.city.errors?.maxlength">
                             City should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.city.errors?.whitespace">
+                            City is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -168,6 +200,8 @@
                             State is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.state.errors?.minlength || quarantineAddressFormGroup.controls.state.errors?.maxlength">
                             State should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.state.errors?.whitespace">
+                            State is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Pincode<span class="color_red">*</span></div>
@@ -176,6 +210,8 @@
                             Pincode is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.pincode.errors?.minlength || quarantineAddressFormGroup.controls.pincode.errors?.maxlength">
                             Pincode should be 1 to 30 characters long</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.pincode.errors?.whitespace">
+                            Pincode is invalid</mat-error>
                     </mat-form-field>
                 </div>
             </form>
