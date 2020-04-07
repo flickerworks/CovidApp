@@ -9,5 +9,5 @@
       <div class="symptoms" fxLayout="column" *ngFor="let symptoms of list.symptoms">{{symptoms}}</div>
     </div>
   </div>
-  <app-no-data-available class="width_100" *ngIf="patientDetails && patientDetails.length === 0"></app-no-data-available>
+  <app-no-data-available class="width_100" *ngIf="!patientDetails"></app-no-data-available>
 </div>

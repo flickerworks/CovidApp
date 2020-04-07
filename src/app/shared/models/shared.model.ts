@@ -20,6 +20,7 @@ export interface LoginResponse {
   lastName: string;
   pincode: string;
   email: string;
+  zone: string;
 }
 
 export interface DialogModel {

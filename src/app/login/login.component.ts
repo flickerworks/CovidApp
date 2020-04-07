@@ -65,7 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         firstName: data.FIRSTNAME,
         lastName: data.LASTNAME,
         pincode: data.PINCODE,
-        email: data.EMAIL
+        email: data.EMAIL,
+        zone: data.zone
       }
       sessionStorage.setItem('loggedInUserDetails', JSON.stringify(loginData));
       this.globalServices.checkUserLoggedIn();
