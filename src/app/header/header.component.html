@@ -30,7 +30,7 @@
         <div class="header__right-logout d__inline-block">
             <div class="create-user-group">
                 <img src="assets/images/noun_logout_638526.png" alt="">
-                <a class="logout" (click)="redirect('login')">Logout</a>
+                <a class="logout" (click)="logout()">Logout</a>
             </div>
         </div>
 
@@ -45,3 +45,11 @@
         </div>
     </div>
 </div>
+
+<popup [backdropClose] = "false" [closeBtn] = "false" [show] = "popLogout">
+    <p>Are you sure you want to logout?</p>
+    <div class="popup-buttons">
+        <a class="btn" (click)="popupClick(true)">OK</a>
+        <a class="btn" (click)="popupClick(false)">Cancel</a>
+    </div>
+</popup>

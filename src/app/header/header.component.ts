@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   addUserRoute:string = 'add-user';
   loginName:string;
   loginAs:string;
+  popLogout = false;
   constructor(private router: Router, private globalService: GlobalServices) { }
 
   ngOnInit() {
@@ -43,5 +44,16 @@ export class HeaderComponent implements OnInit {
     } 
     this.globalService.lastSelectedAdminTab = 0;
     this.router.navigate(['/'+pageId]);
+  }
+
+  logout(){
+    this.popLogout = true;
+  }
+
+  popupClick(value: boolean){
+    this.popLogout = false;
+    if(value){
+      this.redirect('login');
+    }
   }
 }

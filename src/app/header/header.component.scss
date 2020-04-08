@@ -161,3 +161,29 @@
     }
     
 }
+
+popup{
+    p{
+        font-size: 1.6rem;
+        color: $color-grey-dark;
+    }
+    .popup-buttons{
+        padding-top: 3rem;
+        .btn{
+            background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
+            border-radius: .3rem;
+            padding: .8rem 0;
+            font-size: 1.4rem;
+            color:$color-white;
+            font-weight: 400;
+            width: 10.6rem;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            transition: all .4s;
+            &:first-child{
+                margin-right: 1.5rem;
+            }
+        }
+    }    
+}
