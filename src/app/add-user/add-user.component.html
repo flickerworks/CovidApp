@@ -177,7 +177,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Password<span class="color_red">*</span></div>
-                        <input formControlName="password" matInput>
+                        <input class="pass" formControlName="password" [type]="inputType" matInput>
+                        <span (click)="showPass()" class="eye"><mat-icon>remove_red_eye</mat-icon></span>
                         <mat-error *ngIf="userRegisterForm.controls.password.errors?.required">
                             Password is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.password.errors?.minlength || userRegisterForm.controls.password.errors?.maxlength">

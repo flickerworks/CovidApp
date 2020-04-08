@@ -26,6 +26,7 @@ export class AddUserComponent implements OnInit {
   userRegisterForm: FormGroup;
   isEdit:boolean = false;
   popupMessage: string;
+  inputType: string = "password";
   // userTypes: string[] = UserTypes;
   governmentIdTypes: string[] = GovernmentIdTypes;
   userSubscription: Subscription;
@@ -223,6 +224,14 @@ export class AddUserComponent implements OnInit {
     // this.resetFormData();
     this.globalService.showPopup.next(false);
     this.router.navigate(['/view-user']);
+  }
+
+  showPass(){
+   if(this.inputType === 'text'){
+     this.inputType = 'password';
+   }else{
+    this.inputType = 'text';
+   } 
   }
 
 }

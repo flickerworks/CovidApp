@@ -123,7 +123,8 @@ export class GlobalServices {
   }
 
   noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
+    const _val = control.value || '';
+    const isWhitespace = (_val+"").trim().length === 0
     const isValid = !isWhitespace;
     return isValid ? null : { 'whitespace': true };
   }

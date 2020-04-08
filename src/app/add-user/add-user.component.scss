@@ -85,6 +85,16 @@
             line-height: 2.5rem;
             font-size: 1.3rem;
         }
+        .pass{
+            padding-right: 2.3rem;
+        }
+        .eye{
+            position: absolute;
+            top: 11px;
+            margin-left: -2rem;
+            color: $color-grey-dark;
+            cursor: default;
+        }
     }
     button{
         background: transparent linear-gradient(180deg, #4485FD 0%, #22437F 100%) 0% 0% no-repeat padding-box;
