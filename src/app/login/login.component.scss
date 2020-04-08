@@ -57,7 +57,7 @@
             width: 60%;
             margin: 0 auto;
             clear: both;
-            color: $color-grey-dark;
+            color: $color-grey-dark;           
         }
         .mat-radio-group {
             text-align: left;
@@ -103,4 +103,13 @@
             pointer-events: none;
         }
     }
+}
+
+.loginError{
+    color: #d21f30;
+    margin-bottom: 10px;
+    position: absolute;
+    bottom: -12px;
+    font-size: 1.2rem;
+    text-align: left;
 }

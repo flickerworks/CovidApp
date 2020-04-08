@@ -36,6 +36,7 @@
           <mat-error *ngIf="loginForm.controls.password.errors?.pattern">
             Password length should be between 5 to 20 characters and should contain atleast 3 digits (number, characters, special characters allowed: @$.!%*_#?&)</mat-error>
         </mat-form-field>
+        <span *ngIf="loginError" class="loginError">User name or password is incorrect!</span>
         <button mat-raised-button (click)="onLogIn()" [ngClass]="{'disabled' : !loginForm.valid}" type="submit">Login</button>
       </div>
     </form>
