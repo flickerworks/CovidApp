@@ -5,7 +5,7 @@ import { GlobalServices } from './shared/services/global.services';
   selector: '[appHost]'
 })
 export class HostDirective {
-  @HostListener('keyup', ['event'])
+  @HostListener('keyup', ['$event'])
   onKeyup(e){
     this.globalService.activeArea.next(this.ele);
   }

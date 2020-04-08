@@ -12,14 +12,15 @@ export class AddressStepperComponent implements OnInit {
   @Output() addressDetails: EventEmitter<PatientAddressModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   // @ViewChild('area1', {static: false}) searchElementRef: ElementRef;
+  markCurrentAddress: boolean = false;
+  markPermanentAddress2: boolean = false;
+  markPermanentAddress: boolean = false;
   currentAddressFormGroup: FormGroup;
   permanentAddressFormGroup: FormGroup;
   quarantineAddressFormGroup: FormGroup;
   quarantineTypeFormGroup: FormGroup;
   quarantineTypes: string[] = QuarantineTypes;
-  markPermanentAddress: boolean = false;
-  markQuarantineAddress: boolean = false;
-  markQuarantineAddress2: boolean = false;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +55,8 @@ export class AddressStepperComponent implements OnInit {
     this.quarantineTypeFormGroup = this.formBuilder.group({
       quarantineType: ['', Validators.required]
     });
+
+    this.updateValueOnChange();
   }
 
   saveForm(): void {
@@ -92,69 +95,44 @@ export class AddressStepperComponent implements OnInit {
     this.previousStep.emit();
   }
 
-  checkPermanentAddress(checked: boolean): void {
+  updateValueOnChange(){
+    this.quarantineAddressFormGroup.valueChanges.subscribe(fg => {
+      this.checkCurrentAddress(this.markCurrentAddress);
+      this.checkPermanentAddress_1(this.markPermanentAddress);
+      this.checkPermanentAddress_2(this.markPermanentAddress);
+    })
+  }
+
+  checkCurrentAddress(checked: boolean): void {    
     if (checked) {
-      const formDetails = this.currentAddressFormGroup.controls;
-      this.permanentAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
-      this.permanentAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
-      this.permanentAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
-      this.permanentAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
-      this.permanentAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
-      this.permanentAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
+      this.currentAddressFormGroup.patchValue(this.quarantineAddressFormGroup.value);
+      this.currentAddressFormGroup.updateValueAndValidity();
+      this.currentAddressFormGroup.markAllAsTouched();
+    } else {
+      this.currentAddressFormGroup.reset();
+      this.currentAddressFormGroup.updateValueAndValidity();
+    }
+  }
+
+  checkPermanentAddress_1(checked: boolean): void {
+    if (checked){
+      this.permanentAddressFormGroup.patchValue(this.quarantineAddressFormGroup.value);
       this.permanentAddressFormGroup.updateValueAndValidity();
       this.permanentAddressFormGroup.markAllAsTouched();
-    } else {
-      this.permanentAddressFormGroup.controls.houseNumber.setValue(null);
-      this.permanentAddressFormGroup.controls.streetName.setValue(null);
-      this.permanentAddressFormGroup.controls.area.setValue(null);
-      this.permanentAddressFormGroup.controls.city.setValue(null);
-      this.permanentAddressFormGroup.controls.state.setValue(null);
-      this.permanentAddressFormGroup.controls.pincode.setValue(null);
+    }else{
+      this.permanentAddressFormGroup.reset();
       this.permanentAddressFormGroup.updateValueAndValidity();
     }
   }
 
-  checkQuarantineAddress_1(checked: boolean): void {
-    if (checked) {
-      const formDetails = this.currentAddressFormGroup.controls;
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
-      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
-      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
-      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
-      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
-      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
-      this.quarantineAddressFormGroup.updateValueAndValidity();
-      this.quarantineAddressFormGroup.markAllAsTouched();
-    } else {
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(null);
-      this.quarantineAddressFormGroup.controls.streetName.setValue(null);
-      this.quarantineAddressFormGroup.controls.area.setValue(null);
-      this.quarantineAddressFormGroup.controls.city.setValue(null);
-      this.quarantineAddressFormGroup.controls.state.setValue(null);
-      this.quarantineAddressFormGroup.controls.pincode.setValue(null);
-      this.quarantineAddressFormGroup.updateValueAndValidity();
-    }
-  }
-
-  checkQuarantineAddress_2(checked: boolean): void {
-    if (checked) {
-      const formDetails = this.permanentAddressFormGroup.controls;
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(formDetails.houseNumber.value.trim());
-      this.quarantineAddressFormGroup.controls.streetName.setValue(formDetails.streetName.value.trim());
-      this.quarantineAddressFormGroup.controls.area.setValue(formDetails.area.value.trim());
-      this.quarantineAddressFormGroup.controls.city.setValue(formDetails.city.value.trim());
-      this.quarantineAddressFormGroup.controls.state.setValue(formDetails.state.value.trim());
-      this.quarantineAddressFormGroup.controls.pincode.setValue(formDetails.pincode.value.trim());
-      this.quarantineAddressFormGroup.updateValueAndValidity();
-      this.quarantineAddressFormGroup.markAllAsTouched();
-    } else {
-      this.quarantineAddressFormGroup.controls.houseNumber.setValue(null);
-      this.quarantineAddressFormGroup.controls.streetName.setValue(null);
-      this.quarantineAddressFormGroup.controls.area.setValue(null);
-      this.quarantineAddressFormGroup.controls.city.setValue(null);
-      this.quarantineAddressFormGroup.controls.state.setValue(null);
-      this.quarantineAddressFormGroup.controls.pincode.setValue(null);
-      this.quarantineAddressFormGroup.updateValueAndValidity();
+  checkPermanentAddress_2(checked: boolean): void {
+    if (checked){
+      this.permanentAddressFormGroup.patchValue(this.currentAddressFormGroup.value);
+      this.permanentAddressFormGroup.updateValueAndValidity();
+      this.permanentAddressFormGroup.markAllAsTouched();
+    }else{
+      this.permanentAddressFormGroup.reset();
+      this.permanentAddressFormGroup.updateValueAndValidity();
     }
   }
 
