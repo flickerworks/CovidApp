@@ -16,6 +16,7 @@
     color: $color-white;
     font-size: 16px;
     opacity: 1;
+    min-width: 20.4rem;
   }
   ::ng-deep .mat-tab-label-active {
     border: 1px solid $color-white;

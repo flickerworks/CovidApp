@@ -73,7 +73,7 @@
         </mat-form-field>  
         <mat-form-field appearance="outline" fxFlex="30">
             <div class="labels">Date of Birth<span class="color_red">*</span></div>
-            <input class="disabled" matInput formControlName="dateOfBirth" [max]="currentDate" [matDatepicker]="dp3">
+            <input matInput formControlName="dateOfBirth" [max]="currentDate" [matDatepicker]="dp3" disabled>
             <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             <mat-error *ngIf="personalDetailsFormGroup.controls.dateOfBirth.errors?.required">

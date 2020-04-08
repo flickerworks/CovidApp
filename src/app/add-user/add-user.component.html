@@ -38,7 +38,7 @@
                             Last Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
-                        <div class="labels">Contact Number<span class="color_red">*</span></div>
+                        <div class="labels margin_align">Contact Number<span class="color_red">*</span></div>
                         <span matPrefix>+91</span>
                         <input formControlName="mobileNumber" matInput>
                         <mat-error *ngIf="userRegisterForm.controls.mobileNumber.errors?.required">
@@ -188,7 +188,7 @@
                     <div fxFlex="30"></div>
                 </div>
                 <div class="width_100" fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
-                    <button mat-raised-button  (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="button">{{isEdit ? 'Update details' : 'Save setails'}}</button>
+                    <button mat-raised-button  (click)="registerUser()" [ngClass]="{'disabled' : !userRegisterForm.valid}" type="button">{{isEdit ? 'Update details' : 'Save details'}}</button>
                 </div> 
             </form>
         </div>
