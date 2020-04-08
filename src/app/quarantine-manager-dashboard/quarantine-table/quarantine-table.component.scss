@@ -39,7 +39,7 @@
       font-weight: bold;
     }
     .color_red {
-      margin-bottom: 1rem;
+      margin-bottom: 3px;
       .quarantine_counter {
         background: $color-red;
       }
@@ -54,6 +54,9 @@
       border-radius: 1rem;
       color: #fff;
       margin-right: 1rem;
+    }
+    .align_center {
+      place-content: stretch center !important;
     }
   }
 }

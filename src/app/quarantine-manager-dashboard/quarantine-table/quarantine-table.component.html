@@ -43,7 +43,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
           Symptoms
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="let element">
+        <mat-cell *matCellDef="let element" class="align_center" fxFlex="150px" fxLayout="column" fxLayoutAlign="let element">
           <div class="color_red" *ngFor="let symptom of element.symptoms"><b>{{symptom}}</b></div>
         </mat-cell>
       </ng-container>
