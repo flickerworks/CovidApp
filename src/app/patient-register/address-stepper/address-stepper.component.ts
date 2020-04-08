@@ -57,6 +57,7 @@ export class AddressStepperComponent implements OnInit {
     });
 
     this.updateValueOnChange();
+    this.onCurrentAddressChange();
   }
 
   saveForm(): void {
@@ -99,7 +100,13 @@ export class AddressStepperComponent implements OnInit {
     this.quarantineAddressFormGroup.valueChanges.subscribe(fg => {
       this.checkCurrentAddress(this.markCurrentAddress);
       this.checkPermanentAddress_1(this.markPermanentAddress);
-      this.checkPermanentAddress_2(this.markPermanentAddress);
+      
+    })
+  }
+
+  onCurrentAddressChange(){
+    this.currentAddressFormGroup.valueChanges.subscribe(fg => {
+      this.checkPermanentAddress_2(this.markPermanentAddress2);
     })
   }
 
