@@ -104,6 +104,9 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   enrollNewUser(): void {}
 
   refreshList(): void {
+    this.searchModel = null;
+    this.searchPincodeModel = null;
+    this.dataSource.filter = null;
     this.refresh.emit();
   }
 

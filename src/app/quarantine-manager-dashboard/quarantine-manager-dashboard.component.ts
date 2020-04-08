@@ -187,6 +187,8 @@ export class QuarantineManagerDashboardComponent implements OnInit {
   }
 
   refreshList(){
+    this.searchString = null;
+    this.searchModel = null;
     this.getDashboardData();
   }
 }
