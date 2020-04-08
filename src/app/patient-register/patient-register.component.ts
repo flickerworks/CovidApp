@@ -220,7 +220,7 @@ export class PatientRegisterComponent implements OnInit {
         LASTNAME:personalDetails.lastName,        
         EMAIL:personalDetails.email,        
         GOVTIDTYPE:personalDetails.governmentIdType,
-        DOB:this.datePipe.transform(personalDetails.dateOfBirth, 'dd-MM-yyyy'),
+        DOB:this.datePipe.transform(personalDetails.dateOfBirth, 'dd/MM/yyyy'),
         QUARANTINETYPE:this.addressFormGroup.getRawValue().quarantineType,      
     }
     this.restAPI.post(request, "ADDENDUSER").subscribe(response => {
