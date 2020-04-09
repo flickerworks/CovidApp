@@ -50,6 +50,15 @@ export class MonitorDetailsComponent implements OnInit {
         this.reviewedPatientDetails = [...this.drawCriticalPatientList(list, 'PENDINGREVIEW')];
         this.flaggedPatientDetails = [...this.drawCriticalPatientList(list, 'FLAGGED')];
         this.allPatientDetails = [...this.drawCriticalPatientList(list, '', true)];
+      }else{
+        const _list = [list];
+        if(list.FIRSTNAME !==""){
+          this.criticalPatientDetails = [...this.drawCriticalPatientList(_list, 'CRITICAL')];
+          this.missedPatientDetails = [...this.drawCriticalPatientList(_list, 'MISSEDUPDATE')];
+          this.reviewedPatientDetails = [...this.drawCriticalPatientList(_list, 'PENDINGREVIEW')];
+          this.flaggedPatientDetails = [...this.drawCriticalPatientList(_list, 'FLAGGED')];
+          this.allPatientDetails = [...this.drawCriticalPatientList(_list, '', true)];
+        }
       }      
     })
   }
@@ -63,7 +72,7 @@ export class MonitorDetailsComponent implements OnInit {
           id: ele.QID,
           period: this.globalService.getDaysCount(ele.QSTARTDATE ? new Date(ele.QSTARTDATE) : new Date(), new Date(ele.TODAYDATE)),
           zone: ele.ZONE,
-          symptoms: type==='FLAGGED' ? ele.SUSPICIOUSREASON :((ele.SYMPTOM) ? ele.SYMPTOM.split("+") : "")
+          symptoms: type==='FLAGGED' ? [ele.SUSPICIOUSREASON]:((ele.SYMPTOM) ? ele.SYMPTOM.split("+") : "")
         }
         data.push(obj);
       }

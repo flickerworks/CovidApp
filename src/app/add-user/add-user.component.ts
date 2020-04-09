@@ -147,7 +147,13 @@ export class AddUserComponent implements OnInit {
 
   registerUser(): void {
     if (!this.userRegisterForm.invalid) {
-      const _form: UserRegisterModel = this.userRegisterForm.value;
+      let _form: UserRegisterModel;
+      if(this.isEdit){
+        _form = this.userRegisterForm.getRawValue();
+      }else{
+        _form = this.userRegisterForm.value;
+      }
+      
       const userRegisterModel = {
         FIRSTNAME: _form.firstName.trim(),
         LASTNAME: _form.lastName.trim(),

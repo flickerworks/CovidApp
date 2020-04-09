@@ -64,6 +64,14 @@ export class QuarantineManagerDashboardComponent implements OnInit {
         this.getCriticalCases(list);
         this.getFlaggedCases(list);
         this.getMonitorList(list);
+      }else{
+        if(data.QFIRSTNAME !== ""){
+          const list = [data];
+          this.getTotalCases(list); 
+          this.getCriticalCases(list);
+          this.getFlaggedCases(list);
+          this.getMonitorList(list);
+        }        
       }      
     })
   }

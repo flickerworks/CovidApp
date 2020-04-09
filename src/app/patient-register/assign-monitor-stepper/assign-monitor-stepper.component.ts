@@ -56,26 +56,35 @@ export class AssignMonitorStepperComponent implements OnInit {
     }
     this.restAPI.post(request, "SEARCHMONITORBYPINCODE").subscribe(response => {
       const list = response[0].PAYLOAD.SEARCHMONITORBYPINCODE.MONITOR;
-      if(Array.isArray(list)){
-        const data = [];
-        list.forEach(ele => {
-          const obj = {
-            idNumber: ele.MID,
-            firstName: ele.FIRSTNAME,
-            lastName: ele.LASTNAME,
-            mobileNumber: ele.PHONE,
-            zone: ele.ZONE || "",
-            email: ele.EMAIL,
-            userType: "Monitor"
-          }
-          data.push(obj);
-        });
-        this.dataSource.data = [...data];
+      if(Array.isArray(list)){        
+        this.dataSource.data = [...this.drawResponse(list)];
         this.isDataAvailable = true;
       } else {
-        this.isDataAvailable = false;
+        if(list.FIRSTNAME !== ""){
+          this.dataSource.data = [...this.drawResponse([list])];
+          this.isDataAvailable = true;
+        }else{
+          this.isDataAvailable = false;
+        }        
       }
     })
+  }
+
+  drawResponse(list){
+    const data = [];
+    list.forEach(ele => {
+      const obj = {
+        idNumber: ele.MID,
+        firstName: ele.FIRSTNAME,
+        lastName: ele.LASTNAME,
+        mobileNumber: ele.PHONE,
+        zone: ele.ZONE || "",
+        email: ele.EMAIL,
+        userType: "Monitor"
+      }
+      data.push(obj);
+    });
+    return data;
   }
 
   saveMonitor(data: AssignMonitorModel) {
