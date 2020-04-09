@@ -61,3 +61,15 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+ declare global {
+     interface Number {trim:()=>string}
+ }
+
+ Number.prototype.trim = function(){
+    let value = "";
+    if(this){
+        value = this.toString().replace(/^(\s*)|(\s*)$/g, '').replace(/\s+/g, ' ');
+    }
+    return value;
+ }

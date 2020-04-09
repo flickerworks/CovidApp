@@ -24,7 +24,7 @@ export class HealthStatusStepperComponent implements OnInit {
   ngOnInit() {
     this.healthStatusFormGroup = this.formBuilder.group({
       fever: [false, Validators.required],
-      temperature: ['', [Validators.required, Validators.pattern(TemperatureValidationPattern), this.globalService.noWhitespaceValidator]],
+      temperature: ['', [Validators.required, Validators.pattern(TemperatureValidationPattern), this.globalService.noWhitespaceValidator, Validators.max(106), Validators.min(96)]],
       cough: [false, Validators.required],
       fatigue: [false, Validators.required],
       breathing: [false, Validators.required],

@@ -34,7 +34,7 @@ export class PersonalDetailsStepperComponent implements OnInit {
       governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
       governmentIdNumber: ['', [Validators.required, this.globalService.noWhitespaceValidator]],
       email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
-      dateOfBirth: ['', [Validators.required]],
+      dateOfBirth: [{value:'', disabled:true}, [Validators.required]],
     });
     // this.personalDetailsFormGroup.updateValueAndValidity();
     // this.personalDetailsFormGroup.markAllAsTouched();
