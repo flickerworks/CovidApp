@@ -169,14 +169,13 @@ export class AddUserComponent implements OnInit {
         LOGINNAME: _form.loginName.replace(/\s+/g,' ').trim(),
         PASSWORD: _form.password.replace(/\s+/g,' ').trim()
       };
-      console.log(userRegisterModel);
 
-      // const condition = this.isEdit ? this.personalDetails.type : this.userType;
-      // if(condition.toLowerCase() === "monitor"){
-      //   this.registerMonitor(userRegisterModel);
-      // }else {
-      //   this.registerQManager(userRegisterModel);
-      // }      
+      const condition = this.isEdit ? this.personalDetails.type : this.userType;
+      if(condition.toLowerCase() === "monitor"){
+        this.registerMonitor(userRegisterModel);
+      }else {
+        this.registerQManager(userRegisterModel);
+      }      
     }
   }
 

@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.globalServices.lastSelectedAdminTab = 0;         
+    this.globalServices.QMDashboardIndex = 0;        
     const sessionData = sessionStorage.getItem('loggedInUserDetails');
     let loginAs = 'admin';
     if(sessionData){
