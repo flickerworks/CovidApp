@@ -64,31 +64,31 @@ export class AddressStepperComponent implements OnInit {
     if (this.currentAddressFormGroup.valid) {
       const formDetails: PatientAddressModel = {
         currentAddress : {
-          houseNumber: this.currentAddressFormGroup.controls.houseNumber.value.replace(/\s+/g,' ').trim(),
-          streetName: this.currentAddressFormGroup.controls.streetName.value.replace(/\s+/g,' ').trim(),
-          area: this.currentAddressFormGroup.controls.area.value.replace(/\s+/g,' ').trim(),
-          city: this.currentAddressFormGroup.controls.city.value.replace(/\s+/g,' ').trim(),
-          state: this.currentAddressFormGroup.controls.state.value.replace(/\s+/g,' ').trim(),
-          pincode: this.currentAddressFormGroup.controls.pincode.value.replace(/\s+/g,' ').trim()
+          houseNumber: this.currentAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.currentAddressFormGroup.controls.streetName.value.trim(),
+          area: this.currentAddressFormGroup.controls.area.value.trim(),
+          city: this.currentAddressFormGroup.controls.city.value.trim(),
+          state: this.currentAddressFormGroup.controls.state.value.trim(),
+          pincode: this.currentAddressFormGroup.controls.pincode.value.trim()
         }, permanentAddress : {
-          houseNumber: this.permanentAddressFormGroup.controls.houseNumber.value.replace(/\s+/g,' ').trim(),
-          streetName: this.permanentAddressFormGroup.controls.streetName.value.replace(/\s+/g,' ').trim(),
-          area: this.permanentAddressFormGroup.controls.area.value.replace(/\s+/g,' ').trim(),
-          city: this.permanentAddressFormGroup.controls.city.value.replace(/\s+/g,' ').trim(),
-          state: this.permanentAddressFormGroup.controls.state.value.replace(/\s+/g,' ').trim(),
-          pincode: this.permanentAddressFormGroup.controls.pincode.value.replace(/\s+/g,' ').trim()
+          houseNumber: this.permanentAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.permanentAddressFormGroup.controls.streetName.value.trim(),
+          area: this.permanentAddressFormGroup.controls.area.value.trim(),
+          city: this.permanentAddressFormGroup.controls.city.value.trim(),
+          state: this.permanentAddressFormGroup.controls.state.value.trim(),
+          pincode: this.permanentAddressFormGroup.controls.pincode.value.trim()
         }, quarantineAddress : {
-          houseNumber: this.quarantineAddressFormGroup.controls.houseNumber.value.replace(/\s+/g,' ').trim(),
-          streetName: this.quarantineAddressFormGroup.controls.streetName.value.replace(/\s+/g,' ').trim(),
-          area: this.quarantineAddressFormGroup.controls.area.value.replace(/\s+/g,' ').trim(),
-          city: this.quarantineAddressFormGroup.controls.city.value.replace(/\s+/g,' ').trim(),
-          state: this.quarantineAddressFormGroup.controls.state.value.replace(/\s+/g,' ').trim(),
-          pincode: this.quarantineAddressFormGroup.controls.pincode.value.replace(/\s+/g,' ').trim()
+          houseNumber: this.quarantineAddressFormGroup.controls.houseNumber.value.trim(),
+          streetName: this.quarantineAddressFormGroup.controls.streetName.value.trim(),
+          area: this.quarantineAddressFormGroup.controls.area.value.trim(),
+          city: this.quarantineAddressFormGroup.controls.city.value.trim(),
+          state: this.quarantineAddressFormGroup.controls.state.value.trim(),
+          pincode: this.quarantineAddressFormGroup.controls.pincode.value.trim()
         },
         quarantineType: this.quarantineTypeFormGroup.controls.quarantineType.value.trim()
       } as PatientAddressModel;
       this.addressDetails.emit(formDetails);
-      this.globalService.pincodeChange.next(this.quarantineAddressFormGroup.controls.pincode.value.replace(/\s+/g,' ').trim());
+      this.globalService.pincodeChange.next(this.quarantineAddressFormGroup.controls.pincode.value.trim());
     }
   }
 
