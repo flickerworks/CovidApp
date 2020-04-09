@@ -161,6 +161,7 @@ export class AddUserComponent implements OnInit {
         HNO: _form.houseNumber.trim(),
         STREETNAME: _form.street.trim(),
         AREA: _form.area.trim(),
+        ZONE: _form.zone.trim(),
         CITY: _form.city.trim(),
         STATE: _form.state.trim(),
         PINCODE: _form.pincode.trim(),
