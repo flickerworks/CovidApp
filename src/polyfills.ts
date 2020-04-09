@@ -64,12 +64,21 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
  declare global {
      interface Number {trim:()=>string}
+     interface String {trim:()=>string}
  }
 
  Number.prototype.trim = function(){
     let value = "";
     if(this){
         value = this.toString().replace(/^(\s*)|(\s*)$/g, '').replace(/\s+/g, ' ');
+    }
+    return value;
+ }
+
+ String.prototype.trim = function(){
+    let value = "";
+    if(this){
+        value = this.replace(/^(\s*)|(\s*)$/g, '').replace(/\s+/g, ' ');
     }
     return value;
  }
