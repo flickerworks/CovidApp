@@ -54,7 +54,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
     const request = {};
     this.restfullServices.post(request, "LISTQMGRS").subscribe(response => {
       const data = this.drawUserModalData(response, 'manager');
-      this.quarantineManagerData = data.reverse();
+      this.quarantineManagerData = data;
       this.quarantineManagerSectionDetails = {
         totalUsers: this.quarantineManagerData.length ,
         totalZones: this.globalServices.getPincodeCount(this.quarantineManagerData),
@@ -123,7 +123,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
         }
         list.push(obj);
       });
-      return list;
+      return list.reverse();
   }
 
 
