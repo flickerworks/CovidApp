@@ -40,8 +40,9 @@ export class RestfullServices {
 
     onApiError(cought){
         const source = cought.source.source.source.source.source;
+        this.globalService.showLoader.next(false);
         return throwError(
-            source['value'] ? 
+            source && source['value'] ? 
             `Something bad happened, please try again later. \n Form ${source['value'].url}`
             : "Internal server error, please try again"
         )
