@@ -43,6 +43,9 @@
       .quarantine_counter {
         background: $color-red;
       }
+      &.margin_bottom {
+        margin-bottom: 1rem;
+      }
     }
     .color_orange {
       .quarantine_counter {

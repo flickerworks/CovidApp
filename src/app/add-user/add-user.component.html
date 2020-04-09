@@ -20,22 +20,18 @@
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">First Name<span class="color_red">*</span></div>
                         <input formControlName="firstName" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.required || userRegisterForm.controls.firstName.errors?.whitespace">
                             First Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.minlength || userRegisterForm.controls.firstName.errors?.maxlength">
                             First Name should be 1 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.firstName.errors?.whitespace">
-                            First Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Last Name<span class="color_red">*</span></div>
                         <input formControlName="lastName" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.required || userRegisterForm.controls.lastName.errors?.whitespace">
                             Last Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.minlength || userRegisterForm.controls.lastName.errors?.maxlength">
                             Last Name should be 1 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.lastName.errors?.whitespace">
-                            Last Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels margin_align">Contact Number<span class="color_red">*</span></div>
@@ -59,34 +55,28 @@
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Designation<span class="color_red">*</span></div>
                         <input formControlName="designation" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.designation.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.designation.errors?.required || userRegisterForm.controls.designation.errors?.whitespace">
                             Designation is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.designation.errors?.minlength || userRegisterForm.controls.designation.errors?.maxlength">
                             Designation should be 1 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.designation.errors?.whitespace">
-                            Designation is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Department<span class="color_red">*</span></div>
                         <input formControlName="department" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.department.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.department.errors?.required || userRegisterForm.controls.department.errors?.whitespace">
                             Department is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.department.errors?.minlength || userRegisterForm.controls.department.errors?.maxlength">
                             Department should be 1 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.department.errors?.whitespace">
-                            Department is invalid</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Zone<span class="color_red">*</span></div>
                         <input formControlName="zone" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.zone.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.zone.errors?.required || userRegisterForm.controls.zone.errors?.whitespace">
                             Zone is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.zone.errors?.minlength || userRegisterForm.controls.zone.errors?.maxlength">
                             Zone should be 1 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.zone.errors?.whitespace">
-                            Zone is invalid</mat-error>
                     </mat-form-field>
                     <div fxFlex="30" fxLayout="column">
                         <mat-form-field appearance="outline" fxFlex="30">
@@ -95,10 +85,8 @@
                                 <mat-option value="">Select ID type</mat-option>
                                 <mat-option *ngFor="let idType of governmentIdTypes" [value]="idType">{{idType}}</mat-option>
                             </mat-select>
-                            <mat-error *ngIf="userRegisterForm.controls.governmentIdType.errors?.required">
+                            <mat-error *ngIf="userRegisterForm.controls.governmentIdType.errors?.required || userRegisterForm.controls.governmentIdType.errors?.whitespace">
                                 Government ID is required</mat-error>
-                            <mat-error *ngIf="userRegisterForm.controls.governmentIdType.errors?.whitespace">
-                                Government ID is invalid</mat-error>
                         </mat-form-field>
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
                             <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : ''}}</div>
@@ -155,12 +143,10 @@
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Pin code<span class="color_red">*</span></div>
                         <input formControlName="pincode" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.required || userRegisterForm.controls.pincode.errors?.whitespace">
                             Pin code is required</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.minlength || userRegisterForm.controls.pincode.errors?.maxlength">
-                            Pin code should be 1 to 10 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.whitespace">
-                            Pin code is invalid</mat-error>
+                        <mat-error *ngIf="userRegisterForm.controls.pincode.errors?.pattern || userRegisterForm.controls.pincode.errors?.minlength || userRegisterForm.controls.pincode.errors?.maxlength">
+                            Pin code should be number and 1 to 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="add_user__section_title bold width_100 margin_bottom_20">Credentials</div>
@@ -168,23 +154,19 @@
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">User Name<span class="color_red">*</span></div>
                         <input formControlName="loginName" matInput>
-                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.required || userRegisterForm.controls.loginName.errors?.whitespace">
                             User Name is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.minlength || userRegisterForm.controls.loginName.errors?.maxlength">
                             User Name should be 5 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.loginName.errors?.whitespace">
-                            User Name is invalid</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Password<span class="color_red">*</span></div>
                         <input class="pass" formControlName="password" [type]="inputType" matInput>
                         <span (click)="showPass()" class="eye"><mat-icon>remove_red_eye</mat-icon></span>
-                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.required">
+                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.required || userRegisterForm.controls.password.errors?.whitespace">
                             Password is required</mat-error>
                         <mat-error *ngIf="userRegisterForm.controls.password.errors?.minlength || userRegisterForm.controls.password.errors?.maxlength">
                             Password should be 5 to 30 characters long</mat-error>
-                        <mat-error *ngIf="userRegisterForm.controls.password.errors?.whitespace">
-                            Password is invalid</mat-error>
                     </mat-form-field>
                     <div fxFlex="30"></div>
                 </div>

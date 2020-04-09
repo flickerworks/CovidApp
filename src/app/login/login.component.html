@@ -24,17 +24,19 @@
         </mat-radio-group>
         <mat-form-field appearance="outline">
           <input formControlName="username" matInput placeholder="User Name">
-          <mat-error *ngIf="loginForm.controls.username.errors?.required">
+          <mat-error *ngIf="loginForm.controls.username.errors?.required || loginForm.controls.username.errors?.whitespace">
             User Name is required</mat-error>
-          <mat-error *ngIf="loginForm.controls.username.errors?.pattern">
-            User Name address is not valid</mat-error>
+          <mat-error *ngIf="loginForm.controls.username.errors?.minlength || loginForm.controls.username.errors?.maxlength">
+            User Name should be 5 to 20 characters long</mat-error>
+          <!-- <mat-error *ngIf="loginForm.controls.username.errors?.pattern">
+            User Name is not valid</mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="outline">
           <input formControlName="password" type="password" matInput placeholder="Password">
-          <mat-error *ngIf="loginForm.controls.password.errors?.required">
+          <mat-error *ngIf="loginForm.controls.password.errors?.required || loginForm.controls.password.errors?.whitespace">
             Password is required</mat-error>
-          <mat-error *ngIf="loginForm.controls.password.errors?.pattern">
-            Password length should be between 5 to 20 characters and should contain atleast 3 digits (number, characters, special characters allowed: @$.!%*_#?&)</mat-error>
+          <mat-error *ngIf="loginForm.controls.password.errors?.minlength || loginForm.controls.password.errors?.maxlength">
+            Password length should be 5 to 20 characters long</mat-error>
         </mat-form-field>
         <span *ngIf="loginError" class="loginError">User name or password is incorrect!</span>
         <button mat-raised-button (click)="onLogIn()" [ngClass]="{'disabled' : !loginForm.valid}" type="submit">Login</button>

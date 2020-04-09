@@ -39,7 +39,7 @@ export class HealthStatusStepperComponent implements OnInit {
     if (this.healthStatusFormGroup.valid) {
       const formDetails: PatientHealthStatusModel = {
         fever: this.healthStatusFormGroup.controls.fever.value,
-        temperature: this.healthStatusFormGroup.controls.temperature.value.trim(),
+        temperature: this.healthStatusFormGroup.controls.temperature.value.replace(/\s+/g,' ').trim(),
         cough: this.healthStatusFormGroup.controls.cough.value,
         fatigue: this.healthStatusFormGroup.controls.fatigue.value,
         breathing: this.healthStatusFormGroup.controls.breathing.value,

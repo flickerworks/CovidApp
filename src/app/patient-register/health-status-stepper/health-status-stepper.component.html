@@ -7,9 +7,9 @@
               <div class="labels">What is your temperature?<span class="color_red">*</span></div>
               <span matSuffix>&#8457;</span>
               <input formControlName="temperature" type="number" min="96" max="106" matInput>
-              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.required">
+              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.required || healthStatusFormGroup.controls.temperature.errors?.whitespace">
                 Temperature is required</mat-error>
-              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.pattern || healthStatusFormGroup.controls.temperature.errors?.whitespace">
+              <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.pattern">
                 Temperature is not valid</mat-error>
               <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.max || healthStatusFormGroup.controls.temperature.errors?.min">
                 The temperature should be between 96 to 106</mat-error>
@@ -33,7 +33,7 @@
       </div>
       <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
           <mat-slide-toggle fxFlex="40" formControlName="runnyNose" class="toggle_section">
-            Are you have runny nose?
+            Do you have runny nose?
           </mat-slide-toggle>
           <div fxFlex="40"></div>
       </div>

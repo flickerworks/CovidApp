@@ -5,22 +5,18 @@
         <mat-form-field appearance="outline" fxFlex="30">
         <div class="labels">First Name<span class="color_red">*</span></div>
         <input formControlName="firstName" matInput>
-        <mat-error *ngIf="personalDetailsFormGroup.controls.firstName.errors?.required">
+        <mat-error *ngIf="personalDetailsFormGroup.controls.firstName.errors?.required || personalDetailsFormGroup.controls.firstName.errors?.whitespace">
             First Name is required</mat-error>
         <mat-error *ngIf="personalDetailsFormGroup.controls.firstName.errors?.minlength || personalDetailsFormGroup.controls.firstName.errors?.maxlength">
             First Name should be 1 to 30 characters long</mat-error>
-        <mat-error *ngIf="personalDetailsFormGroup.controls.firstName.errors?.whitespace">
-            First Name is invalid</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="30">
         <div class="labels">Last Name<span class="color_red">*</span></div>
         <input formControlName="lastName" matInput>
-        <mat-error *ngIf="personalDetailsFormGroup.controls.lastName.errors?.required">
+        <mat-error *ngIf="personalDetailsFormGroup.controls.lastName.errors?.required || personalDetailsFormGroup.controls.lastName.errors?.whitespace">
             Last Name is required</mat-error>
         <mat-error *ngIf="personalDetailsFormGroup.controls.lastName.errors?.minlength || personalDetailsFormGroup.controls.lastName.errors?.maxlength">
             Last Name should be 1 to 30 characters long</mat-error>
-        <mat-error *ngIf="personalDetailsFormGroup.controls.lastName.errors?.whitespace">
-            Last Name is invalid</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="30">
             <div class="labels adjust_design">Contact Number<span class="color_red">*</span></div>
@@ -54,12 +50,10 @@
         <mat-form-field appearance="outline" fxFlex="30">
             <div class="labels">Govt. ID Number<span class="color_red">*</span></div>
             <input formControlName="governmentIdNumber" matInput>
-            <mat-error *ngIf="personalDetailsFormGroup.controls.governmentIdNumber.errors?.required">
+            <mat-error *ngIf="personalDetailsFormGroup.controls.governmentIdNumber.errors?.required || personalDetailsFormGroup.controls.governmentIdNumber.errors?.whitespace">
                 Govt. ID Number is required</mat-error>
             <mat-error *ngIf="personalDetailsFormGroup.controls.governmentIdNumber.errors?.minlength || personalDetailsFormGroup.controls.governmentIdNumber.errors?.maxlength">
                 Govt. ID Number should be 1 to 30 characters long</mat-error>
-            <mat-error *ngIf="personalDetailsFormGroup.controls.governmentIdNumber.errors?.whitespace">
-                Govt. ID Number is invalid</mat-error>
         </mat-form-field>
     </div>
     <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">

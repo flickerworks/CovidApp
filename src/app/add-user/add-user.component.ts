@@ -8,7 +8,8 @@ import {
   UserRegisterModel,
   GovernmentIdTypes,
   PersonalDetails,
-  FileExtension
+  FileExtension,
+  PincodeValidationPattern
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Subscription } from 'rxjs';
@@ -61,7 +62,7 @@ export class AddUserComponent implements OnInit {
       area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
       city: ['', [Validators.minLength(1), Validators.maxLength(30)]],
       state: ['', [Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10), this.globalService.noWhitespaceValidator]],
+      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
@@ -148,33 +149,34 @@ export class AddUserComponent implements OnInit {
     if (!this.userRegisterForm.invalid) {
       const _form: UserRegisterModel = this.userRegisterForm.value;
       const userRegisterModel = {
-        FIRSTNAME: _form.firstName.trim(),
-        LASTNAME: _form.lastName.trim(),
+        FIRSTNAME: _form.firstName.replace(/\s+/g,' ').trim(),
+        LASTNAME: _form.lastName.replace(/\s+/g,' ').trim(),
         PHONE: _form.mobileNumber,
-        EMAIL: _form.email.trim(),
-        DESIGNATION: _form.designation.trim(),
-        DEPARTMENT: _form.department.trim(),
+        EMAIL: _form.email.replace(/\s+/g,' ').trim(),
+        DESIGNATION: _form.designation.replace(/\s+/g,' ').trim(),
+        DEPARTMENT: _form.department.replace(/\s+/g,' ').trim(),
         DEVICE_TOKEN:"",
-        IDCARDTYPE: _form.governmentIdType.trim(),
+        IDCARDTYPE: _form.governmentIdType.replace(/\s+/g,' ').trim(),
         IDCARDNUMBER: "",
         IDCARDIMAGE: _form.governmentIdImage,
-        HNO: _form.houseNumber.trim(),
-        STREETNAME: _form.street.trim(),
-        AREA: _form.area.trim(),
-        ZONE: _form.zone.trim(),
-        CITY: _form.city.trim(),
-        STATE: _form.state.trim(),
-        PINCODE: _form.pincode.trim(),
-        LOGINNAME: _form.loginName.trim(),
-        PASSWORD: _form.password.trim()
+        HNO: _form.houseNumber.replace(/\s+/g,' ').trim(),
+        STREETNAME: _form.street.replace(/\s+/g,' ').trim(),
+        AREA: _form.area.replace(/\s+/g,' ').trim(),
+        ZONE: _form.zone.replace(/\s+/g,' ').trim(),
+        CITY: _form.city.replace(/\s+/g,' ').trim(),
+        STATE: _form.state.replace(/\s+/g,' ').trim(),
+        PINCODE: _form.pincode.replace(/\s+/g,' ').trim(),
+        LOGINNAME: _form.loginName.replace(/\s+/g,' ').trim(),
+        PASSWORD: _form.password.replace(/\s+/g,' ').trim()
       };
+      console.log(userRegisterModel);
 
-      const condition = this.isEdit ? this.personalDetails.type : this.userType;
-      if(condition.toLowerCase() === "monitor"){
-        this.registerMonitor(userRegisterModel);
-      }else {
-        this.registerQManager(userRegisterModel);
-      }      
+      // const condition = this.isEdit ? this.personalDetails.type : this.userType;
+      // if(condition.toLowerCase() === "monitor"){
+      //   this.registerMonitor(userRegisterModel);
+      // }else {
+      //   this.registerQManager(userRegisterModel);
+      // }      
     }
   }
 

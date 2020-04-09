@@ -245,6 +245,8 @@ export const UserTypes: string[] = ['Quarantine Managers','Monitors'];
 
 export const MobileNumberValidationPattern: string = '^[0-9]{10}$';
 
+export const PincodeValidationPattern: string = '^[0-9]{6}$';
+
 export const EmailValidationPattern: string = '[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}';
 
 export const TemperatureValidationPattern: string = '[0-9.]{0,6}';

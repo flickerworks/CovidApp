@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.loginForm = this.formBuilder.group({
       loginType: [loginAs, [Validators.required]],
-      username: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]]//, Validators.pattern(PasswordValidationPattern)
+      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20), this.globalServices.noWhitespaceValidator]],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20), this.globalServices.noWhitespaceValidator]]//, Validators.pattern(PasswordValidationPattern)
     });
 
     this.loginForm.valueChanges.subscribe(fg => {

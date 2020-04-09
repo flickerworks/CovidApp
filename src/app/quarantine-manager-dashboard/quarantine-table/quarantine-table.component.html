@@ -17,7 +17,7 @@
       </ng-container>
       <ng-container matColumnDef="contactNumber">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
-          Contact Number
+          Contact
         </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.contactNumber}}</mat-cell>
       </ng-container>
@@ -56,8 +56,8 @@
       <ng-container matColumnDef="quarantineCount">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px"></mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="center center">
-          <div class="color_red"><span class="quarantine_counter">{{element?.critical}}</span> <span>Critical</span></div>
-          <div class="color_orange"><span class="quarantine_counter">{{element?.flaged}}</span> <span>Flaged</span></div>
+          <div class="color_red margin_bottom"><span class="quarantine_counter">{{element?.critical}}</span> <span>Critical</span></div>
+          <div class="color_orange margin_bottom"><span class="quarantine_counter">{{element?.flaged}}</span> <span>Flaged</span></div>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="action">
