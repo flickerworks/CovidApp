@@ -151,7 +151,7 @@
                 <mat-checkbox (change)="checkPermanentAddress_2(markPermanentAddress2)" [(ngModel)]="markPermanentAddress2">Mark same as permanent address</mat-checkbox>
             </div>
 
-            <form [ngClass]="{'disabled' : markPermanentAddress2}" [formGroup]="permanentAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
+            <form [ngClass]="{'disabled' : (markPermanentAddress || markPermanentAddress2)}" [formGroup]="permanentAddressFormGroup" fxLayout="column" fxLayoutGap="20px" fxFlex="100" fxLayoutAlign="start center">
                 <div class="section_title bold color_blue width_100 margin_bottom_20">Permanent Address</div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
