@@ -79,7 +79,7 @@
     </div>
     <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
         <button mat-raised-button (click)="goBack()" type="button">Cancel</button>
-        <button mat-raised-button (click)="saveForm()" [ngClass]="{'disabled' : !personalDetailsFormGroup.valid}" type="button">Continue</button>
+        <button mat-raised-button (click)="saveForm()" [ngClass]="{'disabled' : !personalDetailsFormGroup.valid || !personalDetailsFormGroup.controls.dateOfBirth.value}" type="button">Continue</button>
     </div> 
 </form>
 </div>

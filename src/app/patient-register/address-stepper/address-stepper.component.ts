@@ -116,8 +116,10 @@ export class AddressStepperComponent implements OnInit {
       this.currentAddressFormGroup.updateValueAndValidity();
       this.currentAddressFormGroup.markAllAsTouched();
     } else {
-      this.currentAddressFormGroup.reset();
-      this.currentAddressFormGroup.updateValueAndValidity();
+      if(this.currentAddressFormGroup.controls.houseNumber.value !==""){
+        this.currentAddressFormGroup.reset();
+        this.currentAddressFormGroup.updateValueAndValidity();
+      }      
     }
   }
 
@@ -127,8 +129,10 @@ export class AddressStepperComponent implements OnInit {
       this.permanentAddressFormGroup.updateValueAndValidity();
       this.permanentAddressFormGroup.markAllAsTouched();
     }else{
-      this.permanentAddressFormGroup.reset();
-      this.permanentAddressFormGroup.updateValueAndValidity();
+      if(this.permanentAddressFormGroup.controls.houseNumber.value !== ""){
+        this.permanentAddressFormGroup.reset();
+        this.permanentAddressFormGroup.updateValueAndValidity();
+      }      
     }
   }
 

@@ -52,7 +52,7 @@ export class PatientRegisterComponent implements OnInit {
     });
     this.healthStatusFormGroup = this.formBuilder.group({
       fever: ['', Validators.required],
-      temperature: ['', Validators.required],
+      temperature: [''],
       cough: ['', Validators.required],
       fatigue: ['', Validators.required],
       breathing: ['', Validators.required],
