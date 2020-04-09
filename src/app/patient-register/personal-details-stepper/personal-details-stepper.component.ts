@@ -43,13 +43,13 @@ export class PersonalDetailsStepperComponent implements OnInit {
   saveForm(): void {
     if (this.personalDetailsFormGroup.valid) {
       const formDetails: PatientPersonalDetailsModel = {
-        firstName: this.personalDetailsFormGroup.controls.firstName.value.replace(/\s+/g,' ').trim(),
-        lastName: this.personalDetailsFormGroup.controls.lastName.value.replace(/\s+/g,' ').trim(),
+        firstName: this.personalDetailsFormGroup.controls.firstName.value.trim(),
+        lastName: this.personalDetailsFormGroup.controls.lastName.value.trim(),
         mobileNumber: this.personalDetailsFormGroup.controls.mobileNumber.value.trim(),
         alternateMobileNumber: this.personalDetailsFormGroup.controls.alternateMobileNumber.value.trim(),
-        governmentIdType: this.personalDetailsFormGroup.controls.governmentIdType.value.replace(/\s+/g,' ').trim(),
-        governmentIdNumber: this.personalDetailsFormGroup.controls.governmentIdNumber.value.replace(/\s+/g,' ').trim(),
-        email: this.personalDetailsFormGroup.controls.email.value.replace(/\s+/g,' ').trim(),
+        governmentIdType: this.personalDetailsFormGroup.controls.governmentIdType.value.trim(),
+        governmentIdNumber: this.personalDetailsFormGroup.controls.governmentIdNumber.value.trim(),
+        email: this.personalDetailsFormGroup.controls.email.value.trim(),
         dateOfBirth: this.personalDetailsFormGroup.controls.dateOfBirth.value,
       } as PatientPersonalDetailsModel;
       this.personalFormDetails.emit(formDetails);
