@@ -151,7 +151,7 @@ export class AddUserComponent implements OnInit {
       const userRegisterModel = {
         FIRSTNAME: _form.firstName.replace(/\s+/g,' ').trim(),
         LASTNAME: _form.lastName.replace(/\s+/g,' ').trim(),
-        PHONE: _form.mobileNumber,
+        PHONE: _form.mobileNumber.trim(),
         EMAIL: _form.email.replace(/\s+/g,' ').trim(),
         DESIGNATION: _form.designation.replace(/\s+/g,' ').trim(),
         DEPARTMENT: _form.department.replace(/\s+/g,' ').trim(),
