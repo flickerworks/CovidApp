@@ -99,7 +99,7 @@
                                 Government ID is required</mat-error>
                         </mat-form-field>
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div *ngIf="!isEdit" class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : 'Upload Govt. ID'}}<span class="color_red">*</span></div>
+                            <div *ngIf="!isEdit" class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != null ? userRegisterForm.controls.governmentIdImageName : 'Upload Govt. ID'}}<span class="color_red">*</span></div>
                             <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
                             <button *ngIf="!isEdit" class="upload_button" type="button" mat-raised-button (click)="fileInput.click($event)">Browse</button>
                         </div>
