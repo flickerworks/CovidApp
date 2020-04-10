@@ -220,6 +220,7 @@ export interface AddressModel {
   city: string;
   state: string;
   pincode: string;
+  zone: string;
 }
 
 export interface AssignMonitorModel {

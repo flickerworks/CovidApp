@@ -57,6 +57,16 @@
                             Pincode should be number and 1 to 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
+                    <mat-form-field appearance="outline" fxFlex="40">
+                        <div class="labels">Zone<span class="color_red">*</span></div>
+                        <input formControlName="zone" matInput>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.zone.errors?.required || quarantineAddressFormGroup.controls.zone.errors?.whitespace">
+                            Zone is required</mat-error>
+                        <mat-error *ngIf="quarantineAddressFormGroup.controls.zone.errors?.minlength || quarantineAddressFormGroup.controls.zone.errors?.maxlength">
+                            Zone should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                </div>
             </form>
 
             <div [ngClass]="{'disabled' : !quarantineAddressFormGroup.valid}" class="width_100" fxLayout="column wrap" fxLayoutAlign="space-between start" fxLayoutGap="10px" fxFlex="100">
@@ -121,6 +131,16 @@
                             Pincode should be number and 1 to 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
+                    <mat-form-field appearance="outline" fxFlex="40">
+                        <div class="labels">Zone<span class="color_red">*</span></div>
+                        <input formControlName="zone" matInput>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.zone.errors?.required || currentAddressFormGroup.controls.zone.errors?.whitespace">
+                            Zone is required</mat-error>
+                        <mat-error *ngIf="currentAddressFormGroup.controls.zone.errors?.minlength || currentAddressFormGroup.controls.zone.errors?.maxlength">
+                            Zone should be 1 to 30 characters long</mat-error>
+                    </mat-form-field>
+                </div>
             </form>
             
             <div [ngClass]="{'disabled' : (!currentAddressFormGroup.valid || markPermanentAddress)}" class="width_100" fxLayout="column wrap" fxLayoutAlign="start start" fxLayoutGap="10px" fxFlex="100">
@@ -181,6 +201,16 @@
                             Pincode is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.pincode.errors?.pattern || permanentAddressFormGroup.controls.pincode.errors?.minlength || permanentAddressFormGroup.controls.pincode.errors?.maxlength">
                             Pincode should be number and 1 to 6 characters long</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
+                    <mat-form-field appearance="outline" fxFlex="40">
+                        <div class="labels">Zone<span class="color_red">*</span></div>
+                        <input formControlName="zone" matInput>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.zone.errors?.required || permanentAddressFormGroup.controls.zone.errors?.whitespace">
+                            Zone is required</mat-error>
+                        <mat-error *ngIf="permanentAddressFormGroup.controls.zone.errors?.minlength || permanentAddressFormGroup.controls.zone.errors?.maxlength">
+                            Zone should be 1 to 30 characters long</mat-error>
                     </mat-form-field>
                 </div>
             </form>

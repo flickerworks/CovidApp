@@ -66,7 +66,8 @@ export class PatientRegisterComponent implements OnInit {
         area: ['', Validators.required], 
         city: ['', Validators.required], 
         state: ['', Validators.required], 
-        pincode: ['', Validators.required]
+        pincode: ['', Validators.required],
+        zone: ['', Validators.required]
       }],
       permanentAddress: [{
         houseNumber: ['', Validators.required], 
@@ -74,7 +75,8 @@ export class PatientRegisterComponent implements OnInit {
         area: ['', Validators.required], 
         city: ['', Validators.required], 
         state: ['', Validators.required], 
-        pincode: ['', Validators.required]
+        pincode: ['', Validators.required],
+        zone: ['', Validators.required]
       }],
       quarantineAddress: [{
         houseNumber: ['', Validators.required], 
@@ -82,7 +84,8 @@ export class PatientRegisterComponent implements OnInit {
         area: ['', Validators.required], 
         city: ['', Validators.required], 
         state: ['', Validators.required], 
-        pincode: ['', Validators.required]
+        pincode: ['', Validators.required],
+        zone: ['', Validators.required]
       }],
       quarantineType: ['', Validators.required]
     });
@@ -130,6 +133,7 @@ export class PatientRegisterComponent implements OnInit {
     currentAddress.value.city = data.currentAddress.city;
     currentAddress.value.state = data.currentAddress.state;
     currentAddress.value.pincode = data.currentAddress.pincode;
+    currentAddress.value.zone = data.currentAddress.zone;
 
     const permanentAddress = this.getPermanentAddressForm();
     permanentAddress.value.houseNumber = data.permanentAddress.houseNumber;
@@ -138,6 +142,7 @@ export class PatientRegisterComponent implements OnInit {
     permanentAddress.value.city = data.permanentAddress.city;
     permanentAddress.value.state = data.permanentAddress.state;
     permanentAddress.value.pincode = data.permanentAddress.pincode;
+    permanentAddress.value.zone = data.permanentAddress.zone;
 
     const quarantineAddress = this.getQuarantineAddressForm();
     quarantineAddress.value.houseNumber = data.quarantineAddress.houseNumber;
@@ -146,6 +151,7 @@ export class PatientRegisterComponent implements OnInit {
     quarantineAddress.value.city = data.quarantineAddress.city;
     quarantineAddress.value.state = data.quarantineAddress.state;
     quarantineAddress.value.pincode = data.quarantineAddress.pincode;
+    quarantineAddress.value.zone = data.quarantineAddress.zone;
 
     this.addressFormGroup.controls.quarantineType.setValue(data.quarantineType);
     this.addressFormGroup.updateValueAndValidity();

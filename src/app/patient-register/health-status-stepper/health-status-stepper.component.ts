@@ -15,6 +15,7 @@ export class HealthStatusStepperComponent implements OnInit {
   @Output() healthStatusForm: EventEmitter<PatientHealthStatusModel> = new EventEmitter();
   @Output() previousStep: EventEmitter<any> = new EventEmitter();
   healthStatusFormGroup: FormGroup;
+  isTempValidatorRequired: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private globalService: GlobalServices
@@ -33,8 +34,10 @@ export class HealthStatusStepperComponent implements OnInit {
     this.healthStatusFormGroup.updateValueAndValidity();
     this.healthStatusFormGroup.controls.fever.valueChanges.subscribe(value => {
       if(value){
+        this.isTempValidatorRequired = true;
         this.healthStatusFormGroup.controls.temperature.setValidators([Validators.required, Validators.max(106), Validators.min(96)]);        
       }else{
+        this.isTempValidatorRequired = false;
         this.healthStatusFormGroup.controls.temperature.clearValidators();
         this.healthStatusFormGroup.controls.temperature.setValidators([Validators.max(106), Validators.min(96)]);        
       }

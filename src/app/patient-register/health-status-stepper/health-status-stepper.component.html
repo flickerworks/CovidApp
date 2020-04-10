@@ -4,7 +4,7 @@
       <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
           <mat-slide-toggle fxFlex="40" formControlName="fever" class="toggle_section">Do you have a fever? </mat-slide-toggle>
           <mat-form-field appearance="outline" fxFlex="40">
-              <div class="labels">What is your temperature?<span class="color_red">*</span></div>
+              <div class="labels">What is your temperature?<span *ngIf="isTempValidatorRequired" class="color_red">*</span></div>
               <span matSuffix>&#8457;</span>
               <input formControlName="temperature" type="number" min="96" max="106" matInput>
               <mat-error *ngIf="healthStatusFormGroup.controls.temperature.errors?.required || healthStatusFormGroup.controls.temperature.errors?.whitespace">
