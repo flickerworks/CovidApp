@@ -7,7 +7,7 @@ import { PatientDetails } from '../shared/models/shared.model';
   styleUrls: ['./patient-list.component.scss']
 })
 export class PatientListComponent implements OnInit {
-  @Input() patientDetails: PatientDetails;
+  @Input() patientDetails: PatientDetails[];
   
   constructor() { }
 

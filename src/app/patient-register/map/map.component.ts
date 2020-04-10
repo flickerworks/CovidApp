@@ -13,6 +13,7 @@ export class MapComponent implements OnInit {
   longitude: number;
   zoom: number;
   address: string;
+  autocomplete;
   @Output() addressChange = new EventEmitter<MapAddress>();
 
   private geoCoder;
@@ -41,7 +42,7 @@ export class MapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 18;
+        this.zoom = 17;
         this.getAddress(this.latitude, this.longitude);
       })
     }
@@ -58,7 +59,7 @@ export class MapComponent implements OnInit {
         if(result[0]){
           this.zoom = 18;
           this.address = result[0].formatted_address;          
-          this.addressChange.emit(this.formatAddress(result[0]));
+          this.addressChange.emit(this.formatAddress(result));
         }else{
           window.alert('no result found');
         }
@@ -68,10 +69,12 @@ export class MapComponent implements OnInit {
     })
   }
 
-  formatAddress(result): MapAddress{
-    const obj={}
-    const types = ["street_number", "route", "neighborhood", "sublocality", "sublocality_level_2", "sublocality_level_3", "locality", "administrative_area_level_1","administrative_area_level_2", "postal_code"];
-    const _address = result.address_components;
+  formatAddress(r): MapAddress{
+    const obj={},
+    result = r[0],
+    types = ["premise", "street_number", "route", "neighborhood", "sublocality", "sublocality_level_2", "sublocality_level_3", "locality", "administrative_area_level_1","administrative_area_level_2", "postal_code"],
+    _address = result.address_components,
+    fullAddress = result.formatted_address;
     types.forEach(type => {
       _address.forEach(ele => {
         if(ele.types.includes(type)){
@@ -79,24 +82,38 @@ export class MapComponent implements OnInit {
         }
       });
     })
-    const address:MapAddress = {
+   /*  const address:MapAddress = {
       street: this.drawStreet(obj),
       pincode: obj["postal_code"],
       city: (obj["administrative_area_level_2"])? obj["administrative_area_level_2"] : obj["locality"],
       state: obj["administrative_area_level_1"],
       area:""
+    } */
+    const csc = r[r.length-3],
+    formattedAdrs = csc.formatted_address,
+    _adrs = formattedAdrs.split(","),
+    address:MapAddress = {
+      street: this.drawStreet(obj).trim() || (fullAddress.split(",")[0]).trim(),
+      pincode: obj["postal_code"].trim(),
+      city: _adrs[0].trim(),
+      state: _adrs[1].trim(),
+      area: (obj["sublocality"]) ? obj["sublocality"] : ""
     }
     return address;
   }
 
   drawStreet(obj){
+    const key0 = (obj["premise"]) ? (obj["premise"]+", ") : "";
     const key1 = (obj["street_number"]) ? (obj["street_number"]+", ") : "";
     const key2 = (obj["route"]) ? (obj["route"]+", ") : "";
     const key3 = (obj["neighborhood"]) ? (obj["neighborhood"]+", ") : "";
     const key4 = (obj["sublocality_level_3"]) ? (obj["sublocality_level_3"]+", ") : "";
-    const key5 = (obj["sublocality_level_2"]) ? (obj["sublocality_level_2"]+", ") : "";
-    const key6 = (obj["sublocality"]) ? obj["sublocality"] : "";
-    return key1 + key2 + key3 + key4 + key5 + key6;
+    const key5 = (obj["sublocality_level_2"]) ? (obj["sublocality_level_2"]) : "";
+    let str = key0 + key1 + key2 + key3 + key4 + key5;
+    if(str.substr(str.length-2).trim() === ","){
+      str = str.slice(0, str.length-2);
+    }
+    return str;
   }
 
   markerDragEnd(event){
@@ -108,14 +125,17 @@ export class MapComponent implements OnInit {
 
 
   autoSearch(ele: ElementRef){
-    let autocomplete = new google.maps.places.Autocomplete(ele.nativeElement, {
-      types: ["address"]
-    });
-    autocomplete.setComponentRestrictions({'country': ['in']});
-    autocomplete.addListener("place_changed", () => {
+    if(!this.autocomplete){
+      this.autocomplete = new google.maps.places.Autocomplete(ele.nativeElement, {
+        types: ["address"]
+      });
+    }
+    
+    this.autocomplete.setComponentRestrictions({'country': ['in']});
+    this.autocomplete.addListener("place_changed", () => {
       this.ngZone.run(() => {
         //get the place result
-        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        let place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
 
         //verify result
         if (place.geometry === undefined || place.geometry === null) {
@@ -128,7 +148,7 @@ export class MapComponent implements OnInit {
         this.globalService.latitude = this.latitude;
         this.globalService.longitude = this.longitude;
         this.getAddress(this.latitude, this.longitude)
-        this.zoom = 18;
+        this.zoom = 17;
       });
     });
   }

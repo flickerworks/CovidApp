@@ -108,6 +108,7 @@ export class AddUserComponent implements OnInit {
       } else {
         this.userRegisterForm.reset();
         this.userRegisterForm.controls.loginName.enable();
+        this.userRegisterForm.get('governmentIdImageName').setValidators([Validators.required]);
         this.userRegisterForm.controls.governmentIdType.setValue('');
       }
     })
@@ -122,7 +123,7 @@ export class AddUserComponent implements OnInit {
         const base64String = this.arrayBufferToBase64(e.target.result);
         this.userRegisterForm.controls.governmentIdImage.setValue(base64String);
       };
-      this.userRegisterForm.controls.governmentIdImageName = inputNode.files[0].name;
+      this.userRegisterForm.controls.governmentIdImageName.setValue(inputNode.files[0].name);
       this.userRegisterForm.updateValueAndValidity();
       reader.readAsArrayBuffer(inputNode.files[0]);
     } else {

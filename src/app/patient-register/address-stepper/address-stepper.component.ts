@@ -178,7 +178,11 @@ export class AddressStepperComponent implements OnInit {
     this.quarantineAddressFormGroup.get('pincode').setValue(address.pincode);
     this.quarantineAddressFormGroup.get('area').setValue(address.area);
     this.quarantineAddressFormGroup.updateValueAndValidity();
-    this.quarantineAddressFormGroup.markAllAsTouched();
+    this.quarantineAddressFormGroup.get('streetName').markAllAsTouched();
+    this.quarantineAddressFormGroup.get('city').markAllAsTouched();
+    this.quarantineAddressFormGroup.get('state').markAllAsTouched();
+    this.quarantineAddressFormGroup.get('pincode').markAllAsTouched();
+    this.quarantineAddressFormGroup.get('area').markAllAsTouched();
   }
   
 }
