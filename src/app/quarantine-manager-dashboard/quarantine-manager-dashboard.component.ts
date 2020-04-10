@@ -104,18 +104,20 @@ export class QuarantineManagerDashboardComponent implements OnInit {
 
   getTotalCases(list):void {
     let dataList = [];
-    list.forEach(ele => {      
-        let obj: PatientDetails = {
-          name: ele.QFIRSTNAME,
-          id: ele.QID,
-          contactNumber: ele.MOBILENUMBER,
-          mail: ele.EMAIL,
-          zone: ele.ZONE,
-          period: this.globalServices.getDaysCount(ele.START ? new Date(ele.START) : new Date(), new Date()),
-          symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+"):"",
-          monitoredBy: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`
-        } 
-        dataList.push(obj);      
+      list.forEach(ele => {    
+        if(ele["QID"]) {  
+          let obj: PatientDetails = {
+            name: ele.QFIRSTNAME,
+            id: ele.QID,
+            contactNumber: ele.MOBILENUMBER,
+            mail: ele.EMAIL,
+            zone: ele.ZONE,
+            period: this.globalServices.getDaysCount(ele.START ? new Date(ele.START) : new Date(), new Date()),
+            symptoms: (ele.SYMPTOM) ? ele.SYMPTOM.split("+"):"",
+            monitoredBy: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`
+          } 
+          dataList.push(obj);  
+        }    
     });
     const data ={
       users: [...dataList],

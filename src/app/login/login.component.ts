@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onLogIn(): void {
     const loginData: LoggedInUserModel = { 
-      LOGINNAME: this.loginForm.value.username,
-      PASSWORD: this.loginForm.value.password
+      LOGINNAME: this.loginForm.value.username.trim(),
+      PASSWORD: this.loginForm.value.password.trim()
     };
     const type = this.loginForm.get('loginType').value;
     let payloadType = "LOGINQMGR";
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         lastName: data.LASTNAME,
         pincode: data.PINCODE,
         email: data.EMAIL,
-        zone: data.zone
+        zone: data.ZONE
       }
       sessionStorage.setItem('loggedInUserDetails', JSON.stringify(loginData));
       this.globalServices.checkUserLoggedIn();
