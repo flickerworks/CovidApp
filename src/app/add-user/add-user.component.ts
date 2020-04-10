@@ -9,7 +9,8 @@ import {
   GovernmentIdTypes,
   PersonalDetails,
   FileExtension,
-  PincodeValidationPattern
+  PincodeValidationPattern,
+  StringValidationPattern
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Subscription } from 'rxjs';
@@ -47,12 +48,12 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.userRegisterForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
       email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
-      designation: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      department: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      designation: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      department: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       governmentIdImage: [''],
@@ -60,8 +61,8 @@ export class AddUserComponent implements OnInit {
       houseNumber: ['', [Validators.minLength(1), Validators.maxLength(30)]],
       street: ['', [Validators.minLength(1), Validators.maxLength(100)]],
       area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
-      city: ['', [Validators.minLength(1), Validators.maxLength(30)]],
-      state: ['', [Validators.minLength(1), Validators.maxLength(30)]],
+      city: ['', [Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern)]],
+      state: ['', [Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern)]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]

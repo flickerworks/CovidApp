@@ -7,7 +7,7 @@
   <mat-horizontal-stepper labelPosition="bottom" linear #stepper>
     <mat-step [stepControl]="personalDetailsFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Personal Details</ng-template>
-      <app-personal-details-stepper (previousStep)="goBack()" (personalFormDetails)="savePersonalDetails($event)"></app-personal-details-stepper>
+      <app-personal-details-stepper (previousStep)="cancelFlow()" (personalFormDetails)="savePersonalDetails($event)"></app-personal-details-stepper>
     </mat-step>
     <mat-step [stepControl]="healthStatusFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Health Status</ng-template>

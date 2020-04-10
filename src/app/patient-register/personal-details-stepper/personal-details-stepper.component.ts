@@ -4,7 +4,8 @@ import {
   MobileNumberValidationPattern,
   EmailValidationPattern,
   GovernmentIdTypes,
-  PatientPersonalDetailsModel
+  PatientPersonalDetailsModel,
+  StringValidationPattern
 } from '../../shared/models/shared.model';
 import { GlobalServices } from '../../shared/services/global.services';
 
@@ -27,8 +28,8 @@ export class PersonalDetailsStepperComponent implements OnInit {
 
   ngOnInit() {
     this.personalDetailsFormGroup = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
       alternateMobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
       governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],

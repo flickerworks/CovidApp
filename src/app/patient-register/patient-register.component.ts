@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { Router } from '@angular/router';
+import { DatePipe, Location } from '@angular/common';
 import {
   PatientPersonalDetailsModel,
   PatientHealthStatusModel,
@@ -10,8 +12,6 @@ import {
 } from '../shared/models/shared.model';
 import { GlobalServices } from '../shared/services/global.services';
 import { RestfullServices } from '../shared/services/restfull.services';
-import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-patient-register',
@@ -34,7 +34,8 @@ export class PatientRegisterComponent implements OnInit {
     private globalService: GlobalServices,
     private restAPI: RestfullServices,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -286,6 +287,10 @@ export class PatientRegisterComponent implements OnInit {
 
   goForward(){
     this.myStepper.next();
+  }
+
+  cancelFlow() {
+    this.location.back();
   }
 
 }
