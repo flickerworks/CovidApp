@@ -86,7 +86,7 @@
                         || userRegisterForm.controls.zone.errors?.pattern
                         || userRegisterForm.controls.zone.errors?.minlength
                         || userRegisterForm.controls.zone.errors?.maxlength">
-                            Zone is required, should be alphabets (max 30 characters)</mat-error>
+                            Zone is required (max 30 characters)</mat-error>
                     </mat-form-field>
                     <div fxFlex="30" fxLayout="column">
                         <mat-form-field appearance="outline" fxFlex="30">
@@ -99,7 +99,7 @@
                                 Government ID is required</mat-error>
                         </mat-form-field>
                         <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
-                            <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : 'Upload Govt. ID'}}</div>
+                            <div class="upload_file_name" fxFlex="50">{{userRegisterForm.controls.governmentIdImageName.value != '' ? userRegisterForm.controls.governmentIdImageName : 'Upload Govt. ID'}}<span class="color_red">*</span></div>
                             <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">
                             <button class="upload_button" type="button" mat-raised-button (click)="fileInput.click($event)">Browse</button>
                         </div>
@@ -137,17 +137,17 @@
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">City</div>
                         <input formControlName="city" matInput>
-                        <!-- <mat-error *ngIf="userRegisterForm.controls.city.errors?.required">
-                            City is required</mat-error> -->
-                        <mat-error *ngIf="userRegisterForm.controls.city.errors?.pattern || userRegisterForm.controls.city.errors?.minlength || userRegisterForm.controls.city.errors?.maxlength">
+                        <mat-error *ngIf="userRegisterForm.controls.city.errors?.pattern
+                            || userRegisterForm.controls.city.errors?.minlength
+                            || userRegisterForm.controls.city.errors?.maxlength">
                             City should be alphabets (max 30 characters)</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">State</div>
                         <input formControlName="state" matInput>
-                        <!-- <mat-error *ngIf="userRegisterForm.controls.state.errors?.required">
-                            State is required</mat-error> -->
-                        <mat-error *ngIf="userRegisterForm.controls.state.errors?.pattern || userRegisterForm.controls.state.errors?.minlength || userRegisterForm.controls.state.errors?.maxlength">
+                        <mat-error *ngIf="userRegisterForm.controls.state.errors?.pattern
+                            || userRegisterForm.controls.state.errors?.minlength
+                            || userRegisterForm.controls.state.errors?.maxlength">
                             State should be alphabets (max 30 characters)</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">

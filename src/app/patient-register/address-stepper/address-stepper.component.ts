@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuarantineTypes, PatientAddressModel, PincodeValidationPattern } from '../../shared/models/shared.model';
+import { QuarantineTypes, PatientAddressModel, PincodeValidationPattern, StringValidationPattern } from '../../shared/models/shared.model';
 import { GlobalServices } from 'src/app/shared/services/global.services';
 
 @Component({
@@ -32,28 +32,28 @@ export class AddressStepperComponent implements OnInit {
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
-      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
+      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]]
     });
     this.permanentAddressFormGroup = this.formBuilder.group({
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern),this.globalService.noWhitespaceValidator]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
-      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
+      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]]
     });
     this.quarantineAddressFormGroup = this.formBuilder.group({
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
-      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
+      zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]]
     });
     this.quarantineTypeFormGroup = this.formBuilder.group({
       quarantineType: ['', Validators.required]
