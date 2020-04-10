@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { 
   MobileNumberValidationPattern,
   EmailValidationPattern,
-  UserTypes,
   UserRegisterModel,
   GovernmentIdTypes,
   PersonalDetails,
@@ -106,6 +105,8 @@ export class AddUserComponent implements OnInit {
         });
         this.userRegisterForm.updateValueAndValidity();
         this.userRegisterForm.markAllAsTouched();
+      } else {
+        this.userRegisterForm.reset();
       }
     })
   }
