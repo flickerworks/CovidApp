@@ -83,7 +83,8 @@ export class MapComponent implements OnInit {
       street: this.drawStreet(obj),
       pincode: obj["postal_code"],
       city: (obj["administrative_area_level_2"])? obj["administrative_area_level_2"] : obj["locality"],
-      state: obj["administrative_area_level_1"]
+      state: obj["administrative_area_level_1"],
+      area:""
     }
     return address;
   }

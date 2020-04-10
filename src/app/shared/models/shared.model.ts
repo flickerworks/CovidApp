@@ -244,6 +244,7 @@ export enum AssignMonitorColumns {
 
 export interface MapAddress {
   street: string;
+  area: string;
   city: string;
   state: string;
   pincode: string;
