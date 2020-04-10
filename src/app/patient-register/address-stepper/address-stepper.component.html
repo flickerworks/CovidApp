@@ -18,7 +18,7 @@
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.streetName.errors?.required || quarantineAddressFormGroup.controls.streetName.errors?.whitespace">
                             Street Name is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.streetName.errors?.minlength || quarantineAddressFormGroup.controls.streetName.errors?.maxlength">
-                            Street Name should be 1 to 30 characters long</mat-error>
+                            Street Name should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -28,7 +28,7 @@
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.required || quarantineAddressFormGroup.controls.area.errors?.whitespace">
                             Area is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.minlength || quarantineAddressFormGroup.controls.area.errors?.maxlength">
-                            Area should be 1 to 30 characters long</mat-error>
+                            Area should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -100,7 +100,7 @@
                         <mat-error *ngIf="currentAddressFormGroup.controls.streetName.errors?.required || currentAddressFormGroup.controls.streetName.errors?.whitespace">
                             Street Name is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.streetName.errors?.minlength || currentAddressFormGroup.controls.streetName.errors?.maxlength">
-                            Street Name should be 1 to 30 characters long</mat-error>
+                            Street Name should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -110,7 +110,7 @@
                         <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.required || currentAddressFormGroup.controls.area.errors?.whitespace">
                             Area is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.area.errors?.minlength || currentAddressFormGroup.controls.area.errors?.maxlength">
-                            Area should be 1 to 30 characters long</mat-error>
+                            Area should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -180,7 +180,7 @@
                         <mat-error *ngIf="permanentAddressFormGroup.controls.streetName.errors?.required || permanentAddressFormGroup.controls.streetName.errors?.whitespace">
                             Street Name is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.streetName.errors?.minlength || permanentAddressFormGroup.controls.streetName.errors?.maxlength">
-                            Street Name should be 1 to 30 characters long</mat-error>
+                            Street Name should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -190,7 +190,7 @@
                         <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.required || permanentAddressFormGroup.controls.area.errors?.whitespace">
                             Area is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.area.errors?.minlength || permanentAddressFormGroup.controls.area.errors?.maxlength">
-                            Area should be 1 to 30 characters long</mat-error>
+                            Area should be 1 to 100 characters long</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">City<span class="color_red">*</span></div>
@@ -253,7 +253,7 @@
             </form>
         </div>
         <div class="map_section" fxLayout="column" fxLayoutGap="20px" fxFlex="40" fxLayoutAlign="start center">
-           <app-map></app-map>
+           <app-map (addressChange)="addressChange($event)"></app-map>
         </div>
     </div>
     <div class="width_100 flex_auto" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">

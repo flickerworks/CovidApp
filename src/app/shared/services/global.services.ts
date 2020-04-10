@@ -78,13 +78,13 @@ export class GlobalServices {
   }
 
 
-  getPincodeCount(data:UserModel[]){
-    let pinCodeObj = {};
+  getZoneCount(data:UserModel[]){
+    let zoneObj = {};
     let total = [];
     data.forEach(ele => {
-      if(!pinCodeObj[ele.pincode]){
-        pinCodeObj[ele.pincode] = ele.pincode;
-        total.push(ele.pincode);
+      if(ele.zone && !zoneObj[ele.zone]){
+        zoneObj[ele.zone] = ele.zone;
+        total.push(ele.zone);
       }
     })
     return total.length;

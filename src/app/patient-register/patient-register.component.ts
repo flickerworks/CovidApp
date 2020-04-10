@@ -252,18 +252,18 @@ export class PatientRegisterComponent implements OnInit {
     const request = {
       QID: id,
       MID: this.MID,
-      FEVER: healthStatus.fever,
+      FEVER: healthStatus.fever+'',
       STATUS: "",
-      TEMPERATURE: healthStatus.temperature,
-      COUGHING: healthStatus.cough,
-      DIARRHEA: healthStatus.diarrhea,
-      RUNNYNOSE: healthStatus.runnyNose,
+      TEMPERATURE: healthStatus.temperature+'',
+      COUGHING: healthStatus.cough+'',
+      DIARRHEA: healthStatus.diarrhea+'',
+      RUNNYNOSE: healthStatus.runnyNose+'',
       REVIEWTIME: this.getTime(),
-      BREATHING: healthStatus.breathing,
-      UNUSUALFATIQUE: healthStatus.fatigue,
+      BREATHING: healthStatus.breathing+'',
+      UNUSUALFATIQUE: healthStatus.fatigue+'',
       UPDATETYPE: "",
-      LATITUDE: this.globalService.latitude,
-      LONGITUDE: this.globalService.longitude
+      LATITUDE: this.globalService.latitude+'',
+      LONGITUDE: this.globalService.longitude+''
     }
     this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
       //condition

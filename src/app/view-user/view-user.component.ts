@@ -57,7 +57,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       this.quarantineManagerData = data;
       this.quarantineManagerSectionDetails = {
         totalUsers: this.quarantineManagerData.length ,
-        totalZones: this.globalServices.getPincodeCount(this.quarantineManagerData),
+        totalZones: this.globalServices.getZoneCount(this.quarantineManagerData),
         users: this.quarantineManagerData,
         userType: 'Quarantine Manager',
         tableColumns: this.globalServices.enumToArray(UserTableColumns),
@@ -73,7 +73,7 @@ export class ViewUserComponent implements OnInit, OnDestroy {
       this.monitorsData = this.drawUserModalData(response, 'monitor');
       this.monitorsSectionDetails = {
         totalUsers: this.monitorsData.length,
-        totalZones: this.globalServices.getPincodeCount(this.monitorsData),
+        totalZones: this.globalServices.getZoneCount(this.monitorsData),
         users: this.monitorsData,
         userType: 'Monitors',
         tableColumns: this.globalServices.enumToArray(UserTableColumns),

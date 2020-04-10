@@ -242,6 +242,13 @@ export enum AssignMonitorColumns {
   EMAIL = 'email'
 }
 
+export interface MapAddress {
+  street: string;
+  city: string;
+  state: string;
+  pincode: string;
+}
+
 export const UserTypes: string[] = ['Quarantine Managers','Monitors'];
 
 export const MobileNumberValidationPattern: string = '^[0-9]{10}$';

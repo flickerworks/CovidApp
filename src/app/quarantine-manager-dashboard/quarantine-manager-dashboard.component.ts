@@ -154,32 +154,54 @@ export class QuarantineManagerDashboardComponent implements OnInit {
     let monitors = {};
     let dataList = [];
     list.forEach(ele => {
-      if(!monitors[ele.MID]){
-        monitors[ele.MID] = [];
-        monitors[ele.MID].push(ele);
-      }else{
-        monitors[ele.MID].push(ele);
-      }
+      if(ele["QID"]){
+        if(!monitors[ele.MID]){
+          monitors[ele.MID] = [];
+          monitors[ele.MID].push(ele);
+        }else{
+          monitors[ele.MID].push(ele);
+        }
+      }      
     })
     for(let key in monitors){
       const detail = monitors[key][0];
       let obj: PatientDetails = {
         name: `${detail.MFIRSTNAME} ${detail.MLASTNAME}`,
         id: detail.MID,
-        contactNumber: detail.MOBILENUMBER,
-        mail: detail.EMAIL,
-        zone: detail.ZONE,
+        contactNumber: detail.MPHONE,
+        mail: detail.MEMAIL,
+        zone: detail.MZONE,
         critical: this.getPropCount(monitors[key], 'CRITICAL'),
         flaged: this.getPropCount(monitors[key], 'FLAGGED')
       } 
       dataList.push(obj);
     }
+    const notAssignedMonitors = this.getNotAssignedMonitors(list);
     const data ={
-      users: [...dataList],
+      users: [...dataList, ...notAssignedMonitors],
       tableColumns: this.globalServices.enumToArray(MonitorTableColumns)
     }
     
     this.monitorDetails = JSON.parse(JSON.stringify(data));
+  }
+
+  getNotAssignedMonitors(list){
+    let data = [];
+    list.forEach(ele => {
+      if(!ele["QID"]){
+        let obj: PatientDetails = {
+          name: `${ele.MFIRSTNAME} ${ele.MLASTNAME}`,
+          id: ele.MID,
+          contactNumber: ele.MPHONE,
+          mail: ele.MEMAIL,
+          zone: ele.MZONE,
+          critical: 0,
+          flaged: 0
+        }
+        data.push(obj);
+      }
+    })
+    return data;
   }
 
   getPropCount(list, prop:string):number {
