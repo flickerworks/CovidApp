@@ -106,9 +106,9 @@ export class AddUserComponent implements OnInit {
         this.userRegisterForm.updateValueAndValidity();
         this.userRegisterForm.markAllAsTouched();
       } else {
-        this.userRegisterForm.controls.loginName.enable();
         this.userRegisterForm.reset();
-        this.userRegisterForm.updateValueAndValidity();
+        this.userRegisterForm.controls.loginName.enable();
+        this.userRegisterForm.controls.governmentIdType.setValue('');
       }
     })
   }
