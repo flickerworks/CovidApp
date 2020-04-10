@@ -73,13 +73,6 @@
   .mat-cell {
     color: $color-grey-dark;
     margin-right: 1rem;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    place-content: center flex-start;
-    align-items: center;
-    display: flex;
   }
 }
 .mat-paginator {

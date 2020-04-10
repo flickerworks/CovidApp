@@ -88,3 +88,14 @@ body {
 .dark-blue-text{
     color: $color-blue-dark;
 }
+
+.flex_auto {
+    flex: 1 1 auto !important;
+}
+.trim_text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    padding-right: 1rem;
+}

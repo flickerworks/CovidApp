@@ -62,7 +62,7 @@ export class AddUserComponent implements OnInit {
       area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
       city: ['', [Validators.minLength(1), Validators.maxLength(30)]],
       state: ['', [Validators.minLength(1), Validators.maxLength(30)]],
-      pincode: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
+      pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });

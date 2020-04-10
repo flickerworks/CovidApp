@@ -54,7 +54,7 @@
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.pincode.errors?.required || quarantineAddressFormGroup.controls.pincode.errors?.whitespace">
                             Pincode is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.pincode.errors?.pattern || quarantineAddressFormGroup.controls.pincode.errors?.minlength || quarantineAddressFormGroup.controls.pincode.errors?.maxlength">
-                            Pincode should be number and 1 to 6 characters long</mat-error>
+                            Pincode should be number and 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -128,7 +128,7 @@
                         <mat-error *ngIf="currentAddressFormGroup.controls.pincode.errors?.required || currentAddressFormGroup.controls.pincode.errors?.whitespace">
                             Pincode is required</mat-error>
                         <mat-error *ngIf="currentAddressFormGroup.controls.pincode.errors?.pattern || currentAddressFormGroup.controls.pincode.errors?.minlength || currentAddressFormGroup.controls.pincode.errors?.maxlength">
-                            Pincode should be number and 1 to 6 characters long</mat-error>
+                            Pincode should be number and 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -200,7 +200,7 @@
                         <mat-error *ngIf="permanentAddressFormGroup.controls.pincode.errors?.required || permanentAddressFormGroup.controls.pincode.errors?.whitespace">
                             Pincode is required</mat-error>
                         <mat-error *ngIf="permanentAddressFormGroup.controls.pincode.errors?.pattern || permanentAddressFormGroup.controls.pincode.errors?.minlength || permanentAddressFormGroup.controls.pincode.errors?.maxlength">
-                            Pincode should be number and 1 to 6 characters long</mat-error>
+                            Pincode should be number and 6 characters long</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
@@ -232,7 +232,7 @@
            <app-map></app-map>
         </div>
     </div>
-    <div class="width_100" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
+    <div class="width_100 flex_auto" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
         <button mat-raised-button (click)="goBack()" type="button">Previous</button>
         <button mat-raised-button (click)="saveForm()" [ngClass]="{'disabled' : isFormDisabled()}" type="button">Continue</button>
     </div> 

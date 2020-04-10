@@ -45,37 +45,37 @@
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px" fxLayoutAlign="left center">
             Name
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxLayoutAlign="start center" fxFlex="200px">{{element?.firstName}} {{element?.lastName}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxLayoutAlign="start center" fxFlex="200px"><div class="trim_text">{{element?.firstName}} {{element?.lastName}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="idNumber">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
             ID Number
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.id}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.id}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="contactNumber">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
             Contact Number
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.mobileNumber}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="200px"><div class="trim_text">{{element?.mobileNumber}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
             Mail ID
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.email}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="200px"><div class="trim_text">{{element?.email}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="zone">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
             Zone
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.zone}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="200px"><div class="trim_text">{{element?.zone}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="monitor">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
             Monitor Assigned
           </mat-header-cell>
-          <mat-cell *matCellDef="let element" fxFlex="200px">{{element?.monitorAssigned}}</mat-cell>
+          <mat-cell *matCellDef="let element" fxFlex="200px"><div class="trim_text">{{element?.monitorAssigned}}</div></mat-cell>
         </ng-container>
         <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px"></mat-header-cell>
