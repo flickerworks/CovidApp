@@ -194,7 +194,7 @@ export class AddUserComponent implements OnInit {
     let payloadType = "ADDMONITOR";
     let _userRegisterModel = userRegisterModel;
     this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
-    this.popupMessage = `${this.profileName}'s profile has been created as a Monitor successfully`;
+    this.popupMessage = `${this.profileName}'s profile has been created successfully as a Monitor`;
     if(this.isEdit){      
       this.popupMessage = `${this.profileName}'s profile has been updated successfully`;
       _userRegisterModel.MID = this.personalDetails.id;
@@ -213,7 +213,7 @@ export class AddUserComponent implements OnInit {
     let _userRegisterModel = userRegisterModel;    
     let payloadType = "ADDQURANTINEMGR";
     this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
-    this.popupMessage = `${this.profileName}'s profile has been created as a Quarantine Manager successfully`;
+    this.popupMessage = `${this.profileName}'s profile has been created successfully as a Quarantine Manager`;
     if(this.isEdit){
       this.popupMessage = `${this.profileName}'s profile has been updated successfully`;
       _userRegisterModel.QMID = this.personalDetails.id;
