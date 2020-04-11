@@ -8,7 +8,6 @@ export class GlobalServices {
   showPopup = new Subject<boolean>();
   showLoader = new Subject<boolean>();
   pincodeChange = new ReplaySubject<string>();
-  activeArea = new Subject<ElementRef>();
   public longitude:number;
   public latitude: number;
   private token: string = "";

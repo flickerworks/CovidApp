@@ -66,11 +66,13 @@ export class MonitorDetailsComponent implements OnInit {
   drawCriticalPatientList(list, type: string, all:boolean = false): PatientDetails[]{
     let data: PatientDetails[] = [];
     list.forEach(ele => {
+      const startDate = (ele.QSTARTDATE) ? new Date(ele.QSTARTDATE) : new Date();
+      const endtDate = (ele.TODAYDATE) ? new Date(ele.TODAYDATE.split(" ")[0]) : new Date();
       if(all || (ele[type] && ele[type].toUpperCase() === "Y")){
         const obj: PatientDetails = {
           name: `${ele.FIRSTNAME} ${ele.LASTNAME}`,
           id: ele.QID,
-          period: this.globalService.getDaysCount(ele.QSTARTDATE ? new Date(ele.QSTARTDATE) : new Date(), new Date(ele.TODAYDATE)),
+          period: this.globalService.getDaysCount(startDate, endtDate),
           zone: ele.ZONE,
           symptoms: type==='FLAGGED' ? [ele.SUSPICIOUSREASON]:((ele.SYMPTOM) ? ele.SYMPTOM.split("+") : "")
         }

@@ -263,8 +263,8 @@ export class PatientRegisterComponent implements OnInit {
       BREATHING: healthStatus.breathing.toString(),
       UNUSUALFATIQUE: healthStatus.fatigue.toString(),
       UPDATETYPE: "",
-      LATITUDE: this.globalService.latitude+'',
-      LONGITUDE: this.globalService.longitude+''
+      LATITUDE: (this.globalService.latitude) ? (this.globalService.latitude+'') : '28.6049',
+      LONGITUDE: (this.globalService.longitude) ? (this.globalService.longitude+'') : '77.3689'
     }
     this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
       //condition
@@ -277,9 +277,10 @@ export class PatientRegisterComponent implements OnInit {
 
   }
 
-  getTime(): number{
-    const _date  = new Date();
-    return _date.getHours();
+  getTime(): string{
+    const d = new Date(),
+    time = this.datePipe.transform(d, 'hh:mm:ss');
+    return time;
   }
 
   goBack(){

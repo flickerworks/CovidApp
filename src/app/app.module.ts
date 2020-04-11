@@ -25,7 +25,8 @@ import {
   MatProgressSpinnerModule,
   MatStepperModule,
   MatSlideToggleModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MAT_DATE_LOCALE
   } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +54,6 @@ import { AuthGuardService } from './auth.guard.service';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { ReportsComponent } from './reports/reports.component';
 import { MapComponent } from './patient-register/map/map.component';
-import { HostDirective } from './host.directive';
 
 
 @NgModule({
@@ -79,8 +79,7 @@ import { HostDirective } from './host.directive';
     AddressStepperComponent,
     AssignMonitorStepperComponent,
     ReportsComponent,
-    MapComponent,
-    HostDirective
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -144,6 +143,7 @@ import { HostDirective } from './host.directive';
       provide: DateAdapter,
       useClass: NativeDateAdapter
     },
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     /* {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptService,

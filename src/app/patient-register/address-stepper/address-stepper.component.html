@@ -6,7 +6,7 @@
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
                     <mat-form-field appearance="outline" fxFlex="40">
                         <div class="labels">Area<span class="color_red">*</span></div>
-                        <input formControlName="area" matInput appHost>
+                        <input formControlName="area" matInput #qArea>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.required || quarantineAddressFormGroup.controls.area.errors?.whitespace">
                             Area is required</mat-error>
                         <mat-error *ngIf="quarantineAddressFormGroup.controls.area.errors?.minlength || quarantineAddressFormGroup.controls.area.errors?.maxlength">
@@ -250,7 +250,7 @@
             </form>
         </div>
         <div class="map_section" fxLayout="column" fxLayoutGap="20px" fxFlex="40" fxLayoutAlign="start center">
-           <app-map (addressChange)="addressChange($event)"></app-map>
+           <app-map [target]="qArea" (addressChange)="addressChange($event)"></app-map>
         </div>
     </div>
     <div class="width_100 flex_auto" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">

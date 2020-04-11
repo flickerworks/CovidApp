@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, NgZone, Output, EventEmitter, Input } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { GlobalServices } from 'src/app/shared/services/global.services';
 import { MapAddress } from 'src/app/shared/models/shared.model';
@@ -14,6 +14,7 @@ export class MapComponent implements OnInit {
   zoom: number;
   address: string;
   autocomplete;
+  @Input() target: HTMLInputElement;
   @Output() addressChange = new EventEmitter<MapAddress>();
 
   private geoCoder;
@@ -24,13 +25,10 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.globalService.activeArea.subscribe(ele => {
-      // this.loadMap(ele);
-      // this.setCurrentLocation();
-    })
+    // this.loadMap(this.target);
   }
 
-  loadMap(ele:ElementRef){
+  loadMap(ele: HTMLInputElement){
     this.mapApiLoader.load().then(() => {
       // this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
@@ -54,8 +52,8 @@ export class MapComponent implements OnInit {
       lat: latitude,
       lng: longitude
     }}, (result, status) => {
-      console.log(result);
-      console.log(status);
+      // console.log(result);
+      // console.log(status);
       if(status == 'OK'){
         if(result[0]){
           this.zoom = 18;
@@ -118,16 +116,15 @@ export class MapComponent implements OnInit {
   }
 
   markerDragEnd(event){
-    // console.log(event);
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
     this.getAddress(this.latitude, this.longitude);
   }
 
 
-  autoSearch(ele: ElementRef){
+  autoSearch(ele: HTMLInputElement){
     if(!this.autocomplete){
-      this.autocomplete = new google.maps.places.Autocomplete(ele.nativeElement, {
+      this.autocomplete = new google.maps.places.Autocomplete(ele, {
         types: ["geocode"]
       });
     }

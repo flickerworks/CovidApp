@@ -179,8 +179,12 @@ export class QuarantineManagerDashboardComponent implements OnInit {
       dataList.push(obj);
     }
     const notAssignedMonitors = this.getNotAssignedMonitors(list);
+    const monitorList = [...dataList, ...notAssignedMonitors];
+    const sortList = monitorList.sort((a, b) => {
+      return Number(b.id) - Number(a.id);
+    })
     const data ={
-      users: [...dataList, ...notAssignedMonitors],
+      users: sortList,
       tableColumns: this.globalServices.enumToArray(MonitorTableColumns)
     }
     
