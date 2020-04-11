@@ -25,7 +25,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.globalService.activeArea.subscribe(ele => {
-      this.loadMap(ele);
+      // this.loadMap(ele);
+      // this.setCurrentLocation();
     })
   }
 
@@ -127,7 +128,7 @@ export class MapComponent implements OnInit {
   autoSearch(ele: ElementRef){
     if(!this.autocomplete){
       this.autocomplete = new google.maps.places.Autocomplete(ele.nativeElement, {
-        types: ["address"]
+        types: ["geocode"]
       });
     }
     

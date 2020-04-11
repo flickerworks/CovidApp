@@ -28,13 +28,13 @@ export class PersonalDetailsStepperComponent implements OnInit {
 
   ngOnInit() {
     this.personalDetailsFormGroup = this.formBuilder.group({
-      firstName: ['raman', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
-      lastName: ['thakur', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
-      mobileNumber: ['0987890987', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      alternateMobileNumber: ['9098789876', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
-      governmentIdType: ['Pancard', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
-      governmentIdNumber: ['4243', [Validators.required, this.globalService.noWhitespaceValidator]],
-      email: ['test@gm.com', [Validators.required, Validators.pattern(EmailValidationPattern)]],
+      firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      mobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
+      alternateMobileNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(MobileNumberValidationPattern)]],
+      governmentIdType: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30)]],
+      governmentIdNumber: ['', [Validators.required, this.globalService.noWhitespaceValidator]],
+      email: ['', [Validators.required, Validators.pattern(EmailValidationPattern)]],
       dateOfBirth: [{value:'', disabled:true}, [Validators.required]],
     });
     // this.personalDetailsFormGroup.updateValueAndValidity();

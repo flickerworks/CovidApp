@@ -77,7 +77,7 @@ export class MonitorDetailsComponent implements OnInit {
         data.push(obj);
       }
     });
-    return data;
+    return data.reverse();
   }
 
 }
