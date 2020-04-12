@@ -253,15 +253,15 @@ export class PatientRegisterComponent implements OnInit {
     const request = {
       QID: id,
       MID: this.MID,
-      FEVER: healthStatus.fever.toString(),
+      FEVER: healthStatus.fever ? "Yes" : "No",
       STATUS: "",
       TEMPERATURE: healthStatus.temperature+'',
-      COUGHING: healthStatus.cough.toString(),
-      DIARRHEA: healthStatus.diarrhea.toString(),
-      RUNNYNOSE: healthStatus.runnyNose.toString(),
+      COUGHING: healthStatus.cough ? "Yes" : "No",
+      DIARRHEA: healthStatus.diarrhea ? "Yes" : "No",
+      RUNNYNOSE: healthStatus.runnyNose ? "Yes" : "No",
       REVIEWTIME: this.getTime(),
-      BREATHING: healthStatus.breathing.toString(),
-      UNUSUALFATIQUE: healthStatus.fatigue.toString(),
+      BREATHING: healthStatus.breathing ? "Yes" : "No",
+      UNUSUALFATIQUE: healthStatus.fatigue ? "Yes" : "No",
       UPDATETYPE: "",
       LATITUDE: (this.globalService.latitude) ? (this.globalService.latitude+'') : '28.6049',
       LONGITUDE: (this.globalService.longitude) ? (this.globalService.longitude+'') : '77.3689'
@@ -279,7 +279,7 @@ export class PatientRegisterComponent implements OnInit {
 
   getTime(): string{
     const d = new Date(),
-    time = this.datePipe.transform(d, 'hh:mm:ss');
+    time = this.datePipe.transform(d, 'hh:mm:ss a');
     return time;
   }
 
