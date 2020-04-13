@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadMap(this.target);
+    // this.loadMap(this.target);
   }
 
   loadMap(ele: HTMLInputElement){
