@@ -205,7 +205,7 @@ export class AddUserComponent implements OnInit {
     }
     this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
-      const res = response[0].PAYLOAD.ADDMONITOR; 
+      const res = response[0].PAYLOAD[payloadType]; 
       if(!res.MID){
         this.popupBtn = "OK";
         this.popupMessage = `${this.profileName}'s profile already exists`;
@@ -232,7 +232,7 @@ export class AddUserComponent implements OnInit {
     }
     this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
-      const res = response[0].PAYLOAD.ADDQURANTINEMGR; 
+      const res = response[0].PAYLOAD[payloadType]; 
       if(!res.QMID){
         this.popupBtn = "OK";
         this.popupMessage = `${this.profileName}'s profile already exists`;
