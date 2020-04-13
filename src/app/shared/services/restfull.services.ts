@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
-import { LoggedInUserModel, Payload, UserModel, UserRegisterModel } from '../models/shared.model';
+import { LoggedInUserModel, Payload, UserModel, UserRegisterModel, State, City } from '../models/shared.model';
 import { GlobalServices } from './global.services';
 
 @Injectable ({providedIn: 'root'})
@@ -37,6 +37,7 @@ export class RestfullServices {
             })
         )
     }
+
 
     onApiError(cought){
         const source = cought.source.source.source.source.source;
@@ -76,6 +77,10 @@ export class RestfullServices {
         _payload.MESSAGE.SESSION.TYPE = payload.KEY;
         Object.assign(_payload.MESSAGE.PAYLOAD, payload.PAYLOAD);
         return _payload;
+    }
+
+    get(url: string):Observable<any>{
+        return this.http.get(url, {headers: this.headers});
     }
 
 

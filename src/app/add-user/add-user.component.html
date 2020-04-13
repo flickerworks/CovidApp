@@ -134,7 +134,7 @@
                     </mat-form-field>
                 </div>
                 <div class="width_100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px" fxFlex="100">
-                    <mat-form-field appearance="outline" fxFlex="30">
+                    <!-- <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">City</div>
                         <input formControlName="city" matInput>
                         <mat-error *ngIf="userRegisterForm.controls.city.errors?.pattern
@@ -149,6 +149,24 @@
                             || userRegisterForm.controls.state.errors?.minlength
                             || userRegisterForm.controls.state.errors?.maxlength">
                             State should be alphabets (max 30 characters)</mat-error>
+                    </mat-form-field> -->
+                    <mat-form-field appearance="outline" fxFlex="30">
+                        <div class="labels">State</div>
+                        <mat-select formControlName="state" [(ngModel)]="selectedState" (selectionChange)="changeState($event)">
+                            <mat-option value="">Select state</mat-option>
+                            <mat-option *ngFor="let state of states" [value]="state.name">{{state.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegisterForm.controls.state.errors?.required">
+                            State is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" fxFlex="30">
+                        <div class="labels">City</div>
+                        <mat-select formControlName="city" [(ngModel)]="selectedCity" (selectionChange)="changeCity($event)">
+                            <mat-option value="">Select city</mat-option>
+                            <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="userRegisterForm.controls.city.errors?.required">
+                            City is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" fxFlex="30">
                         <div class="labels">Pin code<span class="color_red">*</span></div>

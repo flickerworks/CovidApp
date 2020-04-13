@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuarantineTypes, PatientAddressModel, PincodeValidationPattern, StringValidationPattern, MapAddress } from '../../shared/models/shared.model';
+import { QuarantineTypes, PatientAddressModel, PincodeValidationPattern, State, MapAddress, City } from '../../shared/models/shared.model';
 import { GlobalServices } from 'src/app/shared/services/global.services';
+import { RestfullServices } from 'src/app/shared/services/restfull.services';
 
 @Component({
   selector: 'app-address-stepper',
@@ -20,11 +21,16 @@ export class AddressStepperComponent implements OnInit {
   quarantineAddressFormGroup: FormGroup;
   quarantineTypeFormGroup: FormGroup;
   quarantineTypes: string[] = QuarantineTypes;
-
+  states: State[] = [];
+  allCities: City[] = [];
+  cities_p: City[] = [];
+  cities_c: City[] = [];
+  cities_q: City[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
-    private globalService: GlobalServices
+    private globalService: GlobalServices,
+    private restfullServices: RestfullServices
   ) { }
 
   ngOnInit() {
@@ -32,8 +38,8 @@ export class AddressStepperComponent implements OnInit {
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
@@ -41,8 +47,8 @@ export class AddressStepperComponent implements OnInit {
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern),this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
@@ -50,8 +56,8 @@ export class AddressStepperComponent implements OnInit {
       houseNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       streetName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
       area: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(100), this.globalService.noWhitespaceValidator]],
-      city: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
-      state: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       zone: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
@@ -61,6 +67,7 @@ export class AddressStepperComponent implements OnInit {
 
     this.updateValueOnChange();
     this.onCurrentAddressChange();
+    this.getStates();
   }
 
   saveForm(): void {
@@ -104,12 +111,12 @@ export class AddressStepperComponent implements OnInit {
 
   updateValueOnChange(){
     this.quarantineAddressFormGroup.valueChanges.subscribe(fg => {
-      const isCurrentReset = !this.markCurrentAddress && this.currentAddressFormGroup.get('houseNumber').value.trim();
-      const isPermanentReset = !this.markPermanentAddress && this.permanentAddressFormGroup.get('houseNumber').value.trim();
+      const isCurrentReset = !this.markCurrentAddress && this.currentAddressFormGroup.get('houseNumber').value && this.currentAddressFormGroup.get('houseNumber').value.trim();
+      const isPermanentReset = !this.markPermanentAddress && this.permanentAddressFormGroup.get('houseNumber').value && this.permanentAddressFormGroup.get('houseNumber').value.trim();
       this.checkCurrentAddress(this.markCurrentAddress, isCurrentReset);
       this.checkPermanentAddress_1(this.markPermanentAddress, isPermanentReset);
-      
     })
+    
   }
 
   onCurrentAddressChange(){
@@ -122,39 +129,54 @@ export class AddressStepperComponent implements OnInit {
 
   checkCurrentAddress(checked: boolean, isReset: boolean = true): void {    
     if (checked) {
+      this.changeState({value:this.quarantineAddressFormGroup.get('state').value}, 'c', this.quarantineAddressFormGroup.get('city').value);
       this.currentAddressFormGroup.patchValue(this.quarantineAddressFormGroup.value);
-      this.currentAddressFormGroup.updateValueAndValidity();
+      this.currentAddressFormGroup.updateValueAndValidity({emitEvent: false});
       this.currentAddressFormGroup.markAllAsTouched();
+      this.cities_c = this.cities_q;
     } else {
       if(isReset){
-        this.currentAddressFormGroup.reset();
-        this.currentAddressFormGroup.updateValueAndValidity();
+        this.currentAddressFormGroup.reset();        
+        this.currentAddressFormGroup.get('state').setValue("");
+        this.currentAddressFormGroup.get('city').setValue("");
+        this.currentAddressFormGroup.updateValueAndValidity({emitEvent: false});
+        this.cities_c = [];
       }      
     }
   }
 
   checkPermanentAddress_1(checked: boolean, isReset: boolean = true): void {
     if (checked){
+      this.changeState({value:this.quarantineAddressFormGroup.get('state').value}, 'p', this.quarantineAddressFormGroup.get('city').value);
       this.permanentAddressFormGroup.patchValue(this.quarantineAddressFormGroup.value);
       this.permanentAddressFormGroup.updateValueAndValidity();
       this.permanentAddressFormGroup.markAllAsTouched();
+      this.cities_p = this.cities_q;
     }else{
       if(isReset){
         this.permanentAddressFormGroup.reset();
+        this.permanentAddressFormGroup.get('state').setValue("");
+        this.permanentAddressFormGroup.get('city').setValue("");
         this.permanentAddressFormGroup.updateValueAndValidity();
+        this.cities_p = [];
       }      
     }
   }
 
   checkPermanentAddress_2(checked: boolean, isReset: boolean = true): void {
     if (checked){
+      this.changeState({value:this.currentAddressFormGroup.get('state').value}, 'p', this.currentAddressFormGroup.get('city').value);
       this.permanentAddressFormGroup.patchValue(this.currentAddressFormGroup.value);
       this.permanentAddressFormGroup.updateValueAndValidity();
       this.permanentAddressFormGroup.markAllAsTouched();
+      this.cities_p = this.cities_c;
     }else{
       if(isReset){
         this.permanentAddressFormGroup.reset();
+        this.permanentAddressFormGroup.get('state').setValue("");
+        this.permanentAddressFormGroup.get('city').setValue("");
         this.permanentAddressFormGroup.updateValueAndValidity();
+        this.cities_p = [];
       }      
     }
   }
@@ -172,9 +194,12 @@ export class AddressStepperComponent implements OnInit {
   }
 
   addressChange(address: MapAddress){
-    this.quarantineAddressFormGroup.get('streetName').setValue(address.street);
-    this.quarantineAddressFormGroup.get('city').setValue(address.city);
+    this.quarantineAddressFormGroup.get('streetName').setValue(address.street);    
     this.quarantineAddressFormGroup.get('state').setValue(address.state);
+    this.quarantineAddressFormGroup.get('state').updateValueAndValidity();
+    this.changeState({value:address.state}, 'q', address.city);
+    // this.quarantineAddressFormGroup.get('city').setValue(address.city);
+    
     this.quarantineAddressFormGroup.get('pincode').setValue(address.pincode);
     this.quarantineAddressFormGroup.get('area').setValue(address.area);
     this.quarantineAddressFormGroup.updateValueAndValidity();
@@ -183,6 +208,34 @@ export class AddressStepperComponent implements OnInit {
     this.quarantineAddressFormGroup.get('state').markAllAsTouched();
     this.quarantineAddressFormGroup.get('pincode').markAllAsTouched();
     this.quarantineAddressFormGroup.get('area').markAllAsTouched();
+  }
+
+  getStates(){
+    this.restfullServices.get('assets/DB/states.json').subscribe(res => {
+      this.states = res.states;
+    })
+    this.restfullServices.get('assets/DB/cities.json').subscribe(res => {
+      this.allCities = res.cities;
+    })
+  }
+
+  changeState(event, type: string, city?: string){
+    const name = event.value;
+    if(!name)return;
+    const state = this.states.filter(state => state.name.toUpperCase() === name.toUpperCase());
+    const id = state[0].id;
+    this['cities_'+type] = this.allCities.filter((city: City) => {
+      return city.state_id === id;
+    })
+    if(city && type == "q"){
+      this.quarantineAddressFormGroup.get('city').setValue(city);
+      this.quarantineAddressFormGroup.get('city').updateValueAndValidity();
+    }
+  }
+
+  changeCity(event){
+    console.log(this.quarantineAddressFormGroup.get('state').value);
+    console.log(this.quarantineAddressFormGroup.get('city').value);
   }
   
 }

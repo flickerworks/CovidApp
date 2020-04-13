@@ -258,6 +258,18 @@ export interface MapAddress {
   pincode: string;
 }
 
+export interface State {
+  id: string;
+  name: string;
+  country_id: string;
+}
+
+export interface City {
+  id: string;
+  name: string;
+  state_id: string;
+}
+
 export const UserTypes: string[] = ['Quarantine Managers','Monitors'];
 
 export const MobileNumberValidationPattern: string = '^[0-9]{10}$';

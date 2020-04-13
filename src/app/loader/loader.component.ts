@@ -7,12 +7,24 @@ import { GlobalServices } from '../shared/services/global.services';
 })
 export class LoaderComponent implements OnInit {
   show:boolean = false;
+  timeout;
   constructor(private globalService: GlobalServices) { }
 
   ngOnInit() {
     this.globalService.showLoader.subscribe(res => {
       this.show = res;
+      if(this.timeout){
+        clearTimeout(this.timeout);
+      }
+      this.timeout = setTimeout(_ => {
+        this.hideLoader();
+        clearTimeout(this.timeout);
+      },10000)
     })
+  }
+
+  hideLoader(){
+    this.show = false;
   }
 
 }

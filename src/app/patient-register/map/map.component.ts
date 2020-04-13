@@ -95,7 +95,7 @@ export class MapComponent implements OnInit {
     locality = (obj["locality"]) ? obj["locality"] : "",
     address:MapAddress = {
       street: this.drawStreet(obj).trim() || (fullAddress.split(",")[0]).trim(),
-      pincode: obj["postal_code"].trim(),
+      pincode: obj["postal_code"] && obj["postal_code"].trim(),
       city: _adrs[0].trim(),
       state: _adrs[1].trim(),
       area: (subLocality) ? subLocality : locality
@@ -129,6 +129,7 @@ export class MapComponent implements OnInit {
       types: ["geocode"]
     });
     
+
     this.autocomplete.setComponentRestrictions({
       'country': ['in']
     });

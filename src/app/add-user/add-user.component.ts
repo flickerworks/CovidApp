@@ -9,7 +9,9 @@ import {
   PersonalDetails,
   FileExtension,
   PincodeValidationPattern,
-  StringValidationPattern
+  StringValidationPattern,
+  State,
+  City
 } from '../shared/models/shared.model';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { Subscription } from 'rxjs';
@@ -37,6 +39,10 @@ export class AddUserComponent implements OnInit {
   userType = 'quarantine_manager';
   personalDetails: PersonalDetails;
   popupBtn: string = "Done";
+  states: State[] = [];
+  cities: City[] = [];
+  selectedCity: string= '';
+  selectedState: string= '';
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
@@ -61,13 +67,14 @@ export class AddUserComponent implements OnInit {
       houseNumber: ['', [Validators.minLength(1), Validators.maxLength(30)]],
       street: ['', [Validators.minLength(1), Validators.maxLength(100)]],
       area: ['', [Validators.minLength(1), Validators.maxLength(100)]],
-      city: ['', [Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern)]],
-      state: ['', [Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern)]],
+      city: ['', [Validators.required]],
+      state: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6), Validators.pattern(PincodeValidationPattern), this.globalService.noWhitespaceValidator]],
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
     this.checkParams();
+    this.getStates();
   }
 
   checkParams():void {
@@ -266,4 +273,27 @@ export class AddUserComponent implements OnInit {
    } 
   }
 
+  getStates(){
+    this.restfullServices.get('assets/DB/states.json').subscribe(res => {
+      this.states = res.states;
+    })
+  }
+
+  changeState(event){
+    const name = event.value;
+    if(!name)return;
+    const state = this.states.filter(state => state.name===name);
+    const id = state[0].id;
+    this.restfullServices.get('assets/DB/cities.json').subscribe(res => {
+      const data: City[] = res.cities;
+      this.cities = data.filter((city: City) => {
+        return city.state_id === id;
+      })
+    })
+  }
+
+  changeCity(event){
+    console.log(this.userRegisterForm.get('state').value);
+    console.log(this.userRegisterForm.get('city').value);
+  }
 }
