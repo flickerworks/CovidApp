@@ -36,6 +36,7 @@ export class AddUserComponent implements OnInit {
   profileName: string;
   userType = 'quarantine_manager';
   personalDetails: PersonalDetails;
+  popupBtn: string = "Done";
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
@@ -192,6 +193,7 @@ export class AddUserComponent implements OnInit {
 
   registerMonitor(userRegisterModel){    
     let payloadType = "ADDMONITOR";
+    this.popupBtn = "Done";  
     let _userRegisterModel = userRegisterModel;
     this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
     this.popupMessage = `${this.profileName}'s profile has been created successfully as a Monitor`;
@@ -203,14 +205,22 @@ export class AddUserComponent implements OnInit {
     }
     this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
-      console.log(response);      
-      this.showPopup = true;
+      const res = response[0].PAYLOAD.ADDMONITOR; 
+      if(!res.MID){
+        this.popupBtn = "OK";
+        this.popupMessage = `${this.profileName}'s profile already exists`;
+        if(this.isEdit){
+          this.popupMessage = "Server error, please try after some time";
+        }        
+      }  
+      this.showPopup = true;   
     })   
   }
   
 
   registerQManager(userRegisterModel){
-    let _userRegisterModel = userRegisterModel;    
+    let _userRegisterModel = userRegisterModel;  
+    this.popupBtn = "Done";  
     let payloadType = "ADDQURANTINEMGR";
     this.profileName = this.globalService.firstLetterUppercase(_userRegisterModel.FIRSTNAME);
     this.popupMessage = `${this.profileName}'s profile has been created successfully as a Quarantine Manager`;
@@ -222,7 +232,14 @@ export class AddUserComponent implements OnInit {
     }
     this.userSubscription = this.restfullServices.post(_userRegisterModel, payloadType).subscribe(response => {
       //validation here
-      console.log(response);
+      const res = response[0].PAYLOAD.ADDQURANTINEMGR; 
+      if(!res.QMID){
+        this.popupBtn = "OK";
+        this.popupMessage = `${this.profileName}'s profile already exists`;
+        if(this.isEdit){
+          this.popupMessage = "Server error, please try after some time";
+        }        
+      }
       this.showPopup = true;
     }) 
   }
@@ -235,8 +252,10 @@ export class AddUserComponent implements OnInit {
 
   popupDone(){
     // this.resetFormData();
-    this.globalService.showPopup.next(false);
-    this.router.navigate(['/view-user']);
+    this.showPopup = false;
+    if(this.popupBtn==="Done"){
+      this.router.navigate(['/view-user']);
+    }    
   }
 
   showPass(){

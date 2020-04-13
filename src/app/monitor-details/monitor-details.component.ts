@@ -43,7 +43,7 @@ export class MonitorDetailsComponent implements OnInit {
       MID: this.monitor.id
     }
     this.restService.post(request, "FETCHUSERBYMID").subscribe(response => {
-      const list = response[0].PAYLOAD.FETCHALLUSERBYMID.RECORD;
+      const list = response[0].PAYLOAD.FETCHUSERBYMID.RECORD;
       if(Array.isArray(list)){
         this.criticalPatientDetails = [...this.drawCriticalPatientList(list, 'CRITICAL')];
         this.missedPatientDetails = [...this.drawCriticalPatientList(list, 'MISSEDUPDATE')];

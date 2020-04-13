@@ -266,7 +266,7 @@ export class PatientRegisterComponent implements OnInit {
       LATITUDE: (this.globalService.latitude) ? (this.globalService.latitude+'') : '28.6049',
       LONGITUDE: (this.globalService.longitude) ? (this.globalService.longitude+'') : '77.3689'
     }
-    this.restAPI.post(request, "ADDHEALTHSTATUS").subscribe(response => {
+    this.restAPI.post(request, "ADDHEALTHSTATUSPORTAL").subscribe(response => {
       //condition
       this.showPopup = true;
       setTimeout(_ => {

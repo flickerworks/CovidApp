@@ -108,7 +108,7 @@ import { MapComponent } from './patient-register/map/map.component';
     MatSlideToggleModule,
     MatCheckboxModule,
     AgmCoreModule.forRoot({
-      apiKey:"AIzaSyB4Jty4ZDNZsi3i9h6oXFMjLj86nr8d2M4",
+      apiKey:"AIzaSyAssBcayFvpRxPOdRFD62m52NwO3W77PpM",
       libraries: ['places']
     })
   ],

@@ -98,32 +98,42 @@ export class ViewUserComponent implements OnInit, OnDestroy {
     }
     
     let list = [];
+    if(Array.isArray(data)){
       data.forEach((ele:MonitorAndManagerList) => {
-        const obj: UserModel = {
-          id: (type==='monitor') ?ele.MID : ele.QMID,
-          firstName: ele.FIRSTNAME,
-          lastName: ele.LASTNAME,
-          email: ele.EMAIL,
-          mobileNumber: ele.PHONE,
-          alternateMobileNumber:0,
-          governmentId:ele.IDCARDTYPE,
-          doorNumber: ele.HNO,
-          streetName: ele.STREETNAME,
-          area: ele.AREA,
-          city: ele.CITY,
-          state: ele.STATE,
-          pincode: ele.PINCODE,
-          zone: ele.ZONE,
-          monitorAssigned:'',
-          designation: ele.DESIGNATION,
-          department: ele.DEPARTMENT,
-          loginName: ele.LOGINNAME,
-          password: ele.PASSWORD,
-          userType:(type==='monitor') ? 'Monitor' : 'Quarantine Manager'
-        }
+        const obj = this.drawObject(ele, type);
         list.push(obj);
       });
-      return list.reverse();
+    }else{
+      const obj = this.drawObject(data, type);
+      list.push(obj);
+    }      
+    return list.reverse();
+  }
+
+  drawObject(ele, type){
+    const obj: UserModel = {
+      id: (type==='monitor') ?ele.MID : ele.QMID,
+      firstName: ele.FIRSTNAME,
+      lastName: ele.LASTNAME,
+      email: ele.EMAIL,
+      mobileNumber: ele.PHONE,
+      alternateMobileNumber:0,
+      governmentId:ele.IDCARDTYPE,
+      doorNumber: ele.HNO,
+      streetName: ele.STREETNAME,
+      area: ele.AREA,
+      city: ele.CITY,
+      state: ele.STATE,
+      pincode: ele.PINCODE,
+      zone: ele.ZONE,
+      monitorAssigned:'',
+      designation: ele.DESIGNATION,
+      department: ele.DEPARTMENT,
+      loginName: ele.LOGINNAME,
+      password: ele.PASSWORD,
+      userType:(type==='monitor') ? 'Monitor' : 'Quarantine Manager'
+    }
+    return obj;
   }
 
 
