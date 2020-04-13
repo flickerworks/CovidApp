@@ -211,18 +211,15 @@ export class AddressStepperComponent implements OnInit {
   }
 
   getStates(){
-    this.restfullServices.get('assets/DB/states.json').subscribe(res => {
-      this.states = res.states;
-    })
-    this.restfullServices.get('assets/DB/cities.json').subscribe(res => {
-      this.allCities = res.cities;
-    })
+    this.states = this.restfullServices.states;
+    this.allCities = this.restfullServices.allCities;
   }
 
   changeState(event, type: string, city?: string){
     const name = event.value;
     if(!name)return;
     const state = this.states.filter(state => state.name.toUpperCase() === name.toUpperCase());
+    if(!state.length) return;
     const id = state[0].id;
     this['cities_'+type] = this.allCities.filter((city: City) => {
       return city.state_id === id;

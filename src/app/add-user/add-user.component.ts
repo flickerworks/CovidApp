@@ -43,6 +43,7 @@ export class AddUserComponent implements OnInit {
   cities: City[] = [];
   selectedCity: string= '';
   selectedState: string= '';
+  allCities: City[] = [];
   constructor(
     private readonly formBuilder: FormBuilder,
     private restfullServices: RestfullServices,
@@ -53,6 +54,7 @@ export class AddUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getStates();
     this.userRegisterForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
@@ -73,8 +75,8 @@ export class AddUserComponent implements OnInit {
       loginName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]],
       password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30), this.globalService.noWhitespaceValidator]]
     });
-    this.checkParams();
-    this.getStates();
+    
+    this.checkParams();    
   }
 
   checkParams():void {
@@ -90,6 +92,9 @@ export class AddUserComponent implements OnInit {
           this.router.navigate(['/view-user']);
           return;
         }
+        this.selectedState = this.personalDetails.state;
+        this.changeState({value: this.selectedState});
+        this.selectedCity = this.personalDetails.city;
         this.userType = (this.personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
         this.userRegisterForm.patchValue({
           firstName: this.personalDetails.firstName,
@@ -273,22 +278,19 @@ export class AddUserComponent implements OnInit {
    } 
   }
 
-  getStates(){
-    this.restfullServices.get('assets/DB/states.json').subscribe(res => {
-      this.states = res.states;
-    })
+  getStates(){    
+    this.states = this.restfullServices.states;
+    this.allCities = this.restfullServices.allCities;
   }
 
   changeState(event){
     const name = event.value;
     if(!name)return;
     const state = this.states.filter(state => state.name===name);
+    if(!state.length) return;
     const id = state[0].id;
-    this.restfullServices.get('assets/DB/cities.json').subscribe(res => {
-      const data: City[] = res.cities;
-      this.cities = data.filter((city: City) => {
-        return city.state_id === id;
-      })
+    this.cities = this.allCities.filter((city: City) => {
+      return city.state_id === id;
     })
   }
 

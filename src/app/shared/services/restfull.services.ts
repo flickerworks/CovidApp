@@ -9,7 +9,8 @@ import { GlobalServices } from './global.services';
 export class RestfullServices {
     
     public baseUrl: string = 'https://deap.techmahindra.com/UMPWebContainer/UMPRequestProcessor';
-    
+    states: State[];
+    allCities: City[];
     headers = new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8'
     });
@@ -18,7 +19,14 @@ export class RestfullServices {
         headers: this.headers
     });
 
-    constructor(private http: HttpClient, private globalService: GlobalServices) {}
+    constructor(private http: HttpClient, private globalService: GlobalServices) {
+        this.get('assets/DB/states.json').subscribe(res => {
+            this.states = res.states;
+        })
+        this.get('assets/DB/cities.json').subscribe(res => {
+            this.allCities = res.cities;
+        })
+    }
 
 
     postApi(requestData:any):Observable<any>{
