@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.loadMap(this.target);
+    this.loadMap(this.target);
   }
 
   loadMap(ele: HTMLInputElement){
@@ -123,13 +123,17 @@ export class MapComponent implements OnInit {
 
 
   autoSearch(ele: HTMLInputElement){
-    if(!this.autocomplete){
-      this.autocomplete = new google.maps.places.Autocomplete(ele, {
-        types: ["geocode"]
-      });
-    }
+    this.autocomplete = new google.maps.places.Autocomplete(ele, {
+      types: ["geocode"]
+    });
+
+    this.autocomplete.setOptions({
+      offset: 3
+    })
     
-    this.autocomplete.setComponentRestrictions({'country': ['in']});
+    this.autocomplete.setComponentRestrictions({
+      'country': ['in']
+    });
     this.autocomplete.addListener("place_changed", () => {
       this.ngZone.run(() => {
         //get the place result
