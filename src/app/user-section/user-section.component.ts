@@ -5,7 +5,8 @@ import {
   UserModel,
   DefaultPaginatorValues,
   UserTableColumns,
-  PersonalDetails
+  PersonalDetails,
+  AdminDashboardUserModel
 } from '../shared/models/shared.model';
 import { GlobalServices } from '../shared/services/global.services';
 import { Router } from '@angular/router';
@@ -21,11 +22,11 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() tabIndex:number;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  dataSource: MatTableDataSource<UserModel> = new MatTableDataSource<UserModel>();
+  dataSource: MatTableDataSource<AdminDashboardUserModel> = new MatTableDataSource<AdminDashboardUserModel>();
   displayedColumns: string[];
   searchModel: string;
   searchPincodeModel: string;
-  userTableData: UserModel[] = [];
+  userTableData: AdminDashboardUserModel[] = [];
   isDataAvailable: boolean = true;
   
   constructor(
@@ -54,11 +55,26 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   drawTable(){
     this.displayedColumns = this.userSectionDetails.tableColumns;
     if (this.userSectionDetails.users && this.userSectionDetails.users.length > 0) {
-      this.dataSource.data = this.userSectionDetails.users;
+      this.dataSource.data = this.generateDataSource(this.userSectionDetails.users);
       this.isDataAvailable = true;
     } else {
       this.isDataAvailable = false;
     }
+  }
+
+  generateDataSource(users: UserModel[]): AdminDashboardUserModel[] {
+    let userData: AdminDashboardUserModel[] = [];
+    users.map(key => {
+      userData.push({
+        id: key.id,
+        firstName: key.firstName,
+        lastName: key.lastName,
+        email: key.email,
+        mobileNumber: key.mobileNumber,
+        zone: key.zone
+      });
+    });
+    return userData;
   }
 
   searchTable(filterValue: string): void {
@@ -70,31 +86,34 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  viewDetails(userDetails: UserModel):  void {
-    const personalDetails: PersonalDetails = {
-      name: `${this.globalServices.firstLetterUppercase(userDetails.firstName)} ${this.globalServices.firstLetterUppercase(userDetails.lastName)}`,
-      type: userDetails.userType,
-      id: userDetails.id,
-      phone: userDetails.mobileNumber,
-      email: userDetails.email,
-      zone: userDetails.zone,
-      houseNo: userDetails.doorNumber,
-      street: userDetails.streetName,
-      state: userDetails.state,
-      area: userDetails.area,
-      pincode: userDetails.pincode,
-      city: userDetails.city,
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      idCardType: userDetails.governmentId,
-      department: userDetails.department,
-      designation: userDetails.designation,
-      loginName: userDetails.loginName,
-      password: userDetails.password
+  viewDetails(userData: AdminDashboardUserModel):  void {
+    let userDetails: UserModel = this.userSectionDetails.users.find(key => key.id === userData.id);
+    if (userDetails) {
+      const personalDetails: PersonalDetails = {
+        name: `${this.globalServices.firstLetterUppercase(userDetails.firstName)} ${this.globalServices.firstLetterUppercase(userDetails.lastName)}`,
+        type: userDetails.userType,
+        id: userDetails.id,
+        phone: userDetails.mobileNumber,
+        email: userDetails.email,
+        zone: userDetails.zone,
+        houseNo: userDetails.doorNumber,
+        street: userDetails.streetName,
+        state: userDetails.state,
+        area: userDetails.area,
+        pincode: userDetails.pincode,
+        city: userDetails.city,
+        firstName: userDetails.firstName,
+        lastName: userDetails.lastName,
+        idCardType: userDetails.governmentId,
+        department: userDetails.department,
+        designation: userDetails.designation,
+        loginName: userDetails.loginName,
+        password: userDetails.password
+      };
+      this.globalServices.lastSelectedAdminTab = this.tabIndex;
+      this.globalServices.personalDetal = personalDetails;
+      this.router.navigate(['/personal-details']);
     }
-    this.globalServices.lastSelectedAdminTab = this.tabIndex;
-    this.globalServices.personalDetal = personalDetails;
-    this.router.navigate(['/personal-details']);
   }
 
   

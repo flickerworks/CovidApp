@@ -180,6 +180,15 @@ export interface UserModel {
   password: string;
 }
 
+export interface AdminDashboardUserModel {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: number;
+  zone: string;
+}
+
 export interface Payload {
   KEY:string;
   PAYLOAD:any;
