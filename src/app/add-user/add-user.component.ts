@@ -93,7 +93,7 @@ export class AddUserComponent implements OnInit {
           return;
         }
         this.selectedState = this.personalDetails.state;
-        this.changeState({value: this.selectedState});
+        this.getStateAndCity({value: this.selectedState});
         this.selectedCity = this.personalDetails.city;
         this.userType = (this.personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
         this.userRegisterForm.patchValue({
@@ -283,7 +283,7 @@ export class AddUserComponent implements OnInit {
     this.allCities = this.restfullServices.allCities;
   }
 
-  changeState(event){
+  getStateAndCity(event){
     const name = event.value;
     if(!name)return;
     const state = this.states.filter(state => state.name===name);

@@ -67,7 +67,7 @@ export class AddressStepperComponent implements OnInit {
 
     this.updateValueOnChange();
     this.onCurrentAddressChange();
-    this.getStates();
+    this.getStateAndCity();
   }
 
   saveForm(): void {
@@ -210,7 +210,7 @@ export class AddressStepperComponent implements OnInit {
     this.quarantineAddressFormGroup.get('area').markAllAsTouched();
   }
 
-  getStates(){
+  getStateAndCity(){
     this.states = this.restfullServices.states;
     this.allCities = this.restfullServices.allCities;
   }
