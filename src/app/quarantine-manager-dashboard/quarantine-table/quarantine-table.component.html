@@ -9,7 +9,7 @@
           <img src="./assets/images/user_circle.svg">
           <div class="trim_text"><b>{{element?.name}}</b></div></mat-cell>
       </ng-container>
-      <ng-container matColumnDef="idNumber">
+      <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
           ID Number
         </mat-header-cell>
@@ -21,7 +21,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.contactNumber}}</div></mat-cell>
       </ng-container>
-      <ng-container matColumnDef="email">
+      <ng-container matColumnDef="mail">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
           Mail ID
         </mat-header-cell>
@@ -54,14 +54,14 @@
         <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.monitoredBy}}</div></mat-cell>
       </ng-container>
       <ng-container matColumnDef="quarantineCount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px"></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="center center">
           <div class="color_red margin_bottom"><span class="quarantine_counter">{{element?.critical}}</span> <span>Critical</span></div>
           <div class="color_orange margin_bottom"><span class="quarantine_counter">{{element?.flaged}}</span> <span>Flaged</span></div>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px"></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px">
           <button mat-button class="update_button" (click)="viewDetails(element)">View Details</button>
         </mat-cell>

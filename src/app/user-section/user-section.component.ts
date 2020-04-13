@@ -66,11 +66,10 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
     let userData: AdminDashboardUserModel[] = [];
     users.map(key => {
       userData.push({
-        id: key.id,
-        firstName: key.firstName,
-        lastName: key.lastName,
+        idNumber: key.id,
+        name: key.firstName + ' ' + key.lastName,
         email: key.email,
-        mobileNumber: key.mobileNumber,
+        contactNumber: key.mobileNumber,
         zone: key.zone
       });
     });
@@ -87,7 +86,7 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   viewDetails(userData: AdminDashboardUserModel):  void {
-    let userDetails: UserModel = this.userSectionDetails.users.find(key => key.id === userData.id);
+    let userDetails: UserModel = this.userSectionDetails.users.find(key => key.id === userData.idNumber);
     if (userDetails) {
       const personalDetails: PersonalDetails = {
         name: `${this.globalServices.firstLetterUppercase(userDetails.firstName)} ${this.globalServices.firstLetterUppercase(userDetails.lastName)}`,

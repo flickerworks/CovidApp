@@ -138,9 +138,9 @@ export class UserSectionModel {
 
 export enum QuarantineTableColumns {
   NAME = 'name',
-  ID_NUMBER = "idNumber",
+  ID = "id",
   CONTACT_NUMBER = 'contactNumber',
-  EMAIL = 'email',
+  MAIL = 'mail',
   ZONE = 'zone',
   IN_QUARANTINE = 'inQuarantine',
   SYMPTOMS = 'symptoms',
@@ -149,9 +149,9 @@ export enum QuarantineTableColumns {
 
 export enum MonitorTableColumns {
   NAME = 'name',
-  ID_NUMBER = "idNumber",
+  ID = "id",
   CONTACT_NUMBER = 'contactNumber',
-  EMAIL = 'email',
+  MAIL = 'mail',
   ZONE = 'zone',
   QUARANTINE_COUNT = 'quarantineCount',
   ACTION = 'action'
@@ -181,11 +181,10 @@ export interface UserModel {
 }
 
 export interface AdminDashboardUserModel {
-  id: number;
-  firstName: string;
-  lastName: string;
+  idNumber: number;
+  name: string;
   email: string;
-  mobileNumber: number;
+  contactNumber: number;
   zone: string;
 }
 
