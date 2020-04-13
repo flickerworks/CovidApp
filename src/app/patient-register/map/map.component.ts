@@ -91,12 +91,14 @@ export class MapComponent implements OnInit {
     const csc = r[r.length-3],
     formattedAdrs = csc.formatted_address,
     _adrs = formattedAdrs.split(","),
+    subLocality = (obj["sublocality"]) ? obj["sublocality"] : "",
+    locality = (obj["locality"]) ? obj["locality"] : "",
     address:MapAddress = {
       street: this.drawStreet(obj).trim() || (fullAddress.split(",")[0]).trim(),
       pincode: obj["postal_code"].trim(),
       city: _adrs[0].trim(),
       state: _adrs[1].trim(),
-      area: (obj["sublocality"]) ? obj["sublocality"] : ""
+      area: (subLocality) ? subLocality : locality
     }
     return address;
   }
@@ -126,10 +128,6 @@ export class MapComponent implements OnInit {
     this.autocomplete = new google.maps.places.Autocomplete(ele, {
       types: ["geocode"]
     });
-
-    this.autocomplete.setOptions({
-      offset: 3
-    })
     
     this.autocomplete.setComponentRestrictions({
       'country': ['in']
