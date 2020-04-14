@@ -81,9 +81,10 @@ export class GlobalServices {
     let zoneObj = {};
     let total = [];
     data.forEach(ele => {
-      if(ele.zone && !zoneObj[ele.zone]){
-        zoneObj[ele.zone] = ele.zone;
-        total.push(ele.zone);
+      const zone = ele.zone+'';
+      if(zone && !zoneObj[zone.toUpperCase()]){
+        zoneObj[zone.toUpperCase()] = zone.toUpperCase();
+        total.push(zone.toUpperCase());
       }
     })
     return total.length;
