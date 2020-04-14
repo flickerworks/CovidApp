@@ -54,7 +54,7 @@ export class AddUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getStates();
+    this.getStateAndCity();
     this.userRegisterForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
       lastName: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(30), Validators.pattern(StringValidationPattern), this.globalService.noWhitespaceValidator]],
@@ -93,7 +93,7 @@ export class AddUserComponent implements OnInit {
           return;
         }
         this.selectedState = this.personalDetails.state;
-        this.getStateAndCity({value: this.selectedState});
+        this.changeState({value: this.selectedState});
         this.selectedCity = this.personalDetails.city;
         this.userType = (this.personalDetails.type=='Quarantine Manager') ? 'quarantine_manager' : 'monitor';
         this.userRegisterForm.patchValue({
@@ -278,12 +278,12 @@ export class AddUserComponent implements OnInit {
    } 
   }
 
-  getStates(){    
+  getStateAndCity(){    
     this.states = this.restfullServices.states;
     this.allCities = this.restfullServices.allCities;
   }
 
-  getStateAndCity(event){
+  changeState(event){
     const name = event.value;
     if(!name)return;
     const state = this.states.filter(state => state.name===name);
