@@ -211,8 +211,12 @@ export class AddressStepperComponent implements OnInit {
   }
 
   getStateAndCity(){
-    this.states = this.restfullServices.states;
-    this.allCities = this.restfullServices.allCities;
+    this.restfullServices.states.subscribe(states => {
+      this.states = states;
+    })
+    this.restfullServices.allCities.subscribe(cities => {
+      this.allCities = cities;
+    })
   }
 
   changeState(event, type: string, city?: string){

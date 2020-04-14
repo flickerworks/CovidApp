@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, ReplaySubject } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
-import { LoggedInUserModel, Payload, UserModel, UserRegisterModel, State, City } from '../models/shared.model';
+import { LoggedInUserModel, Payload, State, City } from '../models/shared.model';
 import { GlobalServices } from './global.services';
 
 @Injectable ({providedIn: 'root'})
 export class RestfullServices {
     
     public baseUrl: string = 'https://deap.techmahindra.com/UMPWebContainer/UMPRequestProcessor';
-    states: State[];
-    allCities: City[];
+    states = new ReplaySubject<State[]>();
+    allCities = new ReplaySubject<City[]>();
     headers = new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8'
     });
@@ -21,13 +21,12 @@ export class RestfullServices {
 
     constructor(private http: HttpClient, private globalService: GlobalServices) {
         this.get('assets/DB/states.json').subscribe(res => {
-            this.states = res.states;
+            this.states.next(res.states);
         })
         this.get('assets/DB/cities.json').subscribe(res => {
-            this.allCities = res.cities;
+            this.allCities.next(res.cities);
         })
     }
-
 
     postApi(requestData:any):Observable<any>{
         return this.http.post(this.baseUrl, requestData, {headers: this.headers}).pipe(
