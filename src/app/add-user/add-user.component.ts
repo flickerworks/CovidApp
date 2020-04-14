@@ -296,10 +296,11 @@ export class AddUserComponent implements OnInit {
     this.cities = this.allCities.filter((city: City) => {
       return city.state_id === id;
     })
+    this.userRegisterForm.get('city').setValue('');
   }
 
   changeCity(event){
-    console.log(this.userRegisterForm.get('state').value);
-    console.log(this.userRegisterForm.get('city').value);
+    // console.log(this.userRegisterForm.get('state').value);
+    // console.log(this.userRegisterForm.get('city').value);
   }
 }

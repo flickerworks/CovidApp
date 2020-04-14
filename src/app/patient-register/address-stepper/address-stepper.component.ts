@@ -231,12 +231,14 @@ export class AddressStepperComponent implements OnInit {
     if(city && type == "q"){
       this.quarantineAddressFormGroup.get('city').setValue(city);
       this.quarantineAddressFormGroup.get('city').updateValueAndValidity();
+    } else {
+      this.quarantineAddressFormGroup.get('city').setValue('');
     }
   }
 
   changeCity(event){
-    console.log(this.quarantineAddressFormGroup.get('state').value);
-    console.log(this.quarantineAddressFormGroup.get('city').value);
+    // console.log(this.quarantineAddressFormGroup.get('state').value);
+    // console.log(this.quarantineAddressFormGroup.get('city').value);
   }
   
 }

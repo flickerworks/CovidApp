@@ -99,6 +99,18 @@ body {
     text-overflow: ellipsis;
     padding-right: 1rem;
 }
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $color-blue;
+}
+.mat-select-value {
+    color: $color-grey-dark;
+}
+.mat-calendar-body-selected {
+    background-color: $color-blue-light;
+}
+.mat-datepicker-toggle-active .mat-icon-button {
+    color: $color-blue-light;
+}
 // .mat-sort-header-arrow {
 //     opacity: 1 !important;
 //     margin: 0 0 6px 6px !important;
