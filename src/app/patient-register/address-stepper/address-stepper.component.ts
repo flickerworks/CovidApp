@@ -232,7 +232,18 @@ export class AddressStepperComponent implements OnInit {
       this.quarantineAddressFormGroup.get('city').setValue(city);
       this.quarantineAddressFormGroup.get('city').updateValueAndValidity();
     } else {
-      this.quarantineAddressFormGroup.get('city').setValue('');
+      switch(type){
+        case 'q':
+          this.quarantineAddressFormGroup.get('city').setValue('');
+          break;
+        case 'c':
+          this.currentAddressFormGroup.get('city').setValue('');
+          break;
+        case 'p':
+          this.permanentAddressFormGroup.get('city').setValue('');
+          break;
+      }
+      
     }
   }
 
