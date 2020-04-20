@@ -15,7 +15,7 @@
           Name
         </mat-header-cell>
         <mat-cell *matCellDef="let element" class="align_center" fxFlex="150px" fxLayout="column" fxLayoutAlign="start start">
-          <b class="color_blue">{{element?.firstName}} {{element?.lastName}}</b>
+          <div class="trim_text"><b class="color_blue">{{element?.firstName}} {{element?.lastName}}</b></div>
           <b>{{element?.userType}}</b>
         </mat-cell>
       </ng-container>
@@ -35,7 +35,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
           Mail ID
         </mat-header-cell>
-        <mat-cell class="color_blue" *matCellDef="let element" fxFlex="150px">{{element?.email}}</mat-cell>
+        <mat-cell class="color_blue" *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.email}}</div></mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
