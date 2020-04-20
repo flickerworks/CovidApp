@@ -1,4 +1,4 @@
-import { Injectable, ElementRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject, ReplaySubject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { LoggedInUserModel, MenuRoute, UserModel, PersonalDetails, PatientDetails } from '../models/shared.model';
@@ -8,8 +8,8 @@ export class GlobalServices {
   showPopup = new Subject<boolean>();
   showLoader = new Subject<boolean>();
   pincodeChange = new ReplaySubject<string>();
-  public longitude:number;
-  public latitude: number;
+  public longitude:string="";
+  public latitude: string="";
   private token: string = "";
   private personalDetals:PersonalDetails;
   private monitorDetals: PatientDetails;
@@ -129,4 +129,20 @@ export class GlobalServices {
     return isValid ? null : { 'whitespace': true };
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  drawAddress(obj){
+    const _str = `${obj.doorNumber}, ${obj.streetName}, ${obj.area}, ${obj.city}, ${obj.state}-${obj.pincode}`;
+    return this.removeDuplicate(_str.toLocaleLowerCase());
+  }
+
+  removeDuplicate(str: string): string{
+    let _str = str.split(',').filter((item, i, allItems) => {
+        return i == allItems.indexOf(item);
+    }).join(',');
+    return _str;
+  }
+  
 }

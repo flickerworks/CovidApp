@@ -263,8 +263,8 @@ export class PatientRegisterComponent implements OnInit {
       BREATHING: healthStatus.breathing ? "Yes" : "No",
       UNUSUALFATIQUE: healthStatus.fatigue ? "Yes" : "No",
       UPDATETYPE: "",
-      LATITUDE: (this.globalService.latitude) ? (this.globalService.latitude+'') : '28.6049',
-      LONGITUDE: (this.globalService.longitude) ? (this.globalService.longitude+'') : '77.3689'
+      LATITUDE: (this.globalService.latitude) ? this.globalService.latitude : '28.6049',
+      LONGITUDE: (this.globalService.longitude) ? this.globalService.longitude : '77.3689'
     }
     this.restAPI.post(request, "ADDHEALTHSTATUSPORTAL").subscribe(response => {
       //condition

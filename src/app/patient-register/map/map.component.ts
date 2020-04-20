@@ -89,19 +89,40 @@ export class MapComponent implements OnInit {
       area:""
     } */
     const csc = r[r.length-3],
-    formattedAdrs = csc.formatted_address,
-    _adrs = formattedAdrs.split(","),
+    // formattedAdrs = csc.formatted_address,
     subLocality = (obj["sublocality"]) ? obj["sublocality"] : "",
     locality = (obj["locality"]) ? obj["locality"] : "",
     address:MapAddress = {
       street: this.drawStreet(obj).trim() || (fullAddress.split(",")[0]).trim(),
       pincode: obj["postal_code"] && obj["postal_code"].trim(),
-      city: _adrs[0].trim(),
-      state: _adrs[1].trim(),
+      city: this.drawCity(result),
+      state: this.drawState(result),
       area: (subLocality) ? subLocality : locality
     }
     return address;
   }
+
+  drawCity(result):string{
+    const _result = result,
+    _address = _result.formatted_address.split(","),
+    _city = (_address[_address.length-3]).trim();
+    let city = _city || ''; 
+    return city.trim();
+  } 
+
+  drawState(result):string{
+    const _result = result,
+    _address = _result.formatted_address.split(","),
+    _state = (_address[_address.length-2]).trim();
+    let sc = (_state.trim()).split(" "),
+    state = sc[0].trim();
+    if(sc.length == 1 && !isNaN(sc[0])){
+      state = this.drawCity(result);
+    }else if(sc.length > 2){
+      state = sc[0].trim()+" "+sc[1].trim();
+    }
+    return state;
+  } 
 
   drawStreet(obj){
     const key0 = (obj["premise"]) ? (obj["premise"]+", ") : "";
@@ -120,6 +141,8 @@ export class MapComponent implements OnInit {
   markerDragEnd(event){
     this.latitude = event.coords.lat;
     this.longitude = event.coords.lng;
+    this.globalService.latitude = this.latitude && this.latitude.toFixed(8);
+    this.globalService.longitude = this.longitude && this.longitude.toFixed(8);
     this.getAddress(this.latitude, this.longitude);
   }
 
@@ -146,8 +169,8 @@ export class MapComponent implements OnInit {
         //set latitude, longitude and zoom
         this.latitude = place.geometry.location.lat();
         this.longitude = place.geometry.location.lng();
-        this.globalService.latitude = this.latitude;
-        this.globalService.longitude = this.longitude;
+        this.globalService.latitude = this.latitude && this.latitude.toFixed(8);
+        this.globalService.longitude = this.longitude && this.longitude.toFixed(8);
         this.getAddress(this.latitude, this.longitude)
         this.zoom = 17;
       });

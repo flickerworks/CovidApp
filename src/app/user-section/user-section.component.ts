@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, OnChanges, Output, EventEmitter, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, OnChanges, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import {
   UserSectionModel,
   UserModel,
   DefaultPaginatorValues,
-  UserTableColumns,
   PersonalDetails,
   AdminDashboardUserModel
 } from '../shared/models/shared.model';
@@ -28,7 +27,7 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
   searchPincodeModel: string;
   userTableData: AdminDashboardUserModel[] = [];
   isDataAvailable: boolean = true;
-  
+  headerProps:{title:string, prop:string}[] = [{title:"ID", prop: 'id'}, {title:"Name", prop: 'name'}, {title:"Email", prop: 'email'}, {title:"Mobile No", prop: 'mobileNumber'}, {title: "Address", prop: 'address'}, {title: "Pincode", prop: 'pincode'}, {title: "Zone", prop: 'zone'}];
   constructor(
     private globalServices: GlobalServices,
     private router: Router
@@ -76,13 +75,14 @@ export class UserSectionComponent implements OnInit, AfterViewInit, OnChanges {
     return userData;
   }
 
-  searchTable(filterValue: string): void {
+  searchTable(filterValue: string): void {    
+    if(!filterValue)return;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.filteredData && this.dataSource.filteredData.length === 0) {
       this.isDataAvailable = false;
     } else {
       this.isDataAvailable = true;
-    }
+    }    
   }
 
   viewDetails(userData: AdminDashboardUserModel):  void {

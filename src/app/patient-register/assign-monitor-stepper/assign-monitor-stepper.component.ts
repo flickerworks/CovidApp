@@ -40,6 +40,7 @@ export class AssignMonitorStepperComponent implements OnInit {
     });
     this.displayedColumns = this.globalServices.enumToArray(AssignMonitorColumns)
     this.globalServices.pincodeChange.subscribe(pincode => {
+      this.dataSource.data = [];
       this.getMonitors(pincode);
     })    
   }

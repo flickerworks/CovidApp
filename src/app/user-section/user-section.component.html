@@ -28,7 +28,7 @@
       <button class="color_white" *ngIf="userSectionDetails.enrollNewUser" mat-raised-button (click)="enrollNewUser()" type="submit">
         Enroll new user
       </button>
-      <button class="color_white" mat-button (click)="showFilters()" type="submit">
+      <button *ngIf="false" class="color_white" mat-button (click)="showFilters()" type="submit">
         <img src="./assets/images/filter_white.svg">
         Filter
       </button>
