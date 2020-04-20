@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {
   MatButtonModule,
   MatDividerModule,
@@ -107,6 +108,7 @@ import { MapComponent } from './patient-register/map/map.component';
     MatStepperModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    NgxChartsModule,
     AgmCoreModule.forRoot({
       apiKey:"AIzaSyA74VF_BOifDXzONZJIIWZZJA6QqkaqJxI",
       libraries: ['places']
