@@ -1,24 +1,75 @@
-<!-- <header></header>
-<div class="reports">
-    <div class="reports__container">
-        <p>
-            This feature will be introduced soon!
-        </p>
+<header></header>
+<img class="background_image" src="./assets/images/admindashboard_bg.png">
+<div class="reports_section" fxFlex="100" fxLayout="column" fxLayoutAlign="start center">
+    <div class="reports_counter width_100" fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutGap="10px">
+                <div class="counter_text">Total Cases</div>
+                <div class="counter_number color_blue">1400</div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="10px">
+                <div class="counter_text">Critical Cases</div>
+                <div class="counter_number color_red">600</div>
+            </div>
+        </div>
+        <button class="color_white bg_color_blue" mat-raised-button (click)="downloadReport()" type="submit">
+            <img src="./assets/images/report-icon.svg">
+            Download Report
+        </button>
     </div>
-</div> -->
-
-<ngx-charts-bar-vertical
-  [view]="view"
-  [scheme]="colorScheme"
-  [results]="single"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  (select)="onSelect($event)">
-</ngx-charts-bar-vertical>
+    <div class="reports_graph width_100" fxFlex="100" fxLayout="column" fxLayoutGap="20px">
+        <div class="filter_text">Filter your report</div>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+            <form [formGroup]="reportFormGroup" fxLayout="row wrap" fxLayoutGap="20px" fxFlex="80" fxLayoutAlign="start center">
+                <mat-form-field>
+                    <mat-select formControlName="reportType" (selectionChange)="reportType($event)">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="Specific">Specific</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="filter_or">Or</div>
+                <div class="warning_msg color_red">* You cannot select date range more than 30 days.</div>
+                <mat-form-field>
+                    <mat-label>Start Date</mat-label>
+                    <input matInput formControlName="startDate"  [max]="currentDate" [matDatepicker]="dp3">
+                    <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                </mat-form-field>    
+                <mat-form-field>
+                    <mat-label>End Date</mat-label>
+                    <input matInput formControlName="endDate" [max]="currentDate" [matDatepicker]="dp4">
+                    <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                    <mat-datepicker #dp4 disabled="false"></mat-datepicker>
+                </mat-form-field>    
+                <button class="color_white bg_color_blue" mat-raised-button (click)="applyFilter()" type="submit">Apply</button>
+            </form>  
+            <div fxFlex="20" fxLayoutAlign="end center" fxLayoutGap="20px">
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div class="chart_box color_bg_blue"></div>
+                    <div class="chart_index">Total Cases</div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div class="chart_box color_bg_red"></div>
+                    <div class="chart_index">Critical Cases</div>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
+            <ngx-charts-bar-vertical
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel"
+            (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+        </div>
+    </div>
+</div>
 

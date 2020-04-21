@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
+  currentDate = new Date();
+  reportFormGroup: FormGroup;
   single: any[] = [
     {
       "name": "Germany",
@@ -38,11 +41,27 @@ export class ReportsComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {}
-  ngOnInit() {}
+  constructor(
+    private formBuilder: FormBuilder
+  ) {}
+  ngOnInit() {
+    this.reportFormGroup = this.formBuilder.group({
+      reportType: ['All', [Validators.required]],
+      startDate: [{value:'', disabled:true}, [Validators.required]],
+      endDate: [{value:'', disabled:true}, [Validators.required]],
+    });
+  }
   onSelect(event) {
     console.log(event);
   }
+
+  downloadReport(): void {}
+
+  reportTypeChange(event): void {
+    console.log(event);
+  }
+
+  applyFilter(): void {}
 
   
 

@@ -32,10 +32,10 @@
         <mat-cell *matCellDef="let element" fxFlex="150px">{{element?.zone}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="250px">
           Mail ID
         </mat-header-cell>
-        <mat-cell class="color_blue" *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.email}}</div></mat-cell>
+        <mat-cell class="color_blue" *matCellDef="let element" fxFlex="250px"><div class="trim_text">{{element?.email}}</div></mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"

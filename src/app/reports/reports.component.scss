@@ -1,17 +1,95 @@
-.reports{
-    padding-top: 15rem;
-    &__container{
-        margin: 0 auto;
-        padding: 2rem;
-        width: 60%;
-        height: 50vh;
-        box-shadow: 0 1.5rem 4rem rgba($color: #000000, $alpha: .2);
-        p{
-            position: relative;
-            top: 38%;
-            text-align: center;
-            font-size: 2.2rem;
-            color: #4d4d4d;
-        }
-    }
+@import "variables";
+.reports_section {
+  margin: $header-height-main $no-margin-padding $no-margin-padding;
+  padding: $page-default-padding;
+  font-family: 'Segoe_UI', sans-serif;
+  background-color: $page-background-color;
+  
+  .reports_counter {
+    z-index: 1;
+    background: $color-white;
+    padding: 2rem 6rem;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+  .counter_text {
+    color: $color-grey-dark;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+  .counter_number {
+    font-size: 2.4rem;
+  }
+  .color_red {
+    color: $color-red-restrict;
+  }
+  button img {
+    width: 3rem;
+  }
+  .reports_graph {
+    z-index: 1;
+    background: $color-white;
+    padding: 2rem 6rem;
+    box-shadow: 0px 1px 20px #0000001A;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    margin-top: 1rem;
+  }
+  form {
+      position: relative;
+  }
+  .mat-form-field {
+    font-size: 1.4rem;
+    width: 10rem;
+  }
+  .filter_text {
+    color: $color-black-dark;
+    font-size: 1.4rem;
+  }
+  .chart_box {
+    width: 14px;
+    border-radius: 2px;
+  }
+  .color_bg_blue {
+    background-color: $color-blue-light;
+  }
+  .color_bg_red {
+    background-color: $color-red;
+  }
+  .chart_index, .filter_or {
+    font-size: 1.2rem;
+    color: $color-black-dark;
+  }
+  .filter_or {
+    margin: 0px 30px 0px 10px !important;
+  }
+  ::ng-deep .mat-form-field-outline {
+    color: $border-color-grey-light;
+  }
+  ::ng-deep .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+    background-color: rgba(0,0,0,.42);
+    background-image: none;
+  }
+  .warning_msg {
+    position: absolute;
+    top: -2rem;
+    left: 17.3rem;
+  }
+  .reports{
+      padding-top: 15rem;
+      &__container{
+          margin: 0 auto;
+          padding: 2rem;
+          width: 60%;
+          height: 50vh;
+          box-shadow: 0 1.5rem 4rem rgba($color: #000000, $alpha: .2);
+          p{
+              position: relative;
+              top: 38%;
+              text-align: center;
+              font-size: 2.2rem;
+              color: #4d4d4d;
+          }
+      }
+  }
 }
