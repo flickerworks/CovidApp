@@ -5,11 +5,11 @@
         <div fxLayout="row" fxLayoutGap="20px">
             <div fxLayout="column" fxLayoutGap="10px">
                 <div class="counter_text">Total Cases</div>
-                <div class="counter_number color_blue">1400</div>
+                <div class="counter_number color_blue">{{totalCases}}</div>
             </div>
             <div fxLayout="column" fxLayoutGap="10px">
                 <div class="counter_text">Critical Cases</div>
-                <div class="counter_number color_red">600</div>
+                <div class="counter_number color_red">{{criticalCases}}</div>
             </div>
         </div>
         <button class="color_white bg_color_blue" mat-raised-button (click)="downloadReport()" type="submit">
@@ -22,23 +22,23 @@
         <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
             <form [formGroup]="reportFormGroup" fxLayout="row wrap" fxLayoutGap="20px" fxFlex="80" fxLayoutAlign="start center">
                 <mat-form-field>
-                    <mat-select formControlName="reportType" (selectionChange)="reportType($event)">
+                    <mat-select formControlName="reportType" (selectionChange)="reportTypeChange()">
                         <mat-option value="All">All</mat-option>
-                        <mat-option value="Specific">Specific</mat-option>
+                        <mat-option *ngFor="let month of months;" [value]="month">{{month}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <div class="filter_or">Or</div>
                 <div class="warning_msg color_red">* You cannot select date range more than 30 days.</div>
                 <mat-form-field>
                     <mat-label>Start Date</mat-label>
-                    <input matInput formControlName="startDate"  [max]="currentDate" [matDatepicker]="dp3">
+                    <input matInput formControlName="startDate" [max]="currentDate" [matDatepicker]="dp3" (dateChange)="dateChange('start', $event)">
                     <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
                     <mat-datepicker #dp3 disabled="false"></mat-datepicker>
                 </mat-form-field>    
                 <mat-form-field>
                     <mat-label>End Date</mat-label>
-                    <input matInput formControlName="endDate" [max]="currentDate" [matDatepicker]="dp4">
-                    <mat-datepicker-toggle matSuffix [for]="dp4"></mat-datepicker-toggle>
+                    <input matInput formControlName="endDate" [min]="maxStartDate" [max]="maxEndDate" [matDatepicker]="dp4" (dateChange)="dateChange('end', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="dp4" [disabled]="!maxEndDate"></mat-datepicker-toggle>
                     <mat-datepicker #dp4 disabled="false"></mat-datepicker>
                 </mat-form-field>    
                 <button class="color_white bg_color_blue" mat-raised-button (click)="applyFilter()" type="submit">Apply</button>
@@ -54,21 +54,29 @@
                 </div>
             </div>
         </div>
-        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
-            <ngx-charts-bar-vertical
-            [view]="view"
-            [scheme]="colorScheme"
-            [results]="single"
-            [gradient]="gradient"
-            [xAxis]="showXAxis"
-            [yAxis]="showYAxis"
-            [legend]="showLegend"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" class="graph">
+            <div class="chart" *ngIf="data.length">
+                <ngx-charts-bar-vertical-2d
+                (window:resize)="onResize($event)"
+                [view]="view"
+                [scheme]="colorScheme"
+                [showDataLabel]="true"
+                [results]="data"
+                [gradient]="gradient"
+                [xAxis]="showXAxis"
+                [yAxis]="showYAxis"
+                [legend]="showLegend"
+                [groupPadding]="5"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                (select)="onSelect($event)"
+                (activate)="onActivate($event)"
+                (deactivate)="onDeactivate($event)">
+                </ngx-charts-bar-vertical-2d>
+            </div>
+            
         </div>
     </div>
 </div>

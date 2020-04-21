@@ -24,10 +24,6 @@ const routes: Routes = [
     canActivate: [LoginAuthService]
   },
   {
-    path: 'reports',
-    component: ReportsComponent,
-  },
-  {
     path: 'view-user',
     component: ViewUserComponent,
     canActivate: [AuthGuardService]
@@ -45,6 +41,11 @@ const routes: Routes = [
   {
     path: 'patient-list',
     component: PatientListComponent,
+    canActivate: [MgrAuthGuardService]
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
     canActivate: [MgrAuthGuardService]
   },
   {

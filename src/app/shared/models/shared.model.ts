@@ -241,6 +241,28 @@ export interface AssignMonitorModel {
   userType: string;
 }
 
+export interface ReportData {
+  TOTALCRITICAL: number;
+  REPORTDATE: string;
+  TOTALRECORDS: number;
+}
+
+export interface MonthData {
+  date: string;
+  total: number;
+  critical: number;
+}
+
+export interface SingleChart {
+  name: string;
+  value: number;
+}
+
+export interface MultiChart {
+  name: string;
+  series: SingleChart[];
+}
+
 export enum AssignMonitorColumns {
   // ID_NUMBER = "idNumber",
   SELECT = 'select',

@@ -36,6 +36,9 @@
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     margin-top: 1rem;
+    .graph{
+      min-height: 40rem;
+    }
   }
   form {
       position: relative;
