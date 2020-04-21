@@ -25,6 +25,8 @@
   }
   button img {
     width: 3rem;
+    left: -0.5rem;
+    position: relative;
   }
   .reports_graph {
     z-index: 1;
@@ -37,6 +39,10 @@
   }
   form {
       position: relative;
+
+      button {
+        margin-bottom: 1.25em;
+      }
   }
   .mat-form-field {
     font-size: 1.4rem;
