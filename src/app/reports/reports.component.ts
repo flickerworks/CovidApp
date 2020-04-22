@@ -137,7 +137,7 @@ export class ReportsComponent implements OnInit {
     endDate = this.reportFormGroup.get('endDate').value;
 
     this.data = this.sourceData.filter(ele => {
-      const date = new Date(ele.name+'2020'),
+      const date = new Date(ele.name+' 2020'),
       high = date >= startDate,
       low = date <= endDate;
       return  high && low;
