@@ -308,7 +308,7 @@ export const PasswordValidationPattern: string = '^(?=.*[A-Za-z])(?=.*\\d{1,3})[
 
 export const UserNameValidationPattern: string = '^(?=.*[A-Za-z])[A-Za-z][A-Za-z0-9]{4,20}$';
 
-export const DefaultPaginatorValues: number[] = [10, 20, 30, 50]; 
+export const DefaultPaginatorValues: number[] = [10, 25, 50]; 
 
 export const BooleanOptionValues: string[] = ['Yes', 'No'];
 

@@ -99,6 +99,7 @@ body {
     text-overflow: ellipsis;
     padding-right: 1rem;
     width: 100%;
+    // word-break: break-all;
 }
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: $color-blue;
