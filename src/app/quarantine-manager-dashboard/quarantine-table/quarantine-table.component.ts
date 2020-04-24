@@ -64,10 +64,15 @@ export class QuarantineTableComponent implements OnInit, OnChanges {
     }
   }
 
-  viewDetails(element: PatientDetails){
-    this.globalService.monitorDetail = element;
+  viewDetails(type:string, element: PatientDetails){
     this.globalService.QMDashboardIndex = this.tabIndex;
-    this.router.navigate(['/monitor-details']); 
+    if(type === 'monitor'){
+      this.globalService.monitorDetail = element;      
+      this.router.navigate(['/monitor-details']); 
+    }else {
+      this.globalService.userDetail = element;
+      this.router.navigate(['/patient-details']);
+    }    
   }
 
 }

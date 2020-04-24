@@ -6,7 +6,7 @@
           Name
         </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="row" fxLayoutAlign="start center">
-          <img src="./assets/images/user_circle.svg">
+          <!-- <img src="./assets/images/user_circle.svg"> -->
           <div class="trim_text"><b>{{element?.name}}</b></div></mat-cell>
       </ng-container>
       <ng-container matColumnDef="id">
@@ -53,6 +53,12 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.monitoredBy}}</div></mat-cell>
       </ng-container>
+      <ng-container matColumnDef="user-action">
+        <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="150px">
+          <button mat-button class="update_button color_blue" (click)="viewDetails('user', element)">View details</button>
+        </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="quarantineCount">
         <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="column" fxLayoutAlign="center center">
@@ -63,7 +69,7 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
         <mat-cell *matCellDef="let element" fxFlex="150px">
-          <button mat-button class="update_button" (click)="viewDetails(element)">View Details</button>
+          <button mat-button class="update_button" (click)="viewDetails('monitor', element)">View Details</button>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

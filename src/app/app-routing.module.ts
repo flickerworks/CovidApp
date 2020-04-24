@@ -12,6 +12,7 @@ import { PatientRegisterComponent } from './patient-register/patient-register.co
 import { AuthGuardService } from './auth.guard.service';
 import { ReportsComponent } from './reports/reports.component';
 import { LoginAuthService } from './login-auth.service';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
   {
     path: 'quarantine-dashboard',
     component: QuarantineManagerDashboardComponent,
+    canActivate: [MgrAuthGuardService]
+  },
+  {
+    path: 'patient-details',
+    component: PatientDetailsComponent,
     canActivate: [MgrAuthGuardService]
   },
   {

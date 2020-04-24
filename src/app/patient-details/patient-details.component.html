@@ -1,0 +1,86 @@
+<header></header>
+<img class="background_image_circle" src="./assets/images/admin_create_new_user_bg.png">
+<div class="detailsContaner">
+    <div class="details">
+        <div class="details__header">
+            <h2 class="details__header-title d__inline-block">Personal details</h2>
+            <!-- <a class="details__header-editBtn d__inline-block" (click)="editUser()">
+                <mat-icon class="editIcon">edit</mat-icon>
+                <span>Edit</span>
+            </a> -->
+        </div>
+        <div class="details__photo d-table">
+            <div class="details__photo__circleIcon d-cell">
+                <mat-icon class="icon">account_circle</mat-icon>
+            </div>
+            <div class="details__photo__nameId d-cell">
+                <h2 class="name">{{patientDetails?.fName}} {{patientDetails?.lName}}</h2>
+                <h2 class="type dark-blue-text">DOB: {{patientDetails?.dob}}</h2>
+            </div>
+        </div>
+        <div class="details__contact-details">
+            <div class="__row">
+                <div class="__col w20 semi-bold">ID</div>
+                <div class="__col w70">{{patientDetails?.id}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Contact Number</div>
+                <div class="__col w70">{{patientDetails?.phone}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Mail ID</div>
+                <div class="__col w70 light-blue-text">{{patientDetails?.email}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Zone</div>
+                <div class="__col w70 regular">{{patientDetails?.zone}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Symptoms</div>
+                <div class="__col w70 regular">{{patientDetails?.symtoms}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Quarantine Duration</div>
+                <div class="__col w70 regular">{{patientDetails?.duration}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Critical</div>
+                <div class="__col w70 regular">{{patientDetails?.critical}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Flagged</div>
+                <div class="__col w70 regular">{{patientDetails?.flagged}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Missed Update</div>
+                <div class="__col w70 regular">{{patientDetails?.missedUpdate}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Pending Review</div>
+                <div class="__col w70 regular">{{patientDetails?.pendingReview}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Suspicious Reason</div>
+                <div class="__col w70 regular">{{patientDetails?.SUSPICIOUSREASON}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Quarantine Address</div>
+                <div class="__col w70 regular">{{patientDetails?.qAddress}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Current Address</div>
+                <div class="__col w70 regular">{{patientDetails?.cAddress}}</div>
+            </div>
+            <div class="__row">
+                <div class="__col w20 semi-bold">Permanent Address</div>
+                <div class="__col w70 regular">{{patientDetails?.pAddress}}</div>
+            </div>
+        </div>
+        <div class="restrict-btn-contaner">
+            <a class="restrict">
+                <mat-icon class="interestedIcon">not_interested</mat-icon>
+                <span>Restrict</span>
+            </a>
+        </div>        
+    </div>
+</div>

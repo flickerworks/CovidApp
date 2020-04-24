@@ -13,6 +13,7 @@ export class GlobalServices {
   private token: string = "";
   private personalDetals:PersonalDetails;
   private monitorDetals: PatientDetails;
+  private userDetails: PatientDetails;
   private selectedAdminTabId: number;
   private selectedQMIndex: number;
   public isUserLoggedIn: boolean = false;
@@ -104,6 +105,14 @@ export class GlobalServices {
 
   get monitorDetail(){
     return this.monitorDetals;
+  }
+
+  set userDetail(userDetails: PatientDetails){
+    this.userDetails = userDetails;
+  }
+
+  get userDetail(){
+    return this.userDetails;
   }
 
   set lastSelectedAdminTab(tabId: number){

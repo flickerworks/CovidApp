@@ -55,6 +55,7 @@ import { AuthGuardService } from './auth.guard.service';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { ReportsComponent } from './reports/reports.component';
 import { MapComponent } from './patient-register/map/map.component';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { MapComponent } from './patient-register/map/map.component';
     HeaderComponent,
     PopupComponent,
     PersonalDetailsComponent,
+    PatientDetailsComponent,
     UserSectionComponent,
     PatientListComponent,
     LoaderComponent,

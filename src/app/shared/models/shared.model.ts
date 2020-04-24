@@ -117,6 +117,29 @@ export interface PatientDetails {
   flaged?: number;
 }
 
+export interface PatientFullDetails {
+  fName: string;
+  lName: string;
+  id: string;
+  idType: string;
+  dob: string;
+  phone: string;
+  status: string;
+  zone: string;
+  qDuration: string;
+  reason: string;
+  missedUpdate: string;
+  critical: string;
+  pendingReview: string;
+  flagged: string;
+  email: string;
+  qType: string;
+  symtoms: string;
+  qAddress: string;
+  cAddress: string;
+  pAddress: string;
+}
+
 export enum PatientTableColumns {
   NAME = 'name',
   MOBILE_NUMBER = 'mobileNumber',
@@ -140,11 +163,12 @@ export enum QuarantineTableColumns {
   NAME = 'name',
   ID = "id",
   CONTACT_NUMBER = 'contactNumber',
-  MAIL = 'mail',
+  // MAIL = 'mail',
   ZONE = 'zone',
   IN_QUARANTINE = 'inQuarantine',
   SYMPTOMS = 'symptoms',
-  MONITORED_BY = 'monitoredBy'
+  MONITORED_BY = 'monitoredBy',
+  ACTION = 'user-action'
 }
 
 export enum MonitorTableColumns {
