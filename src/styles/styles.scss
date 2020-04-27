@@ -113,6 +113,9 @@ body {
 .mat-datepicker-toggle-active .mat-icon-button {
     color: $color-blue-light;
 }
+.text_capitalize {
+    text-transform: capitalize;
+}
 // .mat-sort-header-arrow {
 //     opacity: 1 !important;
 //     margin: 0 0 6px 6px !important;
