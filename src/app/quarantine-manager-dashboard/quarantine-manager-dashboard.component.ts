@@ -81,7 +81,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
     list.forEach(ele => {
       if(ele.CRITICAL && ele.CRITICAL.toUpperCase() === "Y"){
         let obj: PatientDetails = {
-          name: ele.QFIRSTNAME,
+          name: `${ele.QFIRSTNAME} ${ele.QLASTNAME}`,
           id: ele.QID,
           contactNumber: ele.MOBILENUMBER,
           // mail: ele.EMAIL,
@@ -107,7 +107,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
       list.forEach(ele => {    
         if(ele["QID"]) {  
           let obj: PatientDetails = {
-            name: ele.QFIRSTNAME,
+            name: `${ele.QFIRSTNAME} ${ele.QLASTNAME}`,
             id: ele.QID,
             contactNumber: ele.MOBILENUMBER,
             // mail: ele.EMAIL,
@@ -132,7 +132,7 @@ export class QuarantineManagerDashboardComponent implements OnInit {
     list.forEach(ele => {
       if(ele.FLAGGED && ele.FLAGGED.toUpperCase() === "Y"){
         let obj: PatientDetails = {
-          name: ele.QFIRSTNAME,
+          name: `${ele.QFIRSTNAME} ${ele.QLASTNAME}`,
           id: ele.QID,
           contactNumber: ele.MOBILENUMBER,
           // mail: ele.EMAIL,
