@@ -38,7 +38,7 @@ export class PatientDetailsComponent implements OnInit {
         const todayDate = data.TODAYDATE && new Date(data.TODAYDATE.split(" ")[0]) || new Date();
         this.patientDetails = {
           id: data.QID,
-          status: data.QSTATUS,
+          status: (data.QSTATUS && data.QSTATUS.toUpperCase() === "Y") ? "Yes" : "No",
           fName: data.FIRSTNAME,
           lName: data.LASTNAME,
           email: data.EMAIL,
@@ -54,9 +54,9 @@ export class PatientDetailsComponent implements OnInit {
           qType: data.QUARANTINETYPE,
           symtoms: data.SYMPTOM,
           qDuration: this.globalServices.getDaysCount(startDate, todayDate),
-          qAddress: "",
-          cAddress: "",
-          pAddress: ""
+          qAddress: `${data.QUARANTINEHNO}, ${data.QUARANTINESTREETNAME}, ${data.QUARANTINEAREA}, ${data.QUARANTINECITY}, ${data.QUARANTINESTATE} - ${data.QUARANTINEPINCODE.trim()}`,
+          cAddress: `${data.PRESENTHNO}, ${data.PRESENTSTREETNAME}, ${data.PRESENTAREA}, ${data.PRESENTCITY}, ${data.PRESENTSTATE} - ${data.PRESENTPINCODE.trim()}`,
+          pAddress: `${data.PERMANENTHNO}, ${data.PERMANENTSTREETNAME}, ${data.PERMANENTAREA}, ${data.PERMANENTCITY}, ${data.PERMANENTSTATE} - ${data.PERMANENTPINCODE.trim()}`,
         }
 
       }

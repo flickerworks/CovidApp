@@ -4,6 +4,7 @@ import { Observable, throwError, ReplaySubject } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
 import { LoggedInUserModel, Payload, State, City } from '../models/shared.model';
 import { GlobalServices } from './global.services';
+import { DatePipe } from '@angular/common';
 
 @Injectable ({providedIn: 'root'})
 export class RestfullServices {
@@ -19,7 +20,7 @@ export class RestfullServices {
         headers: this.headers
     });
 
-    constructor(private http: HttpClient, private globalService: GlobalServices) {
+    constructor(private http: HttpClient, private globalService: GlobalServices, private datePipe: DatePipe) {
         this.get('assets/DB/states.json').subscribe(res => {
             this.states.next(res.states);
         })
@@ -108,6 +109,36 @@ export class RestfullServices {
                 })  
             })
         )                      
+    }
+
+    downloadExcel(startDate, endDate){
+        let userDetails;
+        const url: string = "https://deap.techmahindra.com/Covid19App/export/user";
+        const session = sessionStorage.getItem('loggedInUserDetails');
+        if(session){
+            userDetails = JSON.parse(session);
+        }
+        const request = {
+            "requestFrom": (userDetails) ? userDetails.firstName : "",
+            "requestMsisdn": (userDetails) ? userDetails.phone : "",
+            "requestRole": "QuarantineManager",
+            "requestBody": (startDate && endDate) ? {
+                "startDate": this.datePipe.transform(startDate, "yyyy-MM-dd"),
+                "endDate": this.datePipe.transform(endDate, "yyyy-MM-dd")
+            } : {},
+            "appDetails": {
+                "appName": "covid19App",
+                "appVersion": "1.0"
+            }
+        }
+        return this.http.post(url, request, {headers: this.headers}).pipe(
+            catchError((error, caught) => {
+                return this.onApiError(caught);
+            }),
+            map(data => {
+                return data;
+            })
+        )
     }
     
 }

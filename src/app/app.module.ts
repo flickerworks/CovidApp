@@ -112,7 +112,7 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
     MatCheckboxModule,
     NgxChartsModule,
     AgmCoreModule.forRoot({
-      apiKey:"AIzaSyA74VF_BOifDXzONZJIIWZZJA6QqkaqJxI",
+      apiKey:"",
       libraries: ['places']
     })
   ],

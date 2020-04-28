@@ -2,24 +2,24 @@
   <div class="table_section__container">
     <mat-table #table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="200px">
           Name
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="150px" fxLayout="row" fxLayoutAlign="start center">
+        <mat-cell *matCellDef="let element" fxFlex="200px" fxLayout="row" fxLayoutAlign="start center">
           <!-- <img src="./assets/images/user_circle.svg"> -->
           <div class="trim_text text_capitalize"><b>{{element?.name}}</b></div></mat-cell>
       </ng-container>
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="100px">
           ID Number
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text"><b>{{element?.id}}</b></div></mat-cell>
+        <mat-cell *matCellDef="let element" fxFlex="100px"><div class="trim_text"><b>{{element?.id}}</b></div></mat-cell>
       </ng-container>
       <ng-container matColumnDef="contactNumber">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="120px">
           Contact
         </mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="150px"><div class="trim_text">{{element?.contactNumber}}</div></mat-cell>
+        <mat-cell *matCellDef="let element" fxFlex="120px"><div class="trim_text">{{element?.contactNumber}}</div></mat-cell>
       </ng-container>
       <ng-container matColumnDef="mail">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="150px">
@@ -67,8 +67,8 @@
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef fxFlex="150px"></mat-header-cell>
-        <mat-cell *matCellDef="let element" fxFlex="150px">
+        <mat-header-cell *matHeaderCellDef fxFlex="100px"></mat-header-cell>
+        <mat-cell *matCellDef="let element" fxFlex="100px">
           <button mat-button class="update_button" (click)="viewDetails('monitor', element)">View Details</button>
         </mat-cell>
       </ng-container>

@@ -3,6 +3,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { RestfullServices } from '../shared/services/restfull.services';
 import { ReportData, MultiChart, SingleChart, MonthData } from '../shared/models/shared.model';
+import { GlobalServices } from '../shared/services/global.services';
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
@@ -23,7 +24,7 @@ export class ReportsComponent implements OnInit {
   maxStartDate;
   maxEndDate;
   view: any[] = [window.innerWidth / 1.15, 400];
-  
+  userDetails;
   // options
   showXAxis = true;
   showYAxis = true;
@@ -40,7 +41,8 @@ export class ReportsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private restFulService: RestfullServices
+    private restFulService: RestfullServices,
+    private globalService: GlobalServices
   ) {
     this.months = this.monthsAll.slice(0, this.currentMonth + 1);
   }
@@ -102,7 +104,27 @@ export class ReportsComponent implements OnInit {
     // console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
-  downloadReport(): void { }
+  downloadReport(): void { 
+    const startDate = this.reportFormGroup.get('startDate').value;
+    const endDate = this.reportFormGroup.get('endDate').value;
+    this.restFulService.downloadExcel(startDate, endDate).subscribe(response => {
+      this.globalService.showLoader.next(false);
+      if(response && response['status'] == 1){
+        this.downLoadFile(response['responseBody'], "application/ms-excel")
+      }else{
+
+      }        
+    })
+  }
+
+  downLoadFile(url: any, type: string) {
+    var newWin = window.open(url);             
+
+    if(!newWin || newWin.closed || typeof newWin.closed=='undefined'){ 
+      alert("Pop-up Blocker is enabled! Please enable the pop-up or add this site to your exception list.");
+    }
+    
+  }
 
   totalAndCriticalCases(data: MultiChart[]){
     let total = {total:0, critical:0};

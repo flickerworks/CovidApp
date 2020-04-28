@@ -60,10 +60,10 @@ export class MapComponent implements OnInit {
           this.address = result[0].formatted_address;          
           this.addressChange.emit(this.formatAddress(result));
         }else{
-          window.alert('no result found');
+          console.log('no result found');
         }
       }else{
-        window.alert('Geocoder failed due to: '+status);
+        console.log('Geocoder failed due to: '+status);
       }
     })
   }

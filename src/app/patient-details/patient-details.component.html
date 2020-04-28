@@ -15,7 +15,8 @@
             </div>
             <div class="details__photo__nameId d-cell">
                 <h2 class="name">{{patientDetails?.fName}} {{patientDetails?.lName}}</h2>
-                <h2 class="type dark-blue-text">DOB: {{patientDetails?.dob}}</h2>
+                <h2 class="type dark-blue-text"><strong>DOB: </strong><span>{{patientDetails?.dob}}</span></h2>
+                <h2 class="type dark-blue-text"><strong>Quarantine: </strong><span [ngStyle]="{'color': (patientDetails && patientDetails.status === 'Yes') ? 'red' : 'green'}">{{patientDetails?.status}}</span></h2>
             </div>
         </div>
         <div class="details__contact-details">
@@ -41,7 +42,7 @@
             </div>
             <div class="__row">
                 <div class="__col w20 semi-bold">Quarantine Duration</div>
-                <div class="__col w70 regular">{{patientDetails?.duration}}</div>
+                <div class="__col w70 regular">{{patientDetails?.qDuration}}</div>
             </div>
             <div class="__row">
                 <div class="__col w20 semi-bold">Critical</div>
@@ -61,7 +62,7 @@
             </div>
             <div class="__row">
                 <div class="__col w20 semi-bold">Suspicious Reason</div>
-                <div class="__col w70 regular">{{patientDetails?.SUSPICIOUSREASON}}</div>
+                <div class="__col w70 regular">{{patientDetails?.reason}}</div>
             </div>
             <div class="__row">
                 <div class="__col w20 semi-bold">Quarantine Address</div>
