@@ -34,7 +34,7 @@ export class ReportsComponent implements OnInit {
   xAxisLabel = 'Dates';
   showYAxisLabel = true;
   yAxisLabel = 'Total number of cases';
-
+  isApplied:boolean = false;
   colorScheme = {
     domain: ['#3A73DB', '#FF4701', '#C7B42C', '#AAAAAA']
   };
@@ -137,6 +137,13 @@ export class ReportsComponent implements OnInit {
   }
 
   reportTypeChange(): void {
+    this.isApplied = false;
+    this.resetVars();
+    this.reportFormGroup.patchValue({
+      startDate:'',
+      endDate: ''
+    });
+    this.reportFormGroup.updateValueAndValidity();
     this.data = [];
     const month = this.reportFormGroup.get('reportType').value;
     if(month !== "All"){
@@ -155,6 +162,8 @@ export class ReportsComponent implements OnInit {
   }
 
   applyFilter(): void { 
+    this.resetVars();
+    this.isApplied = true;
     const startDate = this.reportFormGroup.get('startDate').value,
     endDate = this.reportFormGroup.get('endDate').value;
 
@@ -165,6 +174,13 @@ export class ReportsComponent implements OnInit {
       return  high && low;
     })
     this.totalAndCriticalCases(this.data);
+  }
+
+  resetVars(){
+    this.data = [];
+    this.totalCases = 0;
+    this.criticalCases = 0;
+    this.maxEndDate = null;
   }
 
 
@@ -184,6 +200,14 @@ export class ReportsComponent implements OnInit {
         }
       }
     })
+  }
+
+  reset(){
+    this.resetVars();
+    this.reportFormGroup.reset();    
+    this.reportFormGroup.get('reportType').setValue(this.months[this.currentMonth]);
+    this.reportFormGroup.updateValueAndValidity();
+    this.getUserData();
   }
 
   //to generate temp data
@@ -248,6 +272,7 @@ export class ReportsComponent implements OnInit {
   
 
   filterMonthWise(records: ReportData[]) {
+    this.monthData = {};
     records.forEach(ele => {
       const dateStr = ele.REPORTDATE,
         dateStrToArr = dateStr.split("-"),
@@ -261,9 +286,9 @@ export class ReportsComponent implements OnInit {
         date: date,
         total: ele.TOTALRECORDS,
         critical: ele.TOTALCRITICAL
-      })
-      this.reportTypeChange();
+      })      
     })
+    this.reportTypeChange();
     // console.log(this.monthData)
   }
 }
