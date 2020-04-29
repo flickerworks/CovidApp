@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-no-data-available',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./no-data-available.component.scss']
 })
 export class NoDataAvailableComponent implements OnInit {
-
+  @Input() text:string = 'No record found';
+  @Input() background:boolean = true;
   constructor() { }
 
   ngOnInit() {
