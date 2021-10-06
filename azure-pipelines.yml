@@ -9,7 +9,7 @@ trigger:
 variables:
  
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'Free Trial (95d4accc-47f6-4ef6-8b8a-9f9f3a68577b)'
+  azureSubscription: 'Azure subscription 1'
   
   # Web app name
   webAppName: 'flickerworks'
